@@ -48,7 +48,7 @@ export class MovementsPage implements OnInit, AfterViewInit {
     }
   ];
   constructor(
-    private serviceLoand: LoansService,
+    private serviceLoans: LoansService,
     private alertController: AlertController,
     private translate: TranslateService,
     private route: ActivatedRoute
@@ -83,7 +83,7 @@ export class MovementsPage implements OnInit, AfterViewInit {
   getDetails(){
     //lo obtendre de loc@l
     
-    /*this.serviceLoand.getDetails(688).subscribe( response =>{
+    /*this.serviceLoans.getDetails(688).subscribe( response =>{
       console.log("D: ",response)
       this.getMovements(688)
     })*/
@@ -91,7 +91,7 @@ export class MovementsPage implements OnInit, AfterViewInit {
 
   getMovements(id){
     this.arrayMovements=null;
-    this.serviceLoand.getMoviments(id).toPromise().then( response =>{
+    this.serviceLoans.getMoviments(id).toPromise().then( response =>{
       console.log("L: ",response.movs.length)
       this.arrayMovements = response.movs 
     }).catch( err => {

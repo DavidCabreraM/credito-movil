@@ -10,17 +10,7 @@ export class LoansService {
   key: any;
   url = "https://jmaldama-proxy.herokuapp.com/https://jmaldama-credito-movilapi.herokuapp.com/";
   
-  constructor(private http: HttpClient) {
-    if(JSON.parse(localStorage.getItem('user'))){
-      this.key = JSON.parse(localStorage.getItem('user')).token;
-    }
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer "+this.key
-      })
-    };
-  }
+  constructor(private http: HttpClient) {}
 
   //prestamo
 

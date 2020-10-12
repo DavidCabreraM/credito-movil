@@ -13,17 +13,7 @@ export class UserServiceService {
   url = "https://jmaldama-proxy.herokuapp.com/https://jmaldama-credito-movilapi.herokuapp.com/usuarios/";
   //url = "https://jmaldama-proxy.herokuapp.com/http://e7c223ef3e18.ngrok.io/usuarios/";
 
-  constructor(private http: HttpClient) {
-    if(JSON.parse(localStorage.getItem('user'))){
-      this.key = JSON.parse(localStorage.getItem('user')).token;
-    }
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer "+this.key
-      })
-    };
-  }
+  constructor(private http: HttpClient) {}
 
   public register(form1,form2): Observable<any> {
     let r= new Register();
@@ -37,7 +27,7 @@ export class UserServiceService {
     r.setDateBirth = form2.dateBirth;
     r.setPhone = form2.phone;
     r.setPassword = form1.password;
-    return this.http.post(this.url,r, this.httpOptions);
+    return this.http.post(this.url,r);
   }
 
   public login(form): Observable<any> {
@@ -52,31 +42,17 @@ export class UserServiceService {
     let params = {
         "selfi":imageData
     }
-    return this.http.post(this.url+"yo/selfi",params,this.httpOptions);
+    return this.http.post(this.url+"yo/selfi",params);
   }
 
   public sendCode(number): Observable<any>{
     let params = {
       "numeroMovil":number
     }
-    this.key = JSON.parse(localStorage.getItem('user')).token;
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer "+JSON.parse(localStorage.getItem('user')).token
-      })
-    };
-    return this.http.post(this.url+"enviarcodigo/",params,this.httpOptions);
+    return this.http.post(this.url+"enviarcodigo/",params);
   }
 
   public verificationCode(code,number): Observable<any>{
-    this.key = JSON.parse(localStorage.getItem('user')).token;
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer "+JSON.parse(localStorage.getItem('user')).token
-      })
-    };
-    return this.http.post(this.url+code+"/verificar/"+number,{},this.httpOptions);
+    return this.http.post(this.url+code+"/verificar/"+number,{});
   }
 }
