@@ -68,6 +68,8 @@ public data = [
 
   public iconexpand = 'chevron-down-outline';
   expanded: boolean = false;
+  public noaccount:any;
+  public no_cuenta:string;
   key: string = 'dashboard';
 
   constructor(private storage: Storage, 
@@ -80,8 +82,31 @@ public data = [
   ngOnInit(){
     this.serviceLoand.dashboard().subscribe(data =>{
       this.storage.set(this.key, JSON.stringify(data));
-     // this.storage.set('dashboard', this.dashboard);
     });
+
+    this.storage.get('user').then((val) => {
+      this.noaccount = JSON.parse(val).usuario;
+      this.no_cuenta = this.noaccount.accountNo;
+      console.log(this.no_cuenta);
+      this.serviceLoand.selfi(this.no_cuenta).subscribe(data=> {
+        console.log(data);
+          this.storage.set('selfi', JSON.stringify(data));
+      });
+    });
+    
+    this.serviceLoand.selfi('000124251').subscribe(data=> {
+      console.log(data);
+    });
+    
+    this.storage.get('selfi').then((val)=>{
+      console.log(val);
+    });
+     
+    /*this.serviceLoand.dashboard().subscribe(data =>{
+      console.log(data);
+      this.storage.set(this.key, JSON.stringify(data));
+     // this.storage.set('dashboard', this.dashboard);
+    });*/
     this.getMovements(688);
     //this.dashboard = this.dashboardService.dashboard();
     

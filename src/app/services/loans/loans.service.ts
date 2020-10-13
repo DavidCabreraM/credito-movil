@@ -10,7 +10,17 @@ export class LoansService {
   key: any;
   url = "https://jmaldama-proxy.herokuapp.com/https://jmaldama-credito-movilapi.herokuapp.com/";
   
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if(JSON.parse(localStorage.getItem('user'))){
+      this.key = JSON.parse(localStorage.getItem('user')).token;
+    }
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'image/png',
+        'Authorization': "Bearer "+this.key
+      })
+    };
+  }
 
   //prestamo
 
@@ -23,8 +33,16 @@ export class LoansService {
   }
 
   public dashboard(): Observable<any>{
-    console.log(this.httpOptions);
     return this.http.get(this.url+ 'dashboard/',this.httpOptions);
 
    }
+
+  public selfi(noaccount:string): Observable<any>{
+    console.log(this.httpOptions);
+    console.log(this.url + 'usuarios/' + noaccount + '/selfi');
+    this.http.get(this.url + 'usuarios/' + noaccount + '/selfi', this.httpOptions).subscribe(data=>{
+      console.log(data); 
+    });
+    return this.http.get(this.url + 'usuarios/' + noaccount + '/selfi', this.httpOptions);
+  }
 }

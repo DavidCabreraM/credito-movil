@@ -25,19 +25,36 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
     centeredSlides: true
   };
  
-  public key: string = 'index-card';
+  public key: string = 'indexCard';
   
   constructor(private storage: Storage,  private router: Router) { }
 
   ngOnInit() {
+    
     this.storage.get('dashboard').then((val) => {
     this.prestamos = JSON.parse(val).prestamos;
-      });
+    console.log(this.prestamos);
+    });
+
+    if(this.prestamos == null){
+      this.prestamos = [
+        {
+          prestamo_account_no: '000000000',
+          saldo_total: 0,
+          monto_proximo_pago: 0,
+          fecha_proximo_pago: new Date()
+        }
+      ];
+    }
+      
+
    }
 
 
   onAccounts(id: number){
-  
+    this.storage.remove(this.key);
+    this.storage.set(this.key, JSON.stringify(id));
+    
     this.router.navigate(['/account/', id]);
   }
 

@@ -16,6 +16,7 @@ export class AppComponent{
   public client_name: any[];
   navigate : any;
   user: any;
+  m_client:string;
   constructor(
     private storage: Storage,
     private platform: Platform,
@@ -42,10 +43,11 @@ export class AppComponent{
   }
   onUser(){
     this.storage.get('user').then((val) => {
-     // this.key = JSON.parse(localStorage.getItem('user')).usuario;
       this.user = JSON.parse(val).usuario;
-      console.log(this.user);
-        });
+      this.m_client = this.user.nombre + ' ' + this.user.apellidoPaterno + ' ' + this.user.apellidoMaterno ;
+    });
+
+        
         
   }
   sideMenu()
@@ -55,22 +57,26 @@ export class AppComponent{
       {
         title : 'Inicio',
         url   : '/home',
-        icon  : 'home-outline'
+        icon  : 'home-outline',
+        disabled: false
       },
       {
         title : 'Mis Cuentas',
         url   : '/account/1',
-        icon  : 'card-outline'
+        icon  : 'card-outline',
+        disabled: false
       },
       {
         title : 'Solicitar un Prestamo',
         url   : '/home',
-        icon  : 'thumbs-up-outline'
+        icon  : 'thumbs-up-outline',
+        disabled: true
       },
       {
         title: 'Codigo de barras y QR',
         url: '/home',
-        icon: 'qr-code-outline'
+        icon: 'qr-code-outline',
+        disabled: true
       }
     ];
   }

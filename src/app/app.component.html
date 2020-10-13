@@ -6,20 +6,21 @@
           <img src="/assets/img/avatar/stan-lee.jpg">
         </ion-avatar>
       </ion-toolbar>
+      <ion-item lines="none" class="item-name">
+        <ion-label><strong>{{m_client}}</strong></ion-label>
+      </ion-item>
     
-        <ion-label  color="textcard" class="ion-padding"><strong>ANDRES ROBLES LOPEZ</strong></ion-label>
-
     </ion-header>
     <ion-content>
-      <div class="spacing">
-        <ion-list *ngFor="let pages of navigate">
-          <ion-menu-toggle lines="none"  class="ion-toogle ion-no-padding" auto-hide="true">
-            <ion-item lines="none" [routerLink]="pages.url" routerDirection="forward">
-                <ion-icon [name]="pages.icon" slot="start"></ion-icon>
-                   {{pages.title}} 
-            </ion-item>
-          </ion-menu-toggle>
-          </ion-list>
+      <div class="spacing ion-padding">
+        <ion-menu-toggle *ngFor="let pages of navigate">
+          <ion-item class="ion-item" [routerLink]="pages.url" lines="none">
+            <ion-icon [name]="pages.icon"></ion-icon>
+            <ion-label>
+              {{pages.title}} 
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
       </div>
     </ion-content>
     <ion-footer class="ion-no-border ion-padding">
