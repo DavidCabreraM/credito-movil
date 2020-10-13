@@ -3,6 +3,7 @@ import { LoansService } from '@services/loans/loans.service';
 import { IonSlides, AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-movements',
@@ -14,6 +15,7 @@ export class MovementsPage implements OnInit, AfterViewInit {
   @ViewChild(IonSlides) slides: IonSlides;
   arrayMovements: any;
   eventRefesh: any;
+  public prestamos: any[];
   idDetatail: string;
   public data = [
     {
@@ -48,10 +50,11 @@ export class MovementsPage implements OnInit, AfterViewInit {
     }
   ];
   constructor(
-    private serviceLoand: LoansService,
+    private serviceLoans: LoansService,
     private alertController: AlertController,
     private translate: TranslateService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: Storage
     ) {
       this.idDetatail=route.snapshot.paramMap.get("id");
       console.log(this.idDetatail)
@@ -59,7 +62,10 @@ export class MovementsPage implements OnInit, AfterViewInit {
   }
 
   ngOnInit() { 
-    
+    this.storage.get('dashboard').then((val) => {
+      this.prestamos = JSON.parse(val).prestamos;
+      console.log(this.prestamos)
+    });
   }
   ngAfterViewInit(){
     this.slides.slideTo(parseInt(this.idDetatail))
@@ -83,7 +89,7 @@ export class MovementsPage implements OnInit, AfterViewInit {
   getDetails(){
     //lo obtendre de loc@l
     
-    /*this.serviceLoand.getDetails(688).subscribe( response =>{
+    /*this.serviceLoans.getDetails(688).subscribe( response =>{
       console.log("D: ",response)
       this.getMovements(688)
     })*/
@@ -91,7 +97,7 @@ export class MovementsPage implements OnInit, AfterViewInit {
 
   getMovements(id){
     this.arrayMovements=null;
-    this.serviceLoand.getMoviments(id).toPromise().then( response =>{
+    this.serviceLoans.getMoviments(id).toPromise().then( response =>{
       console.log("L: ",response.movs.length)
       this.arrayMovements = response.movs 
     }).catch( err => {

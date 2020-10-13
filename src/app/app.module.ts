@@ -12,10 +12,11 @@ import { CoreModule } from '@core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { ComponentsModule } from '@components/components.module';
 import { Camera } from '@ionic-native/camera/ngx';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicStorageModule } from '@ionic/storage';
+import { HeadersService } from '@services/interceptors/headers.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -46,7 +47,8 @@ export function createTranslateLoader(http: HttpClient) {
     StatusBar,
     SplashScreen,
     Camera,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: HeadersService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

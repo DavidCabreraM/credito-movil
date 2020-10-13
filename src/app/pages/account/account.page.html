@@ -12,17 +12,10 @@
     </ion-segment> 
   </ion-toolbar> 
   <div class="bg-card-loan"> 
-    <app-cards-loan></app-cards-loan>
+    <app-cards-loan [id]="idDetatail"></app-cards-loan>
   </div>
   
-  <!--ion-slides style="background-color:#F2F2F2;" #slides (ionSlideDidChange)="slideChanged()" scrollbar="true"> 
-  <ion-slide>
-    
-  </ion-slide>
-  </ion-slides--> 
-
-
-  <ion-item class="btn-round item-nav" routerLink="/movements">
+  <ion-item class="btn-round item-nav" [routerLink]="['/movements/',idDetatail]">
     <ion-icon style="color:white; margin-right: 10px;" slot="start" name="search"></ion-icon>
     <ion-label style="padding-left: 0px;">{{'MOVEMENTS' | translate}}</ion-label>
     <ion-icon style="color:white" slot="end" name="chevron-forward"></ion-icon>
