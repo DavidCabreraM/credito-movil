@@ -17,6 +17,7 @@ export class AppComponent{
   navigate : any;
   user: any;
   m_client:string;
+  public urlAvatar = '';
   constructor(
     private storage: Storage,
     private platform: Platform,
@@ -26,10 +27,14 @@ export class AppComponent{
     private router: Router
   ) {
     translate.setDefaultLang('es');
-    translate.use('es')
+    translate.use('es');
     this.initializeApp();
     this.sideMenu();
     this.onUser();
+    this.storage.get('selfi').then((val) => {
+    this.urlAvatar = JSON.parse(val);
+    });
+
   }
 
   initializeApp() {
@@ -42,13 +47,18 @@ export class AppComponent{
     this.router.navigate(['/home']);
   }
   onUser(){
-    this.storage.get('user').then((val) => {
-      this.user = JSON.parse(val).usuario;
-      this.m_client = this.user.nombre + ' ' + this.user.apellidoPaterno + ' ' + this.user.apellidoMaterno ;
+    this.storage.ready().then(()=>{
+      this.storage.get('user').then((val) => {
+        this.user = JSON.parse(val).usuario;
+        this.m_client = this.user.nombre + ' ' + this.user.apellidoPaterno + ' ' + this.user.apellidoMaterno ;
+      });
     });
+        
+  }
 
-        
-        
+  onCerrarSession(){
+    this.storage.clear();
+    this.router.navigate(['/login']);
   }
   sideMenu()
   {

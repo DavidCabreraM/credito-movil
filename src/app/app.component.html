@@ -3,7 +3,7 @@
     <ion-header id="imagen" class="ion-no-border ion-padding">
       <ion-toolbar class="ion-padding"  id="color-background">
         <ion-avatar>
-          <img src="/assets/img/avatar/stan-lee.jpg">
+          <img src="{{urlAvatar}}">
         </ion-avatar>
       </ion-toolbar>
       <ion-item lines="none" class="item-name">
@@ -25,7 +25,7 @@
     </ion-content>
     <ion-footer class="ion-no-border ion-padding">
       <ion-menu-toggle>
-        <ion-item routerLink="login" lines="none">
+        <ion-item (click)="onCerrarSession()" lines="none">
           <ion-icon name="enter-outline"></ion-icon>
           <ion-label>
             Cerrar sesion

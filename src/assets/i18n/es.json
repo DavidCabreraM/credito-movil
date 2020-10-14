@@ -55,5 +55,12 @@
     "PCALENDAR" : "Calendario de pagos",
     "BQRO" : "Operaciones con código de barra y QR",
     "LOANDATA" : "Datos de préstamo",
-    "CREDIT" : "Crédito"
+    "CREDIT" : "Crédito",
+    "MONDAY" : "LUNES",
+    "TUESDAY" : "MARTES",
+    "WEDNESDAY": "MIÉRCOLES",
+    "THURSDAY" : "JUEVES",
+    "FRIDAY" : "VIERNES",
+    "SATURDAY" : "SÁBADO",
+    "SUNDAY" : "DOMINGO"
 }

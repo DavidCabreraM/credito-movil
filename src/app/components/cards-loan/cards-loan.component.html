@@ -5,10 +5,10 @@
         <h2 class="ion-text-right"><strong>{{item.prestamo_account_no}}</strong></h2>
         <ion-label>
           <h3 class="ion-text-left">SALDO TOTAL</h3>
-          <p class="ion-text-left">{{item.saldo_total == null ? 0 : item.saldo_total | currency}}</p>
+          <p class="ion-text-left">{{item.saldo_total | currency}}</p>
           <h3 class="ion-text-left">SALDO PARA NO GENERAR INTERESES</h3>
-          <p class="ion-text-left">{{item.monto_proximo_pago | currency}}</p>
-          <h3 class="ion-text-left">FECHA LÍMITE PAGO &nbsp;&nbsp;&nbsp;&nbsp; <ion-label class="date-limit">{{item.fecha_proximo_pago | date: 'EEEE, dd/MM/yyyy'}}</ion-label></h3>
+          <p class="ion-text-left">{{item.saldo_vencido | currency}}</p>
+          <h3 class="ion-text-left">FECHA LÍMITE PAGO &nbsp;&nbsp;&nbsp;&nbsp; <ion-label class="date-limit">{{item.vencido_desde | date: 'EEEE, dd/MM/yyyy'}}</ion-label></h3>
         </ion-label>   
       </ion-label>
     </ion-card>
