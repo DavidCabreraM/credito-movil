@@ -6,8 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoansService {
-  httpOptions: any;
-  key: any;
   url = "https://jmaldama-proxy.herokuapp.com/https://jmaldama-credito-movilapi.herokuapp.com/";
   
   constructor(private http: HttpClient) {}
@@ -15,16 +13,14 @@ export class LoansService {
   //prestamo
 
   public getMoviments(id): Observable<any> {
-    return this.http.get(this.url+"prestamo/"+id+"/movimientos", this.httpOptions);
+    return this.http.get(this.url+"prestamo/"+id+"/movimientos");
   }
 
   public getDetails(id): Observable<any> {
-    return this.http.get(this.url+"prestamo/"+id+"/detalle", this.httpOptions);
+    return this.http.get(this.url+"prestamo/"+id+"/detalle");
   }
 
   public dashboard(): Observable<any>{
-    console.log(this.httpOptions);
-    return this.http.get(this.url+ 'dashboard/',this.httpOptions);
-
-   }
+    return this.http.get(this.url+ 'dashboard/');
+  }
 }

@@ -79,10 +79,12 @@ public data = [
 
   ngOnInit(){
     this.serviceLoand.dashboard().subscribe(data =>{
+      console.log(data)
       this.storage.set(this.key, JSON.stringify(data));
+      this.arrayMovements = data.movs
      // this.storage.set('dashboard', this.dashboard);
     });
-    this.getMovements(688);
+    //this.getMovements(688);
     //this.dashboard = this.dashboardService.dashboard();
     
     this.urlAvatar = '/assets/img/avatar/stan-lee.jpg';

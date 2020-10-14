@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
       ]],
       password: ['', [
         Validators.required,
-        Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,12}")
+        //Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,12}")
       ]]
     });
   }

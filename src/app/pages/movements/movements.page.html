@@ -4,13 +4,13 @@
     <ion-refresher-content>
     </ion-refresher-content>
   </ion-refresher>
-  <ion-slides style="margin-bottom:5%;" class="pagination" pager="true" #slides (ionSlideDidChange)="loanChanged()">
-    <ion-slide>
-      <ion-item class="card-info ion-no-padding" lines="none">
+  <ion-slides style="margin-bottom:5%;" class="pagination" pager="true"  #slides (ionSlideDidChange)="loanChanged()">
+    <ion-slide *ngFor="let prestamo of prestamos; let i=index">
+      <ion-item class="card-info ion-no-padding" [ngStyle]="i%2==0 ? {'background-image':'url(' + img.one +')'}: {'background-image': 'url(' + img.two +')'}" lines="none">
         <ion-grid class="number-count">
           <ion-row>
             <ion-col class="center-label">
-              000000123456
+              {{prestamo.prestamo_account_no}}
             </ion-col>
           </ion-row>
         
@@ -25,26 +25,20 @@
     
           <ion-row class="data-count">
             <ion-col class="center-label" size="6">
-              14,635.00
+              {{prestamo.saldo_total}}
             </ion-col>
             <ion-col class="center-label" size="6">
-              1,635.00
+              {{prestamo.monto_proximo_pago}}
             </ion-col>
           </ion-row>
     
           <ion-row class="number-count">
             <ion-col class="center-label">
-              <span>FECHA LÍMITE PAGO JUEVEZ, 13/10/2020</span>
+              <span>FECHA LÍMITE PAGO {{prestamo.monto_proximo_pago | date: 'EEEE, dd/MM/yyyy'}}</span>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
-    </ion-slide>
-    <ion-slide>
-      <h1>Slide 2</h1>
-    </ion-slide>
-    <ion-slide>
-      <h1>Slide 3</h1>
     </ion-slide>
   </ion-slides>
 

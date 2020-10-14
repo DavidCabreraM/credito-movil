@@ -11,44 +11,13 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./movements.page.scss'],
 })
 export class MovementsPage implements OnInit, AfterViewInit {
-  fecha = Date();
+  public img = {one: '/assets/img/cards/Tarjeta1.svg', two: '/assets/img/cards/Tarjeta2.svg'};
   @ViewChild(IonSlides) slides: IonSlides;
   arrayMovements: any;
   eventRefesh: any;
   public prestamos: any[];
   idDetatail: string;
-  public data = [
-    {
-      icon: '',
-      name: '',
-      redirectTo: '',
-      img: '/assets/img/cards/Tarjeta01_1.svg',
-      accountNo: '000000012589',
-      amount: 1468.00,
-      pago:0,
-      datepago: this.fecha
-    },
-    {
-      icon: '',
-      name: '',
-      redirectTo: '',
-      img: '/assets/img/cards/Tarjeta02.svg',
-      accountNo: '0000000123456',
-      amount: 4500,
-      pago:50,
-      datepago: this.fecha
-    },
-    {
-      icon: '',
-      name: '',
-      redirectTo: '',
-      img: '/assets/img/cards/Tarjeta01_1.svg',
-      accountNo: '000000058965',
-      amount:3000,
-      pago:100,
-      datepago: this.fecha
-    }
-  ];
+
   constructor(
     private serviceLoans: LoansService,
     private alertController: AlertController,
@@ -58,32 +27,31 @@ export class MovementsPage implements OnInit, AfterViewInit {
     ) {
       this.idDetatail=route.snapshot.paramMap.get("id");
       console.log(this.idDetatail)
-      console.log(this.data)
   }
 
   ngOnInit() { 
     this.storage.get('dashboard').then((val) => {
       this.prestamos = JSON.parse(val).prestamos;
       console.log(this.prestamos)
+      this.getMovements(this.prestamos[this.idDetatail].prestamo_id)
     });
   }
   ngAfterViewInit(){
-    this.slides.slideTo(parseInt(this.idDetatail))
-    this.getMovements(688)
+    setTimeout (() => {this.slides.slideTo(parseInt(this.idDetatail),250);}, 200);
   }
   loanChanged() {
 
     //debe obtener el id del arreglo
     let index = this.slides.getActiveIndex().then( promise =>{
       console.log ("El índice actual es " + promise);
-      //obtengo el id
-      this.getMovements(688)
+      this.getMovements(this.prestamos[promise].prestamo_id)
     });
   }
 
   doRefresh(event){
     this.eventRefesh = event;
     this.getMovements(688)
+    this.eventRefesh.target.complete();
   }
 
   getDetails(){
@@ -107,7 +75,7 @@ export class MovementsPage implements OnInit, AfterViewInit {
         }
       )
     }).finally(() => {   
-      this.eventRefesh.target.complete();
+      
     })
   }
   //no
