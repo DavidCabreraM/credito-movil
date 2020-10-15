@@ -1,7 +1,8 @@
 .payment-cards{
     border-left: 8px solid;
     --background:#F7F7F7;
-    height: 80px;
+    min-height: 80px;
+    height: auto;
     display: grid;
     align-items: center;
 }

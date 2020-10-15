@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cards-buttons',
@@ -6,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards-buttons.component.scss'],
 })
 export class CardsButtonsComponent implements OnInit {
+  public url_account = 'account';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
+
+  onOptionsButtons(url: number){
+    this.router.navigate([url]);
+  }
 
 }

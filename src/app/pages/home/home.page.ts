@@ -68,6 +68,8 @@ public data = [
 
   public iconexpand = 'chevron-down-outline';
   expanded: boolean = false;
+  public noaccount:any;
+  public no_cuenta:string;
   key: string = 'dashboard';
 
   constructor(private storage: Storage, 
@@ -78,18 +80,48 @@ public data = [
     ) {}
 
   ngOnInit(){
-    this.serviceLoand.dashboard().subscribe(data =>{
-      console.log(data)
+    //location.reload();
+    this.onInitCards();
+
+    this.storage.get('user').then((val) => {
+      this.noaccount = JSON.parse(val).usuario;
+      this.no_cuenta = this.noaccount.accountNo;
+      this.serviceLoand.selfi(this.no_cuenta).subscribe(data=> {
+         this.createImageFromBlob( data, this.no_cuenta);
+      });
+    });
+    
+  
+    /*this.serviceLoand.dashboard().subscribe(data =>{
+      console.log(data);
       this.storage.set(this.key, JSON.stringify(data));
       this.arrayMovements = data.movs
      // this.storage.set('dashboard', this.dashboard);
-    });
+    });*/
     //this.getMovements(688);
     //this.dashboard = this.dashboardService.dashboard();
     
-    this.urlAvatar = '/assets/img/avatar/stan-lee.jpg';
+   // this.urlAvatar = '/assets/img/avatar/stan-lee.jpg';
   }
 
+  createImageFromBlob(image: Blob, noaccount: string) {
+    let reader = new FileReader();
+    let photo = new File([image], noaccount + '.png' , { type: 'image/png' });
+    reader.readAsDataURL(photo);
+    reader.onload = (event: any) => {
+      let image=event.target.result;
+      this.storage.set('selfi', JSON.stringify(image));
+     this.urlAvatar = image;
+    }
+  }
+
+  onInitCards(){
+    this.serviceLoand.dashboard().subscribe(data =>{
+      this.prestamos = data.prestamos;
+      this.storage.set(this.key, JSON.stringify(this.prestamos));
+      this.arrayMovements=data.movs;
+    });
+  }
   onExpanded(){
     if(this.expanded){
       this.expanded=false;
@@ -101,6 +133,12 @@ public data = [
     
   }
 
+  doRefresh(event){
+    this.onInitCards();
+    location.reload();
+    event.target.complete();
+  }
+
   menuSalir(){
     this.menuCtrl.open('first');
   }
@@ -108,7 +146,6 @@ public data = [
   getMovements(id){
     this.arrayMovements=null;
     this.serviceLoand.getMoviments(id).toPromise().then( response =>{
-      console.log("L: ",response.movs.length)
       this.arrayMovements = response.movs;
     }).catch( err => {
       this.translate.get("TRYAGAIN").subscribe(

@@ -16,6 +16,8 @@ export class AppComponent{
   public client_name: any[];
   navigate : any;
   user: any;
+  m_client:string;
+  public urlAvatar = '';
   constructor(
     private storage: Storage,
     private platform: Platform,
@@ -25,10 +27,14 @@ export class AppComponent{
     private router: Router
   ) {
     translate.setDefaultLang('es');
-    translate.use('es')
+    translate.use('es');
     this.initializeApp();
     this.sideMenu();
     this.onUser();
+    this.storage.get('selfi').then((val) => {
+    this.urlAvatar = JSON.parse(val);
+    });
+
   }
 
   initializeApp() {
@@ -41,12 +47,18 @@ export class AppComponent{
     this.router.navigate(['/home']);
   }
   onUser(){
-    this.storage.get('user').then((val) => {
-     // this.key = JSON.parse(localStorage.getItem('user')).usuario;
-      this.user = JSON.parse(val).usuario;
-      console.log(this.user);
-        });
+    this.storage.ready().then(()=>{
+      this.storage.get('user').then((val) => {
+        this.user = JSON.parse(val).usuario;
+        this.m_client = this.user.nombre + ' ' + this.user.apellidoPaterno + ' ' + this.user.apellidoMaterno ;
+      });
+    });
         
+  }
+
+  onCerrarSession(){
+    this.storage.clear();
+    this.router.navigate(['/login']);
   }
   sideMenu()
   {
@@ -55,22 +67,26 @@ export class AppComponent{
       {
         title : 'Inicio',
         url   : '/home',
-        icon  : 'home-outline'
+        icon  : 'home-outline',
+        disabled: false
       },
       {
         title : 'Mis Cuentas',
         url   : '/account/1',
-        icon  : 'card-outline'
+        icon  : 'card-outline',
+        disabled: false
       },
       {
         title : 'Solicitar un Prestamo',
         url   : '/home',
-        icon  : 'thumbs-up-outline'
+        icon  : 'thumbs-up-outline',
+        disabled: true
       },
       {
         title: 'Codigo de barras y QR',
         url: '/home',
-        icon: 'qr-code-outline'
+        icon: 'qr-code-outline',
+        disabled: true
       }
     ];
   }

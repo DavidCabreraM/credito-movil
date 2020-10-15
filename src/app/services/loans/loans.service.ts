@@ -22,5 +22,11 @@ export class LoansService {
 
   public dashboard(): Observable<any>{
     return this.http.get(this.url+ 'dashboard/');
+
+   }
+
+  public selfi(noaccount: string){
+    return this.http.get(this.url + 'usuarios/' + noaccount + '/selfi', {responseType: 'blob'});
   }
+ 
 }

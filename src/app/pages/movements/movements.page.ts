@@ -25,13 +25,16 @@ export class MovementsPage implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private storage: Storage
     ) {
-      this.idDetatail=route.snapshot.paramMap.get("id");
-      console.log(this.idDetatail)
+      this.storage.get('indexCard').then((val) => {
+        this.idDetatail = val;
+      });
+      //this.idDetatail=route.snapshot.paramMap.get("id");
+      //console.log(this.idDetatail)
   }
 
   ngOnInit() { 
     this.storage.get('dashboard').then((val) => {
-      this.prestamos = JSON.parse(val).prestamos;
+      this.prestamos = JSON.parse(val);
       console.log(this.prestamos)
       this.getMovements(this.prestamos[this.idDetatail].prestamo_id)
     });
@@ -39,8 +42,8 @@ export class MovementsPage implements OnInit, AfterViewInit {
   ngAfterViewInit(){
     setTimeout (() => {this.slides.slideTo(parseInt(this.idDetatail),250);}, 200);
   }
-  loanChanged() {
 
+  loanChanged() {
     //debe obtener el id del arreglo
     let index = this.slides.getActiveIndex().then( promise =>{
       console.log ("El índice actual es " + promise);

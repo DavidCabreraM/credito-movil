@@ -2,7 +2,7 @@
   <ion-row>
     <ion-col></ion-col>
     <ion-col>
-      <ion-card  class="ion-card ion-card-myaccounts"  color="sectionbutton">
+      <ion-card button (click)="onOptionsButtons('/account/0')"  class="ion-card ion-card-myaccounts"  color="sectionbutton">
         <ion-card-header class="ion-text-center ion-padding">
           <ion-icon  class="ion-icon-myaccounts"  name="card-outline"></ion-icon>
         </ion-card-header>
@@ -13,7 +13,7 @@
     </ion-col>
     <ion-col class="col-separation"></ion-col>
     <ion-col>
-      <ion-card class="ion-card ion-card-qr" color="sectionbutton">
+      <ion-card disabled="true" class="ion-card ion-card-qr" color="sectionbutton">
         <ion-card-header class="ion-text-center ion-padding">
           <ion-icon class="ion-icon-qr" name="qr-code-sharp"></ion-icon>
         </ion-card-header>

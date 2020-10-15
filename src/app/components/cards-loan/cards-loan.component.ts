@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cards-loan',
@@ -10,12 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./cards-loan.component.scss'],
 })
 export class CardsLoanComponent implements OnInit, AfterViewInit {
-
-  @Input() id: number;
+  @Input()  prestamos: any;
 
   @ViewChild(IonSlides) slides: IonSlides;
-  public dashboard:any;
-  public prestamos: any[];
+  public dashboard: any;
 
   public img = {one: '/assets/img/cards/Tarjeta1.svg', two: '/assets/img/cards/Tarjeta2.svg'};
 
@@ -24,26 +23,58 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
     spaceBetween: .3,
     centeredSlides: true
   };
- 
-  public key: string = 'index-card';
   
-  constructor(private storage: Storage,  private router: Router) { }
+  constructor(private storage: Storage,  private router: Router, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.storage.get('dashboard').then((val) => {
-    this.prestamos = JSON.parse(val).prestamos;
-      });
+    if(this.prestamos === null){
+      this.onPrestamosNull();
+    }
+    //location.reload();
+    /*this.storage.get('dashboard').then((val) => {
+      console.log(val);
+    this.prestamos = JSON.parse(val);
+    console.log(this.prestamos);
+    console.log(this.prestamos.length);
+    });*/
+   }
+
+   onPrestamosNull(){
+    this.prestamos = [
+      {
+        prestamo_account_no: '000000000',
+        saldo_total: 0,
+        saldo_vencido: 0,
+        vencido_desde: new Date()
+      }
+    ];
+   }
+
+   ngOnChanges(changes: SimpleChanges): void {
+     this.prestamos = changes.prestamos.currentValue;
+     if(this.prestamos.length === 0){
+       this.onPrestamosNull();
+     }
    }
 
 
   onAccounts(id: number){
-  
+    this.storage.set('indexCard', JSON.stringify(id));
     this.router.navigate(['/account/', id]);
   }
 
   ngAfterViewInit(){
-    this.slides.slideTo(this.id);
+    this.storage.get('indexCard').then((val) => {
+      setTimeout (() => {this.slides.slideTo(parseInt(val),250);}, 200);
+    });  
   }
 
+  loanChanged() {
+    //debe obtener el id del arreglo
+    let index = this.slides.getActiveIndex().then( promise =>{
+      console.log ("El índice actual es " + promise);
+      this.storage.set('indexCard', promise);
+    });
+  }
 
 }

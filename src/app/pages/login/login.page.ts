@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginPage implements OnInit {
     private alertController: AlertController,
     private loadingController:LoadingController,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private storage: Storage
     ) {
       localStorage.removeItem("user");
     }
@@ -49,6 +51,28 @@ export class LoginPage implements OnInit {
         this.presentLoading(value+"...");
       }
     )
+    this.userService.login(this.form_login.value).toPromise().then(response =>{
+      this.storage.set('user', JSON.stringify(response));
+     // this.storage.set('dashboard', this.dashboard);
+     this.router.navigate(['/home']);
+    }).catch( err => {
+      this.translate.get('LOGINERROR').subscribe(
+        value => {
+          this.presentAlert("Error!",value);
+        }
+      )
+    }).finally(() => {
+      this.loading.dismiss();
+    });
+
+   /* this.userService.login(this.form_login.value).toPromise().then(response => {
+      //Guardar local
+       window.localStorage['user'] = JSON.stringify(response);
+       //RedirectHome
+       //this.router.navigate(['/home']);
+       
+     });
+*/
     this.userService.login(this.form_login.value).toPromise().then(response => {
      //Guardar local
       window.localStorage['user'] = JSON.stringify(response);

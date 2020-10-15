@@ -6,8 +6,11 @@
        </ion-toolbar>      
 </ion-header>
 <ion-content color="content"  [scrollX]="false" [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="cards-slides">
-    <app-cards-loan id="0"></app-cards-loan>
+    <app-cards-loan [prestamos]="prestamos"></app-cards-loan>
   </div>
   <div class="body">
     <div class="body-button">
@@ -17,41 +20,6 @@
       <div class="box-list box-padding">
         <app-payment-cards [data]="arrayMovements"></app-payment-cards>
       </div>
-      
-     <!-- <div class="box-list box-padding">
-        <ion-list class="ion-margin" mode="ios" *ngFor="let item of [1,1]"> 
-          <ion-item class="border-item-list" color="boxitem" lines="none">
-              <ion-icon color="primary" class="icon ion-text-right" slot="start" name="globe-outline"></ion-icon>
-            <ion-label position="stacked">
-              <h2 class="text-reference"><strong>Referencia de Pago aplicado</strong></h2>
-              <h3 class="text-account">000-000-000-0000</h3>
-              <p class="tex-garantia">PAGO DE GARANTIA</p>
-            </ion-label>
-            <ion-label>
-              <h2 class="ion-text-right text-saldo"><strong>$26000.2000</strong></h2>
-              <h3 class="ion-text-right">30/09/2020</h3>
-            </ion-label>
-          </ion-item>
-          </ion-list>
-      </div>-->
-      <!--  <div class="card-list">
-          <ion-list mode="ios" class="padding-list" *ngFor="let item of [1]"> 
-            <ion-item class="ion-no-padding ion-item" lines="none">
-
-                <ion-icon color="primary" class="icon ion-text-right" slot="start" name="globe-outline"></ion-icon>
-         
-              <ion-label class="content-2">
-                <h2 class="text-title"><strong>Referencia de Pago aplicado</strong></h2>
-                <h3 class="text-title-size">000-000-000-0000</h3>
-                <p class="text-title-size">PAGO DE GARANTIA</p>
-              </ion-label>
-              <ion-label class="content-3">
-                <h2 class="ion-text-money"><strong>$26000.2000</strong></h2>
-                <h3 class="ion-text-date">30/09/2020</h3>
-              </ion-label>
-            </ion-item>
-            </ion-list>
-        </div>-->
     </div>
   </div>
 
