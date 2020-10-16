@@ -5,6 +5,7 @@ import { UserServiceService } from '@services/user/user-service.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 
 declare var faceapi;
 
@@ -19,7 +20,7 @@ export class RegisterPage implements OnInit {
   image: String;
   loading: any;
   showBar = false;
-  isFace = false;
+  isFace = true;
   hide = true;
   step1 = true;
   step2 = false;
@@ -38,7 +39,8 @@ export class RegisterPage implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private loadingController:LoadingController,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private storage: Storage
   ) {
     translate.get('SELFIE').subscribe(
       value => {
@@ -103,26 +105,28 @@ export class RegisterPage implements OnInit {
     )
     this.userService.register(this.form_register1.value,this.form_register2.value).toPromise().then(response => {
       //Guardar local
-      let lol= localStorage.setItem("user", JSON.stringify(response));
-     
-      this.sendCode();
-      this.translate.get(["MORESTEP",'SEND',"RESEND","CHECKMESSAGES","INFOREGISTER","CANCEL","CODEAUTHENTICATION"]).subscribe(
-        value => {
-          this.presentAlertPhone(value);
-        }
-      )
+      //let lol= localStorage.setItem("user", JSON.stringify(response));
+      this.storage.set('user', JSON.stringify(response)).finally(()=>{
+        this.sendCode();
+        this.translate.get(["MORESTEP",'SEND',"RESEND","CHECKMESSAGES","INFOREGISTER","CANCEL","CODEAUTHENTICATION"]).subscribe(
+          value => {
+            this.presentAlertPhone(value);
+          }
+        ) 
+      });   
     }).catch( err => {
-      this.loading.dismiss();
-      this.translate.get("CORRECTDATA").subscribe(
-        value => {
-          this.presentAlert('Error!',value);
-        }
-      )
-    })
+        this.loading.dismiss();
+        this.translate.get("BADDATA").subscribe(
+          value => {
+            this.presentAlert('Error!',value);
+          }
+        )
+      }).finally(() =>{
+        this.storage.remove("user");
+      })
   }
 
   tomarFoto(){
-    this.showBar = true;
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -197,6 +201,7 @@ export class RegisterPage implements OnInit {
 
 //Face api
   async detect() {
+    this.showBar = true;
     const urlImg = document.getElementById('img-photo');
     const options = this.getFaceDetectorOptions();
     let fullFaceDescriptions = await faceapi.detectAllFaces(urlImg,options);

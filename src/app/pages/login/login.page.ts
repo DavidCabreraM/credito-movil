@@ -26,7 +26,8 @@ export class LoginPage implements OnInit {
     private router: Router,
     private storage: Storage
     ) {
-      localStorage.removeItem("user");
+      //localStorage.removeItem("user");
+      this.storage.remove("user");
     }
 
   ngOnInit() {
@@ -72,7 +73,7 @@ export class LoginPage implements OnInit {
        //this.router.navigate(['/home']);
        
      });
-*/
+
     this.userService.login(this.form_login.value).toPromise().then(response => {
      //Guardar local
       window.localStorage['user'] = JSON.stringify(response);
@@ -87,7 +88,7 @@ export class LoginPage implements OnInit {
       )
     }).finally(() => {
       this.loading.dismiss();
-    })
+    })*/
   }
 
   async presentAlert(header,msj) {

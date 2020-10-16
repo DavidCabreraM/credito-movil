@@ -38,6 +38,7 @@
     "BADCODE" : "Código incorrecto.",
     "CREATEUSER" : "Usuario creado correctamente.",
     "CORRECTDATA" : "Datos correctos",
+    "BADDATA" : "Datos incorrectos",
     "ISFACE" : "Es una cara",
     "NOTFACE" : "No es un rostro o hay mas de uno.",
     "MORESTEP" : "Sólo un paso más.",

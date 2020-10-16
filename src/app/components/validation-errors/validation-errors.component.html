@@ -1,6 +1,6 @@
 <div *ngIf="form.dirty || form.touched">
   <ng-container *ngIf="form.errors && form.errors['required']"><p class="error-message">{{ 'REQUIRED' | translate }}</p></ng-container>
-  <ng-container *ngIf="form.errors && form.errors['min']"><p class="error-message">{{ 'MINERROR' | translate }} > {{form.errors['min'].min}}.<button (click)="hola()">Hola</button></p></ng-container>
+  <ng-container *ngIf="form.errors && form.errors['min']"><p class="error-message">{{ 'MINERROR' | translate }} > {{form.errors['min'].min}}.</p></ng-container>
   <ng-container *ngIf="form.errors && form.errors['notEquivalent']"><p class="error-message">{{ 'PASSWORDMATCH' | translate }}</p></ng-container>
   <ng-container *ngIf="form.errors && form.errors['pattern'] && fieldName=='email'"><p class="error-message">{{ 'INVALIDEMAIL' | translate }}</p></ng-container>
   <ng-container *ngIf="form.errors && form.errors['pattern'] && fieldName=='nClient'"><p class="error-message">{{ 'INVALIDACCOUNT' | translate }}</p></ng-container>
