@@ -39,9 +39,32 @@
     color:#00ABFF;
     font-size: 14px;
 }
+.scroll{
+    height: 100%;
+    overflow: auto;
+    overscroll-behavior-y: contain;
+}
 .card-empty{
     color:#0652AF;
     font-size: 24px !important;
+}
+
+.img-credit-card{
+    width: 40%;
+    height: 170px;
+    margin-right: 3%;
+}
+
+.title-empty-card{
+    font-size: 20px;
+    font-weight: bold;
+}
+.body-empty-card{
+    font-size: 19px;
+}
+
+.price-empty-card{
+    font-size: 20px;
 }
 
 /*@media(max-width: 1024px){
