@@ -52,9 +52,12 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
 
    ngOnChanges(changes: SimpleChanges): void {
      this.prestamos = changes.prestamos.currentValue;
-     if(this.prestamos.length === 0){
-       this.onPrestamosNull();
+     if(this.prestamos != undefined){
+      if(this.prestamos.length === 0){
+        this.onPrestamosNull();
+      }
      }
+     
    }
 
 

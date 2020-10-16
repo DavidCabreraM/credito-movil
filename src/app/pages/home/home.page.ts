@@ -5,6 +5,7 @@ import { DashboardService } from '../../services/dashboard/dashboard.service';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { LoansService } from '@services/loans/loans.service';
+import { VarglobalesService } from '../../services/varglobales/varglobales.service';
 
 interface Componente {
   icon: string;
@@ -32,43 +33,10 @@ export class HomePage implements OnInit {
     spaceBetween: 2,
     centeredSlides: true
   };
- fecha = Date();
-public data = [
-    {
-      icon: '',
-      name: '',
-      redirectTo: '',
-      img: '/assets/img/cards/Tarjeta01_1.svg',
-      accountNo: '000000012589',
-      amount: 1468.00,
-      pago:0,
-      datepago: this.fecha
-    },
-    {
-      icon: '',
-      name: '',
-      redirectTo: '',
-      img: '/assets/img/cards/Tarjeta02.svg',
-      accountNo: '0000000123456',
-      amount: 4500,
-      pago:50,
-      datepago: this.fecha
-    },
-    {
-      icon: '',
-      name: '',
-      redirectTo: '',
-      img: '/assets/img/cards/Tarjeta01_1.svg',
-      accountNo: '000000058965',
-      amount:3000,
-      pago:100,
-      datepago: this.fecha
-    }
-  ];
 
   public iconexpand = 'chevron-down-outline';
   expanded: boolean = false;
-  public noaccount:any;
+  public user:any;
   public no_cuenta:string;
   key: string = 'dashboard';
 
@@ -76,7 +44,8 @@ public data = [
     private menuCtrl: MenuController,
     private serviceLoand: LoansService,
     private translate: TranslateService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private varGlobal: VarglobalesService
     ) {}
 
   ngOnInit(){
@@ -84,10 +53,14 @@ public data = [
     this.onInitCards();
 
     this.storage.get('user').then((val) => {
-      this.noaccount = JSON.parse(val).usuario;
-      this.no_cuenta = this.noaccount.accountNo;
+      this.user = JSON.parse(val).usuario;
+      this.varGlobal.setClient(this.user.nombre + ' ' + this.user.apellidoPaterno + ' ' + this.user.apellidoMaterno);
+      this.no_cuenta = this.user.accountNo;
       this.serviceLoand.selfi(this.no_cuenta).subscribe(data=> {
          this.createImageFromBlob( data, this.no_cuenta);
+      }, error=>{
+        this.varGlobal.setavatar('/assets/img/avatar/avatar-default.jpg');
+        this.urlAvatar = this.varGlobal.getavatar();
       });
     });
     
@@ -110,7 +83,8 @@ public data = [
     reader.readAsDataURL(photo);
     reader.onload = (event: any) => {
       let image=event.target.result;
-      this.storage.set('selfi', JSON.stringify(image));
+      //this.storage.set('selfi', JSON.stringify(image));
+      this.varGlobal.setavatar(image);
      this.urlAvatar = image;
     }
   }
@@ -118,6 +92,7 @@ public data = [
   onInitCards(){
     this.serviceLoand.dashboard().subscribe(data =>{
       this.prestamos = data.prestamos;
+      
       this.storage.set(this.key, JSON.stringify(this.prestamos));
       this.arrayMovements=data.movs;
     });

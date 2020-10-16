@@ -3,11 +3,11 @@
     <ion-header id="imagen" class="ion-no-border ion-padding">
       <ion-toolbar class="ion-padding"  id="color-background">
         <ion-avatar>
-          <img src="{{urlAvatar}}">
+          <img src="{{ avatarUrl.getavatar()}}">
         </ion-avatar>
       </ion-toolbar>
       <ion-item lines="none" class="item-name">
-        <ion-label><strong>{{m_client}}</strong></ion-label>
+        <ion-label><strong>{{avatarUrl.getClient()}}</strong></ion-label>
       </ion-item>
     
     </ion-header>

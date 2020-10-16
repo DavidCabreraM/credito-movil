@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, LoadingController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { VarglobalesService } from './services/varglobales/varglobales.service';
 
 @Component({
   selector: 'app-root',
@@ -18,23 +19,21 @@ export class AppComponent{
   user: any;
   m_client:string;
   public urlAvatar = '';
+  loading: HTMLIonLoadingElement;
   constructor(
     private storage: Storage,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private avatarUrl: VarglobalesService,
+    public loadingController:LoadingController
   ) {
     translate.setDefaultLang('es');
     translate.use('es');
     this.initializeApp();
     this.sideMenu();
-    this.onUser();
-    this.storage.get('selfi').then((val) => {
-    this.urlAvatar = JSON.parse(val);
-    });
-
   }
 
   initializeApp() {
@@ -46,20 +45,24 @@ export class AppComponent{
   onHome(){
     this.router.navigate(['/home']);
   }
-  onUser(){
-    this.storage.ready().then(()=>{
-      this.storage.get('user').then((val) => {
-        this.user = JSON.parse(val).usuario;
-        this.m_client = this.user.nombre + ' ' + this.user.apellidoPaterno + ' ' + this.user.apellidoMaterno ;
-      });
-    });
-        
+  onCerrarSession(){
+    this.presentLoading();
+    setTimeout(() => {
+      this.storage.clear();
+      this.loading.dismiss();
+      this.router.navigate(['/login']);
+    }, 2000);
+    
   }
 
-  onCerrarSession(){
-    this.storage.clear();
-    this.router.navigate(['/login']);
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Hasta Pronto...',
+    });
+    await this.loading.present();
   }
+
   sideMenu()
   {
     this.navigate =
@@ -72,7 +75,7 @@ export class AppComponent{
       },
       {
         title : 'Mis Cuentas',
-        url   : '/account/1',
+        url   : '/account/0',
         icon  : 'card-outline',
         disabled: false
       },
