@@ -22,7 +22,7 @@
   </ion-slides--> 
 
 
-  <ion-item class="btn-round item-nav" [routerLink]="['/movements/',idDetatail]" disabled="prestamos==null">
+  <ion-item class="btn-round item-nav" [routerLink]="['/movements/',idDetatail]" [disabled]="prestamos==''">
     <ion-icon style="color:white; margin-right: 10px;" slot="start" name="search"></ion-icon>
     <ion-label style="padding-left: 0px;">{{'MOVEMENTS' | translate}}</ion-label>
     <ion-icon style="color:white" slot="end" name="chevron-forward"></ion-icon>

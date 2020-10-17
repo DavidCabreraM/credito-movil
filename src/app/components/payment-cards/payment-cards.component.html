@@ -1,56 +1,72 @@
-<div *ngFor="let l of data">
-  <ion-card *ngIf='l.tipo=="LOANREP"' class="payment-cards payment-cards-blue">
-    <ion-card-content class="ion-no-padding">
-      <ion-item style="--background:#F7F7F7;" lines="none">
-        <ion-icon class="icon-card" style="color:#0652AF" slot="start" name="globe"></ion-icon>
-        <label>
-          <span class="title-card">{{l.tipo_nom}}</span><br>
-          <span class="body-card">{{l.referencia}}</span><br>
-          <span class="body-card">{{l.mensaje}}</span>
-        </label>
-        <label slot="end">
-          <span class="price-card" style="color:#0652AF">$ {{l.importe}}</span><br>
-          <span class="date-card">{{l.fecha_mov}}</span>
-        </label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+<div class="scroll">
+  <div style="height: auto;" *ngFor="let l of data">
+    <ion-card *ngIf='l.tipo=="LOANREP"' class="payment-cards payment-cards-blue">
+      <ion-card-content class="ion-no-padding">
+        <ion-item style="--background:#F7F7F7;" lines="none">
+          <ion-icon class="icon-card" style="color:#0652AF" slot="start" name="globe"></ion-icon>
+          <label>
+            <span class="title-card">{{l.tipo_nom}}</span><br>
+            <span class="body-card">{{l.referencia}}</span><br>
+            <span class="body-card">{{l.mensaje}}</span>
+          </label>
+          <label slot="end">
+            <span class="price-card" style="color:#0652AF">$ {{l.importe}}</span><br>
+            <span class="date-card">{{l.fecha_mov}}</span>
+          </label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card *ngIf='l.tipo=="SAVDEP" || l.tipo=="LOANSUB"' class="payment-cards payment-cards-yellow">
-    <ion-card-content class="ion-no-padding">
-      <ion-item style="--background:#F7F7F7;" lines="none">
-        <ion-icon class="icon-card" style="color:#DBD460" slot="start" name="globe"></ion-icon>
-        <label>
-          <span class="title-card">{{l.tipo_nom}}</span><br>
-          <span class="body-card">{{l.referencia}}</span><br>
-          <span class="body-card">{{l.mensaje}}</span>
-        </label>
-        <label slot="end">
-          <span class="price-card" style="color:#DBD460">$ {{l.importe}}</span><br>
-          <span class="date-card">{{l.fecha_mov}}</span>
-        </label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+    <ion-card *ngIf='l.tipo=="SAVDEP" || l.tipo=="LOANSUB"' class="payment-cards payment-cards-yellow">
+      <ion-card-content class="ion-no-padding">
+        <ion-item style="--background:#F7F7F7;" lines="none">
+          <ion-icon class="icon-card" style="color:#DBD460" slot="start" name="globe"></ion-icon>
+          <label>
+            <span class="title-card">{{l.tipo_nom}}</span><br>
+            <span class="body-card">{{l.referencia}}</span><br>
+            <span class="body-card">{{l.mensaje}}</span>
+          </label>
+          <label slot="end">
+            <span class="price-card" style="color:#DBD460">$ {{l.importe}}</span><br>
+            <span class="date-card">{{l.fecha_mov}}</span>
+          </label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card *ngIf='l.tipo=="LOANAPR"' class="payment-cards payment-cards-green">
-    <ion-card-content class="ion-no-padding">
-      <ion-item style="--background:#F7F7F7;" lines="none">
-        <ion-icon class="icon-card" style="color:#189746" slot="start" name="globe"></ion-icon>
-        <label>
-          <span class="title-card">{{l.tipo_nom}}</span><br>
-          <span class="body-card">{{l.referencia}}</span><br>
-          <span class="body-card">{{l.mensaje}}</span>
-        </label>
-        <label slot="end">
-          <span class="price-card" style="color:#189746">$ {{l.importe}}</span><br>
-          <span class="date-card">{{l.fecha_mov}}</span>
-        </label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+    <ion-card *ngIf='l.tipo=="LOANAPR"' class="payment-cards payment-cards-green">
+      <ion-card-content class="ion-no-padding">
+        <ion-item style="--background:#F7F7F7;" lines="none">
+          <ion-icon class="icon-card" style="color:#189746" slot="start" name="globe"></ion-icon>
+          <label>
+            <span class="title-card">{{l.tipo_nom}}</span><br>
+            <span class="body-card">{{l.referencia}}</span><br>
+            <span class="body-card">{{l.mensaje}}</span>
+          </label>
+          <label slot="end">
+            <span class="price-card" style="color:#189746">$ {{l.importe}}</span><br>
+            <span class="date-card">{{l.fecha_mov}}</span>
+          </label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </div>
+
 <div *ngIf="data==''" style="margin-top: 5%;">
   <ion-label class="card-empty center-label">NO CUENTA CON MOVIMIENTOS</ion-label>
-  <ion-label class="card-empty center-label"></ion-label>
+  
+  <ion-card class="payment-cards payment-cards-blue">
+    <ion-card-content class="ion-no-padding">
+      <ion-item style="--background:#F7F7F7;" lines="none" class="ion-no-padding">
+        <img class="img-credit-card" slot="start" src="../../../assets/img/credit-card.jpg">
+        <ion-label class="ion-no-padding">
+          <span class="title-empty-card">¿Necesitas dinero?</span><br>
+          <span class="body-empty-card">Obtén un prestamo</span><br><br>
+          <span style="color:#0652AF" class="price-empty-card">Hasta $80,000.00</span>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
 </div>
