@@ -291,6 +291,12 @@ export class RegisterPage implements OnInit {
           cssClass: 'btn-alert btn-success-resend',
           handler: () => {
             this.sendCode();
+            alert.dismiss();           
+            this.translate.get(["MORESTEP",'SEND',"RESEND","CHECKMESSAGES","INFOREGISTER","CANCEL","CODEAUTHENTICATION"]).subscribe(
+              value => {
+                this.presentAlertPhone(value);
+              }
+            )
           }
         }
       ]

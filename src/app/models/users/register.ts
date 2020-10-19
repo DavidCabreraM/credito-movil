@@ -16,13 +16,13 @@ export class Register{
         this.account_no=text;
     }
     set setApellidoPaterno(text:string){
-        this.apellido_paterno=text;
+        this.apellido_paterno=text.toUpperCase();
     }
     set setApellidoMaterno(text:string){
-        this.apellido_materno=text;
+        this.apellido_materno=text.toUpperCase();
     }
     set setName(text:string){
-        this.nombre=text;
+        this.nombre=text.toUpperCase();
     }
     set setSelfie(text:string){
         this.selfi=text;
@@ -34,7 +34,7 @@ export class Register{
         this.serie_ine=text;
     }
     set setCurp(text:string){
-        this.curp=text;
+        this.curp=text.toUpperCase();
     }
     set setDateBirth(text:Date){
         this.fecha_nacimiento=text;
