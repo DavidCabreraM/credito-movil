@@ -20,7 +20,7 @@ export class RegisterPage implements OnInit {
   image: String;
   loading: any;
   showBar = false;
-  isFace = true;
+  isFace = false;
   hide = true;
   step1 = true;
   step2 = false;
@@ -122,7 +122,6 @@ export class RegisterPage implements OnInit {
           }
         )
       }).finally(() =>{
-        this.storage.remove("user");
       })
   }
 
