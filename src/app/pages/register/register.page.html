@@ -6,19 +6,19 @@
         <ion-list class="background" style="margin-bottom: 20%;">
           <ion-item class="input-item">
             <ion-label position="floating">{{'NAME' | translate}}(s)</ion-label>
-            <ion-input formControlName="name" type="text" inputmode="text" required autocapitalize></ion-input>
+            <ion-input class="mayus" formControlName="name" type="text" inputmode="text" required></ion-input>
           </ion-item>
           <app-validation-errors fieldName="onlyletters" [form]="form_register1.get('name')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">{{'LASTNAME' | translate}}</ion-label>
-            <ion-input formControlName="apellidoP" type="text" inputmode="text" required autocapitalize></ion-input>  
+            <ion-input class="mayus" formControlName="apellidoP" type="text" inputmode="text" required autocapitalize></ion-input>  
           </ion-item>
           <app-validation-errors fieldName="onlyletters" [form]="form_register1.get('apellidoP')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">{{'MIDDLENAME' | translate}}</ion-label>
-            <ion-input formControlName="apellidoM" type="text" inputmode="text" autocapitalize></ion-input>
+            <ion-input class="mayus" formControlName="apellidoM" type="text" inputmode="text" autocapitalize></ion-input>
           </ion-item>
           <app-validation-errors fieldName="onlyletters" [form]="form_register1.get('apellidoM')"></app-validation-errors>
 
@@ -100,7 +100,7 @@
 
           <ion-item class="input-item">
             <ion-label position="floating">CURP</ion-label>
-            <ion-input formControlName="curp" autocapitalize="characters" type="text" inputmode="text" maxlength="18" required autocapitalize></ion-input>
+            <ion-input class="mayus" formControlName="curp" autocapitalize="characters" type="text" inputmode="text" maxlength="18" required autocapitalize></ion-input>
           </ion-item>
           <app-validation-errors fieldName="curp" [form]="form_register2.get('curp')"></app-validation-errors>
 

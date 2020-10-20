@@ -20,7 +20,7 @@ export class RegisterPage implements OnInit {
   image: String;
   loading: any;
   showBar = false;
-  isFace = true;
+  isFace = false;
   hide = true;
   step1 = true;
   step2 = false;
@@ -122,7 +122,6 @@ export class RegisterPage implements OnInit {
           }
         )
       }).finally(() =>{
-        this.storage.remove("user");
       })
   }
 
@@ -292,6 +291,12 @@ export class RegisterPage implements OnInit {
           cssClass: 'btn-alert btn-success-resend',
           handler: () => {
             this.sendCode();
+            alert.dismiss();           
+            this.translate.get(["MORESTEP",'SEND',"RESEND","CHECKMESSAGES","INFOREGISTER","CANCEL","CODEAUTHENTICATION"]).subscribe(
+              value => {
+                this.presentAlertPhone(value);
+              }
+            )
           }
         }
       ]

@@ -13,7 +13,7 @@ export class HeadersService implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let promise = this.storage.get('user')
-
+    
     return from(promise).pipe(
       switchMap(usuario => {
         if(usuario){

@@ -41,8 +41,7 @@
       </ion-item>
     </ion-slide>
   </ion-slides>
-
-  <app-payment-cards [data]="arrayMovements"></app-payment-cards>
+  <!-- skeleton -->
   <div *ngIf="!arrayMovements">
     <ion-card *ngFor="let i of [1,2,3,4,5]" class="payment-cards">
       <ion-card-content class="ion-no-padding">
@@ -70,5 +69,9 @@
         </ion-item>
       </ion-card-content>
     </ion-card>
+  </div>
+  
+  <div style="height: 80%;">
+    <app-payment-cards [data]="arrayMovements"></app-payment-cards>
   </div>
 </ion-content>
