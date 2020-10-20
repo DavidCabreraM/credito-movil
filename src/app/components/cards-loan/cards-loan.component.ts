@@ -51,7 +51,7 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
    }
 
    ngOnChanges(changes: SimpleChanges): void {
-     this.prestamos = changes.prestamos.currentValue;
+      this.prestamos = changes.prestamos.currentValue;
      if(this.prestamos != undefined){
       if(this.prestamos.length === 0){
         this.onPrestamosNull();
@@ -78,6 +78,32 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
       console.log ("El índice actual es " + promise);
       this.storage.set('indexCard', promise);
     });
+  }
+
+  onTranslateDay(day: string){
+    switch(day){
+      case 'Monday':
+        return 'LUNES';
+        break;
+      case 'Tuesday':
+        return 'MARTES';
+        break;
+      case 'Wednesday':
+        return 'MIÉRCOLES';
+        break;
+      case 'Thursday':
+        return 'JUEVES';
+        break;
+      case 'Friday':
+        return 'VIERNES';
+        break;
+      case 'Saturday':
+        return 'SÁBADO';
+        break;
+      case 'Sunday':
+        return 'DOMINGO';
+        break;
+    }
   }
 
 }

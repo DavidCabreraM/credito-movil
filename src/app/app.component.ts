@@ -46,9 +46,9 @@ export class AppComponent{
     this.router.navigate(['/home']);
   }
   onCerrarSession(){
+    this.storage.clear();
     this.presentLoading();
     setTimeout(() => {
-      this.storage.clear();
       this.loading.dismiss();
       this.router.navigate(['/login']);
     }, 2000);
@@ -63,8 +63,17 @@ export class AppComponent{
     await this.loading.present();
   }
 
+  onMenuUrl(url: number){
+    this.storage.set('indexCard','0').then(()=>{
+      this.router.navigate([url]);
+    }); 
+  }
+
   sideMenu()
   {
+    /*this.storage.get('avatar').then((val) => {
+      this.urlAvatar = val.avatar;
+    }); */
     this.navigate =
     [
       {

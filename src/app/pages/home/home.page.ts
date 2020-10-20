@@ -22,11 +22,12 @@ interface Componente {
 export class HomePage implements OnInit {
 
   dashboard: Observable<any>;
-  public prestamos: any[] = [];
+  public prestamos: any;
   @Output() public dashboardData = new EventEmitter<any>();
   arrayMovements: any;
   eventRefesh: any;
   public urlAvatar = '';
+  data: any;
 
   sliderConfig = {
     slidesPerView: 5,
@@ -46,7 +47,10 @@ export class HomePage implements OnInit {
     private translate: TranslateService,
     private alertController: AlertController,
     private varGlobal: VarglobalesService
-    ) {}
+    ) {
+      this.storage.remove('dashboard');
+      this.storage.remove('avatar');
+    }
 
   ngOnInit(){
     //location.reload();
@@ -85,27 +89,18 @@ export class HomePage implements OnInit {
       let image=event.target.result;
       //this.storage.set('selfi', JSON.stringify(image));
       this.varGlobal.setavatar(image);
-     this.urlAvatar = image;
+      this.urlAvatar = image;
+     
     }
   }
 
   onInitCards(){
     this.serviceLoand.dashboard().subscribe(data =>{
-      this.prestamos = data.prestamos;
-      
-      this.storage.set(this.key, JSON.stringify(this.prestamos));
-      this.arrayMovements=data.movs;
+        this.storage.set(this.key, JSON.stringify(data.prestamos)).then(()=>{
+          this.prestamos = data.prestamos;
+          this.arrayMovements=data.movs;
+        });
     });
-  }
-  onExpanded(){
-    if(this.expanded){
-      this.expanded=false;
-      this.iconexpand = 'chevron-down-outline';
-    } else {
-      this.expanded=true;
-      this.iconexpand = 'chevron-up-outline';
-    }
-    
   }
 
   doRefresh(event){
