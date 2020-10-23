@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 export class AccountPage implements OnInit {
   segment: String;
   //@ViewChild(IonSegment) segment: IonSegment;
-
+  accountNumber='000000056';
   idDetatail: string;
   prestamos:any;
   @ViewChild(IonSlides) slides: IonSlides;

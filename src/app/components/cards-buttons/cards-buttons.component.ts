@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-cards-buttons',
@@ -9,12 +10,15 @@ import { Router } from '@angular/router';
 export class CardsButtonsComponent implements OnInit {
   public url_account = 'account';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storage: Storage) { }
 
   ngOnInit() {}
 
   onOptionsButtons(url: number){
-    this.router.navigate([url]);
+    this.storage.set('indexCard','0').then(()=>{
+      this.router.navigate([url]);
+    });
+    
   }
 
 }

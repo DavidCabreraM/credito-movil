@@ -21,6 +21,8 @@ import { NgCalendarModule } from 'ionic2-calendar';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-US';
 registerLocaleData(localeEs);
+import { NgxBarcodeModule } from 'ngx-barcode';
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -37,6 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ComponentsModule,
     HttpClientModule,
+    NgxBarcodeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

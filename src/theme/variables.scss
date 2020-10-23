@@ -324,6 +324,11 @@
   --ion-color-shade: var(--ion-color-boxitem-shade) !important;
   --ion-color-tint: var(--ion-color-boxitem-tint) !important;
 }
+
+.popover-content {
+  --width: 90%;
+  --height: 20%;
+}
 /*
 .ion-color-avatar {
   --ion-color-base: var(--ion-color-avatar) !important;

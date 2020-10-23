@@ -1,16 +1,18 @@
-<ion-slides [options]="sliderConfig" class="ion-slides" pager mode="md" #slides (ionSlideDidChange)="loanChanged()">
-  <ion-slide class="ion-slide" *ngFor="let item of prestamos; let i=index">
-    <ion-card  (click)="onAccounts(i)" class="cards ion-padding" [ngStyle]="i%2==0 ? {'background': 'url(' + img.one +')'}: {'background': 'url(' + img.two +')'}" >
-      <ion-label>
-        <h2 class="ion-text-right"><strong>{{item.prestamo_account_no}}</strong></h2>
+  <ion-slides [options]="sliderConfig" class="ion-slides" pager mode="md" #slides (ionSlideDidChange)="loanChanged()">
+    <ion-slide class="ion-slide" *ngFor="let item of prestamos; let i=index">
+      <ion-card  (click)="onAccounts(i)" class="cards ion-padding" [ngStyle]="i%2==0 ? {'background': 'url(' + img.one +')'}: {'background': 'url(' + img.two +')'}" >
         <ion-label>
-          <h3 class="ion-text-left">SALDO TOTAL</h3>
-          <p class="ion-text-left">{{item.saldo_total | currency}}</p>
-          <h3 class="ion-text-left">SALDO PARA NO GENERAR INTERESES</h3>
-          <p class="ion-text-left">{{item.saldo_vencido | currency}}</p>
-          <h3 class="ion-text-left">FECHA LÍMITE PAGO &nbsp;&nbsp;&nbsp;&nbsp; <ion-label class="date-limit">{{item.vencido_desde | date: 'EEEE, dd/MM/yyyy'}}</ion-label></h3>
-        </ion-label>   
-      </ion-label>
-    </ion-card>
-  </ion-slide>
-</ion-slides>
+          <h2 class="ion-text-right"><strong>{{item.prestamo_account_no}}</strong></h2>
+          <ion-label>
+            <h3 class="ion-text-left">SALDO TOTAL</h3>
+            <p class="ion-text-left">{{item.saldo_total | currency}}</p>
+            <h3 class="ion-text-left">SALDO PARA NO GENERAR INTERESES</h3>
+            <p class="ion-text-left">{{item.saldo_vencido | currency}}</p>
+            <h3 class="ion-text-left">FECHA LÍMITE PAGO &nbsp;&nbsp;&nbsp;&nbsp; <ion-label class="date-limit">{{item.vencido_desde | date: 'EEEE'}}, {{item.vencido_desde | date: 'dd/MM/yyyy'}}</ion-label></h3>
+          </ion-label>   
+        </ion-label>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  
+

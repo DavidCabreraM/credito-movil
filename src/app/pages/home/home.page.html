@@ -1,26 +1,125 @@
-<ion-header class="ion-padding" class="ion-no-border">
-       <ion-toolbar color="content">
-          <ion-avatar class="ion-margin ion-padding" slot="" class="ion-no-padding" button (click)="menuSalir()">
-            <img src="{{ urlAvatar }}">
-          </ion-avatar>
-       </ion-toolbar>      
+  <!-- Skeleton screen -->
+  <div *ngIf="!prestamos">
+    <ion-header>
+      <ion-toolbar class="toolbar-padding">
+        <ion-avatar>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+      </ion-toolbar>
+  </ion-header>
+  
+       <div style="height: 40%;">
+
+        <ion-slides  pager mode="md" #slides>
+          <ion-slide *ngFor="let item of [1,1]" class="slide-skeleton">
+            <ion-card class="padding-skeleton" style="width: 270px;height: 120px;">
+              <ion-label>
+                <h2 class="text-right-skeleton">
+                  <ion-skeleton-text animated style="width: 80px; height: 10px" slot="end"></ion-skeleton-text>
+                </h2>
+                <ion-label>
+                  <h3 class="ion-text-left" style="margin-top: 5px;">
+                    <ion-skeleton-text animated style="width: 35%;"></ion-skeleton-text>
+                  </h3>
+                  <p class="ion-text-left p-skeleton">
+                    <ion-skeleton-text animated style="width: 45%;"></ion-skeleton-text>
+                  </p>
+                  <h3 class="ion-text-left h3-skeleton">
+                    <ion-skeleton-text animated style="width: 60%;">
+                    </ion-skeleton-text>
+                  </h3>
+                  <p class="ion-text-left p-skeleton">
+                    <ion-skeleton-text animated style="width: 45%;"></ion-skeleton-text>
+                  </p>
+                  <h3 class="ion-text-left">
+                    <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
+                  </h3>
+                </ion-label>   
+              </ion-label>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+       </div>
+
+       <div class="secction-button-skeleton ion-padding" style="margin-top: -130px;">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-card style="width: 80px;height: 80px;">
+                <ion-label class="padding-skeleton">
+                  <ion-skeleton-text animated style="width: 30px; height: 30px;margin-left: 1.5rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                  <ion-skeleton-text  animated style="width: 30%;margin-left: 1.7rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                </ion-label>
+              </ion-card>
+            </ion-col>
+            <ion-col>
+              <ion-card style="width: 80px;height: 80px;">
+                <ion-label class="padding-skeleton">
+                  <ion-skeleton-text animated style="width: 30px; height: 30px;margin-left: 1.5rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                  <ion-skeleton-text  animated style="width: 30%;margin-left: 1.7rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                </ion-label>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+       </div>
+
+       <div>
+        <ion-card *ngFor="let i of [1,2,3,4,5]">
+          <ion-card-content class="ion-no-padding">
+            <ion-item style="--background:#F7F7F7;" lines="none">
+              <ion-icon class="icon-card" slot="start" name="globe"></ion-icon>
+              <ion-label>
+                <span>
+                  <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                </span>
+                <span>
+                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                </span>
+                <span>
+                  <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </span>
+              </ion-label>
+              <ion-label slot="end">
+                <span>
+                  <ion-skeleton-text animated style="width: 100%; height: 24px;"></ion-skeleton-text>
+                </span>
+                <span>
+                  <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </span>
+              </ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+       </div>
+  
+  </div>
+
+<div *ngIf="prestamos">
+  
+  <ion-header class="ion-no-border">
+    <ion-toolbar class="toolbar-padding" id="ion-toolbar">
+      <ion-avatar id="ion-avatar" button (click)="menuSalir()">
+        <img src="{{ urlAvatar }}">
+      </ion-avatar>
+    </ion-toolbar>
 </ion-header>
-<ion-content color="content"  [scrollX]="false" [fullscreen]="true">
+
+<ion-content [scrollX]="false" [fullscreen]="true">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div class="cards-slides">
-    <app-cards-loan [prestamos]="prestamos"></app-cards-loan>
-  </div>
-  <div class="body">
-    <div class="body-button">
-      <app-cards-buttons></app-cards-buttons>
-    </div>
-    <div class="body-list">
-      <div class="box-list box-padding">
+      <div class="div-secction-loan">
+      <app-cards-loan [prestamos]="prestamos"></app-cards-loan>
+      </div>
+      <div class="div-secction-button"> 
+        <app-cards-buttons></app-cards-buttons>
+      </div>
+      <div style="height: 50%;" class="div-secction-movimiento">
         <app-payment-cards [data]="arrayMovements"></app-payment-cards>
       </div>
-    </div>
-  </div>
-
 </ion-content>
+
+
+
+</div>

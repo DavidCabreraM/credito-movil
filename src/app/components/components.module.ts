@@ -10,6 +10,8 @@ import { CardsButtonsComponent } from './cards-buttons/cards-buttons.component';
 import { CardsLoanComponent } from './cards-loan/cards-loan.component';
 import { PaymentComponent } from './modals/payment/payment.component';
 import { PaymentListComponent } from './modals/payment-list/payment-list.component';
+import { NgxBarcodeModule } from 'ngx-barcode';
+import { EstablishmentsComponent } from './establishments/establishments.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { PaymentListComponent } from './modals/payment-list/payment-list.compone
     CardsButtonsComponent,
     CardsLoanComponent,
     PaymentComponent,
-    PaymentListComponent
+    PaymentListComponent,
+    EstablishmentsComponent
   ],
   exports:[
     HeaderComponent,
@@ -28,12 +31,14 @@ import { PaymentListComponent } from './modals/payment-list/payment-list.compone
     PaymentCardsComponent,
     SpinnerComponent,
     CardsButtonsComponent,
-    CardsLoanComponent
+    CardsLoanComponent,
+    EstablishmentsComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
-    TranslateModule
+    TranslateModule,
+    NgxBarcodeModule
   ]
 })
 export class ComponentsModule { }
