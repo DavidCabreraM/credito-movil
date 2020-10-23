@@ -8,6 +8,8 @@ import { PaymentCardsComponent } from './payment-cards/payment-cards.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { CardsButtonsComponent } from './cards-buttons/cards-buttons.component';
 import { CardsLoanComponent } from './cards-loan/cards-loan.component';
+import { PaymentComponent } from './modals/payment/payment.component';
+import { PaymentListComponent } from './modals/payment-list/payment-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { CardsLoanComponent } from './cards-loan/cards-loan.component';
     PaymentCardsComponent,
     SpinnerComponent,
     CardsButtonsComponent,
-    CardsLoanComponent
+    CardsLoanComponent,
+    PaymentComponent,
+    PaymentListComponent
   ],
   exports:[
     HeaderComponent,

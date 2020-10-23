@@ -1,0 +1,56 @@
+.icon-card{
+    height: 40px;
+    width: 40px;
+    color: white;
+    margin: 0;
+}
+
+.btn-next-prev{
+    color:#00A8AE;
+}
+.account-number{
+    display: grid;
+    align-items: end;
+}
+.reduce-padding{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.price-card{
+    font-size: 20px;
+}
+
+.title-card{
+    //color:#819104;
+    font-size: 15px;
+}
+
+.subtitle-card{
+    font-size: 18px !important;
+}
+
+.small-text-card{
+    font-size: 13px;
+}
+
+.text-mes{
+    --color: #7D7D7D; 
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.center-days{
+    display: grid;
+    align-items: center;
+}
+
+.card-calendar{
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+ion-header.background{
+    --ion-toolbar-background: #043C80;
+    border-bottom-width: 0;
+}

@@ -1,0 +1,119 @@
+<ion-content>
+  <div *ngIf="payment.pagado && payment.periodo != nextP.periodo">
+    <div>
+      <ion-icon class="positionAvata" name="checkmark-outline"></ion-icon> 
+    </div>
+    <ion-grid class="padding-modal">
+      <ion-row>
+        <ion-col class="first-col" size="3">
+          <span class="subtitle-text">Jue</span><br>
+          <span class="card-day blue-day">6</span><br>
+          <span class="title-text">pagado</span><br><br>
+          <span>{{payment.periodo}}/{{periodoTotal-1}}</span><br>
+        </ion-col>
+        <ion-col size="9">    
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Pago para no generar interes</p>
+              <p class="subtitle-text">{{nu | currency}}</p>
+            </ion-label> 
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Pago realizado</p>
+              <p class="subtitle-text">{{nu | currency}}</p>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Fecha de pago realizado</p>
+              <p class="subtitle-text">22/10/2020</p> 
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Referencia de pago</p>
+              <p class="subtitle-text">0000000000000</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="payment.periodo == nextP.periodo">
+    <ion-grid class="padding-modal">
+      <ion-row>
+        <ion-col class="first-col" size="3">
+          <span class="subtitle-text">{{payment.fecha | date:'EEE' }}</span><br>
+          <span class="card-day blue-day">{{payment.fecha | date:'dd'}}</span><br>
+          <span class="title-text">Sig. Pago</span><br><br>
+          <span>{{payment.periodo}}/{{periodoTotal-1}}</span><br>
+          <span>Pendiente</span><br>
+        </ion-col>
+        <ion-col size="9">    
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Pago para no generar interes</p>
+              <p class="subtitle-text">{{payment.importe | currency}}</p>
+            </ion-label> 
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Fecha limite de pago</p>
+              <p class="subtitle-text">{{payment.fecha | date:'EEEE dd/MM/yyyy'}}</p> 
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Numero de cuenta</p>
+              <p class="subtitle-text">{{payment.account_no}}</p>
+            </ion-label>
+            <ion-icon slot="end" class="icon-card" name="qr-code-outline"></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="!payment.pagado && payment.periodo != nextP.periodo">
+    <ion-grid class="padding-modal">
+      <ion-row>
+        <ion-col class="first-col" size="3">
+          <span class="subtitle-text">{{payment.fecha | date:'EEE' }}</span><br>
+          <span class="card-day green-day">{{payment.fecha | date:'dd'}}</span><br>
+          <span class="title-text">Prox. Pago</span><br><br>
+          <span>{{payment.periodo}}/{{periodoTotal-1}}</span><br>
+          <span>Pendiente</span><br>
+        </ion-col>
+        <ion-col size="9">    
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Pago para no generar interes</p>
+              <p class="subtitle-text">{{payment.importe | currency}}</p>
+            </ion-label> 
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Fecha limite de pago</p>
+              <p class="subtitle-text">{{payment.fecha | date:'EEEE dd/MM/yyyy'}}</p> 
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Numero de cuenta</p>
+              <p class="subtitle-text">{{payment.account_no}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

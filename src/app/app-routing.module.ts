@@ -27,6 +27,17 @@ const routes: Routes = [
     path: 'movements/:id',
     loadChildren: () => import('./pages/movements/movements.module').then( m => m.MovementsPageModule)
   },
+  {
+    path: 'calendar/:account',
+    loadChildren: () => import('./pages/calendar/calendar.module').then( m => m.CalendarPageModule)
+  },
+  {
+    path: 'payment-list',
+    loadChildren: () => import('./pages/payment-list/payment-list.module').then( m => m.PaymentListPageModule)
+  },
+
+
+
 
 
 

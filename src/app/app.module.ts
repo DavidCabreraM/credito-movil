@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -17,7 +17,10 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicStorageModule } from '@ionic/storage';
 import { HeadersService } from '@services/interceptors/headers.service';
-
+import { NgCalendarModule } from 'ionic2-calendar';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es-US';
+registerLocaleData(localeEs);
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -41,14 +44,16 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    NgCalendarModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: HeadersService, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: HeadersService, multi: true},
+    { provide: LOCALE_ID, useValue: 'es-US' },
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,43 @@
+.first-col{
+    text-align: center;   
+}
+
+.padding-modal{
+    padding: 5% 0% 0% 0%;
+}
+
+.card-day{
+    font-size: 30px;
+}
+.blue-day{
+    color: #00A8AE;
+}
+
+.green-day{
+    color:#B1C800;
+}
+
+.title-text{
+    color:#7D7D7D;
+}
+
+.subtitle-text{
+    font-weight: bold;
+    font-size: 19px !important;
+    color: black;
+}
+
+.positionAvata{
+    color:#00A8AE;
+    height: 60px;
+    width: 60px;
+    position:relative;
+    left: calc( (100% - 60px) / 2 );
+    border-radius: 50%;
+}
+
+.icon-card{
+    height: 40px;
+    width: 40px;
+    padding: 0;
+}

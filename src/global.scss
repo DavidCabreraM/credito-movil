@@ -152,3 +152,41 @@ ion-list.background{
     -ms-flex-pack: center;
     justify-content: center!important;  
 }
+
+calendar{
+    .event-detail-container{
+        display: none !important;
+    }
+    .monthview-container{
+        height: 58% !important;
+    }
+    .monthview-datetable td.monthview-primary-with-event{
+        padding: 0 !important;
+        background-color: transparent !important;
+    }
+    .monthview-datetable td.monthview-secondary-with-event{
+        padding: 0 !important;
+        background-color: transparent !important;
+    }
+    .monthview-selected{
+        background-color:transparent !important;
+        color: black !important;
+    }
+    .monthview-current{
+        background-color:black !important;
+        color: white!important;
+    }
+    .text-muted{
+        visibility: hidden;
+    }
+}
+
+
+.size-modal{
+    --height:46%;
+    align-items: flex-end;
+}
+
+.first-col{
+    text-align: center;   
+}
