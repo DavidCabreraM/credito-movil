@@ -7,9 +7,23 @@ import { delay } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoansService {
+  httpOptions: any;
+  key: any;
   url = "https://jmaldama-proxy.herokuapp.com/https://jmaldama-credito-movilapi.herokuapp.com/";
   
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if(JSON.parse(localStorage.getItem('user'))){
+      this.key = JSON.parse(localStorage.getItem('user')).token;
+      console.log(this.key);
+    }
+    
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer "+this.key
+      })
+    };
+  }
 
   //prestamo
 
@@ -22,11 +36,17 @@ export class LoansService {
   }
 
   public dashboard(): Observable<any>{
-    return this.http.get(this.url+ 'dashboard/')
+    return this.http.get(this.url + 'dashboard/')
     .pipe(
-      delay(1500)
+      delay(500)
     );
+   }
 
+   public references(): Observable<any>{
+    return this.http.get(this.url + 'usuarios/referenciaspago')
+    .pipe(
+      delay(500)
+    );
    }
 
   public selfi(noaccount: string){

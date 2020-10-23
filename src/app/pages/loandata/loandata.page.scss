@@ -1,0 +1,35 @@
+ion-toolbar{
+    --background: #043C80;
+}
+ion-segment-button{
+    --color-checked: white !important;
+    --indicator-height: 4px !important;
+    
+}
+
+ion-col{
+    text-align:center;
+}
+
+.color{
+    color: #043C80;
+}
+
+@media(min-width: 374px) and(max-width: 375px),
+(min-width: 359px) and(max-width: 360px){
+    .credit{
+        font-size: .5rem!important;
+    }
+    .title{
+        font-size: 1rem!important;
+    }
+    .center{
+        font-size: .6rem!important;
+    }
+    .origin{
+        font-size: .8rem!important;
+    }
+    .color{
+        font-size: .5rem!important;
+    }
+}

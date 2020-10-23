@@ -17,6 +17,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicStorageModule } from '@ionic/storage';
 import { HeadersService } from '@services/interceptors/headers.service';
+import { NgxBarcodeModule } from 'ngx-barcode';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -34,6 +35,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ComponentsModule,
     HttpClientModule,
+    NgxBarcodeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -1,0 +1,18 @@
+ion-toolbar{
+    --background: #043C80;
+}
+ion-segment-button{
+    --color-checked: white !important;
+    --indicator-height: 4px !important;
+    
+}
+
+ion-popover.popover-content {
+    --width: 540px;
+    --max-width: 100%;
+  }
+
+ion-avatar{
+    width: 60px!important;
+    height: 60px!important;
+}

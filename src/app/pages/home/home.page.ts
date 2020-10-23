@@ -63,7 +63,7 @@ export class HomePage implements OnInit {
       this.serviceLoand.selfi(this.no_cuenta).subscribe(data=> {
          this.createImageFromBlob( data, this.no_cuenta);
       }, error=>{
-        this.varGlobal.setavatar('/assets/img/avatar/avatar-default.jpg');
+        this.varGlobal.setavatar('/assets/img/avatar/avatar.svg');
         this.urlAvatar = this.varGlobal.getavatar();
       });
     });

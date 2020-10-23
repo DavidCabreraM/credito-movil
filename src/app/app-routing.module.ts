@@ -27,6 +27,18 @@ const routes: Routes = [
     path: 'movements/:id',
     loadChildren: () => import('./pages/movements/movements.module').then( m => m.MovementsPageModule)
   },
+  {
+    path: 'references',
+    loadChildren: () => import('./pages/references/references.module').then( m => m.ReferencesPageModule)
+  },
+  {
+    path: 'loandata',
+    loadChildren: () => import('./pages/loandata/loandata.module').then( m => m.LoandataPageModule)
+  },
+  {
+    path: 'detailloan/:id',
+    loadChildren: () => import('./pages/detailloan/detailloan.module').then( m => m.DetailloanPageModule)
+  }
 
 
 
