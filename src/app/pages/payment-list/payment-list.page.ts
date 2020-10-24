@@ -16,8 +16,7 @@ export class PaymentListPage implements OnInit {
   constructor(private modalController: ModalController,private storage: Storage) {
     this.storage.get('nextP').then((val) => {
       this.nextP = JSON.parse(val);
-      this.account = val.account_no
-      console.log(val.account_no)
+      this.account = this.nextP.account_no
     })
     this.storage.get('payments').then((val) => {
       this.payments = JSON.parse(val);

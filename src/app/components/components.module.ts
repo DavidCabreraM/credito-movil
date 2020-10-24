@@ -12,6 +12,7 @@ import { PaymentComponent } from './modals/payment/payment.component';
 import { PaymentListComponent } from './modals/payment-list/payment-list.component';
 import { NgxBarcodeModule } from 'ngx-barcode';
 import { EstablishmentsComponent } from './establishments/establishments.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { EstablishmentsComponent } from './establishments/establishments.compone
     CommonModule,
     IonicModule,
     TranslateModule,
-    NgxBarcodeModule
+    NgxBarcodeModule,
+    RouterModule
   ]
 })
 export class ComponentsModule { }
