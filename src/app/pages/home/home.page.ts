@@ -82,12 +82,16 @@ export class HomePage implements OnInit {
   }
 
   createImageFromBlob(image: Blob, noaccount: string) {
+  
     let reader = new FileReader();
-    let photo = new File([image], noaccount + '.png' , { type: 'image/png' });
-    reader.readAsDataURL(photo);
+
+    reader.readAsDataURL(image);
     reader.onload = (event: any) => {
-      let image=event.target.result;
-      //this.storage.set('selfi', JSON.stringify(image));
+      console.log(event);
+      let image = event.target.result;
+     
+      console.log();
+      this.storage.set('selfi', JSON.stringify(image));
       this.varGlobal.setavatar(image);
       this.urlAvatar = image;
      

@@ -96,7 +96,7 @@ export class AppComponent{
       },
       {
         title: 'Codigo de barras y QR',
-        url: '/home',
+        url: '/references',
         icon: 'qr-code-outline',
         disabled: true
       }
