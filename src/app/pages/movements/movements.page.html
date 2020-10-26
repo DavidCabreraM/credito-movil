@@ -28,13 +28,13 @@
               {{prestamo.saldo_total | currency}}
             </ion-col>
             <ion-col class="center-label" size="6">
-              {{prestamo.monto_proximo_pago | currency}}
+              {{prestamo.cuota | currency}}
             </ion-col>
           </ion-row>
     
-          <ion-row class="number-count">
+          <ion-row class="date-label">
             <ion-col class="center-label">
-              <span>FECHA LÍMITE PAGO {{prestamo.monto_proximo_pago | date: 'EEEE, dd/MM/yyyy'}}</span>
+              <span>FECHA LÍMITE PAGO {{prestamo.vencido_desde | date: 'EEEE, dd/MM/yyyy'}}</span>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -71,7 +71,7 @@
     </ion-card>
   </div>
   
-  <div style="height: 80%;">
+  <div class="size-scroll">
     <app-payment-cards [data]="arrayMovements"></app-payment-cards>
   </div>
 </ion-content>

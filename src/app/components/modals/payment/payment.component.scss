@@ -27,13 +27,15 @@
     color: black;
 }
 
-.positionAvata{
-    color:#00A8AE;
+.iconPosition{
+    background: #00A8AE;
+    color: white;
     height: 60px;
     width: 60px;
-    position:relative;
+    position: relative;
     left: calc( (100% - 60px) / 2 );
     border-radius: 50%;
+    margin-top: 2%;
 }
 
 .icon-card{

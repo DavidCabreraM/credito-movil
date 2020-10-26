@@ -27,7 +27,8 @@ export class LoginPage implements OnInit {
     private storage: Storage
     ) {
       //localStorage.removeItem("user");
-      this.storage.remove("user");
+      //this.storage.remove("user");
+      this.storage.clear();
     }
 
   ngOnInit() {
