@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PaymentListComponent } from '@components/modals/payment-list/payment-list.component';
 import { PaymentComponent } from '@components/modals/payment/payment.component';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
@@ -13,18 +12,19 @@ import { CalendarComponent } from "ionic2-calendar";
   styleUrls: ['./calendar.page.scss'],
 })
 export class CalendarPage implements OnInit, AfterViewInit {
-  account:any;
   constructor(
     private calendarService: CalendarService,
     private modalController: ModalController,
     private storage: Storage,
     private route: ActivatedRoute
     ) {
-      this.account=route.snapshot.paramMap.get("account");
+      //this.account=route.snapshot.paramMap.get("account");
+      this.promiseAccount = this.storage.get('accountNumber');
     }
 
   @ViewChild(CalendarComponent) myCalendar:CalendarComponent;
   public img = {one: '/assets/img/cards/Tarjeta1.svg', two: '/assets/img/cards/Tarjeta2.svg'};
+  promiseAccount:any;
   dateSelect: any;
   eventSource = [];
   calendarData = {
@@ -36,17 +36,18 @@ export class CalendarPage implements OnInit, AfterViewInit {
   nextP:any;
   selectEvent:any;
   ngOnInit() {
-
   }
   
   ngAfterViewInit(){
-    this.calendarService.calendar(this.account).toPromise().then( promise => {
-      console.log(promise)
-      this.payments = promise;
-      this.storage.set('payments', JSON.stringify(this.payments));
-      this.nextPayment()
-    })
-    //setTimeout (() => {this.slides.slideTo(parseInt(this.idDetatail),250);}, 200);
+    this.promiseAccount.then((account) => {
+      console.log(account)
+      this.calendarService.calendar(account).toPromise().then( promise => {
+        console.log(promise)
+        this.payments = promise;
+        this.storage.set('payments', JSON.stringify(this.payments));
+        this.nextPayment()
+      })
+    });
   }
 
   back(){

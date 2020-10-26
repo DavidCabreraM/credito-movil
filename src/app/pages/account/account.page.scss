@@ -32,3 +32,23 @@ ion-segment-button {
     background-color:#F2F2F2;
     margin-bottom: 7%;
 }
+.labelNav{
+    font-size: 15px!important;
+}
+.IconNav{
+    color: white;
+    width: 28px;
+    height: 28px;
+}
+@media (min-width:1023px) and (max-width:1024px){
+    .item-nav{
+        --min-height: 70px;
+    }
+    .labelNav{
+        font-size: 27px!important;
+    }
+    .IconNav{
+        width: 35px;
+        height: 35px;
+    }
+}

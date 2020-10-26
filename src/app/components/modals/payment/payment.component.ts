@@ -9,6 +9,7 @@ export class PaymentComponent implements OnInit {
   @Input() payment: any;
   @Input() periodoTotal: any;
   @Input() nextP: any;
+  nu = 645141
   constructor() { }
 
   ngOnInit() {

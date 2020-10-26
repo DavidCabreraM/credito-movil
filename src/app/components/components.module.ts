@@ -9,7 +9,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { CardsButtonsComponent } from './cards-buttons/cards-buttons.component';
 import { CardsLoanComponent } from './cards-loan/cards-loan.component';
 import { PaymentComponent } from './modals/payment/payment.component';
-import { PaymentListComponent } from './modals/payment-list/payment-list.component';
 import { NgxBarcodeModule } from 'ngx-barcode';
 import { EstablishmentsComponent } from './establishments/establishments.component';
 import { RouterModule } from '@angular/router';
@@ -23,7 +22,6 @@ import { RouterModule } from '@angular/router';
     CardsButtonsComponent,
     CardsLoanComponent,
     PaymentComponent,
-    PaymentListComponent,
     EstablishmentsComponent
   ],
   exports:[

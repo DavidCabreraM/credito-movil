@@ -29,7 +29,18 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     if(this.prestamos === null){
       this.onPrestamosNull();
+    }else{
+      this.storage.get('accountNumber').then( (val) =>{
+        console.log(val)
+        if(val===null){
+          console.log("No existe")
+          this.storage.set('indexCard', 0);
+          this.storage.set('accountNumber', this.prestamos[0].prestamo_account_no);
+        }
+      })
     }
+    
+    
     //location.reload();
     /*this.storage.get('dashboard').then((val) => {
       console.log(val);
@@ -77,6 +88,7 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
     let index = this.slides.getActiveIndex().then( promise =>{
       console.log ("El índice actual es " + promise);
       this.storage.set('indexCard', promise);
+      this.storage.set('accountNumber', this.prestamos[promise].prestamo_account_no);
     });
   }
 
