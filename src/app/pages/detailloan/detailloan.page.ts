@@ -57,12 +57,13 @@ export class DetailloanPage implements OnInit {
     this.vencido_desde = this.data.vencido_desde;
     this.saldo_vencido = this.data.saldo_vencido;
     this.saldo_total = this.data.saldo_total;
-    if(this.data.monto_original === this.data.saldo_total){
+    this.abono_capital = this.data.monto_original - this.data.saldo_total;
+    /*if(this.data.monto_original === this.data.saldo_total){
       this.abono_capital = this.data.monto_original;
       this.saldo_total = this.data.monto_original - this.data.saldo_total;
     } else {
       this.abono_capital = this.data.monto_original - this.data.saldo_total;
-    }
+    }*/
     
   }
 

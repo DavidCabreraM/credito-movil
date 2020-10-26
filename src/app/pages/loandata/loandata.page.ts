@@ -23,7 +23,6 @@ export class LoandataPage implements OnInit {
 
     this.storage.get('dashboard').then((val) => {
         this.data = JSON.parse(val);
-        console.log(this.data);
     });
   }
 
