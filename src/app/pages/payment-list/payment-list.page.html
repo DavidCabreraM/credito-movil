@@ -27,7 +27,8 @@
         <ion-col size="1"></ion-col>
       </ion-row>
     </ion-grid>
-    <ion-grid *ngIf="!payment.pagado && payment.periodo != nextP.periodo" class="card-container">
+
+    <ion-grid *ngIf="!payment.pagado && payment.periodo > nextP.periodo" class="card-container">
       <ion-row (click)="paymentModal(payment)">
         <ion-col class="info-card" size="2">
           <ion-label class="date-text">
@@ -44,7 +45,8 @@
         <ion-col size="1"></ion-col>
       </ion-row>
     </ion-grid>
-    <ion-grid *ngIf="payment.pagado && payment.periodo != nextP.periodo" class="card-container">
+
+    <ion-grid *ngIf="(payment.pagado && payment.periodo != nextP.periodo) || payment.periodo==0" class="card-container">
       <ion-row (click)="paymentModal(payment)">
         <ion-col class="info-card" size="2">
           <ion-label class="date-text">
@@ -55,6 +57,24 @@
         <ion-col class="info-card border-blue-card" size="9">
           <ion-item lines="none" class="item-container" style="color:black">
             <p class="inf-text">Pago realizado</p>
+            <p slot="end" class="periodo-text">{{payment.periodo}}/{{payments.length}}</p>
+          </ion-item>
+        </ion-col>
+        <ion-col size="1"></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="!payment.pagado && payment.periodo < nextP.periodo && payment.periodo!=0" class="card-container">
+      <ion-row (click)="paymentModal(payment)">
+        <ion-col class="info-card" size="2">
+          <ion-label class="date-text">
+            <p class="day-text">{{payment.fecha | date:'dd'}}</p>
+            <p class="mes-text">{{payment.fecha | date:'LLL'}}</p>
+          </ion-label>
+        </ion-col>
+        <ion-col class="info-card red-card" size="9">
+          <ion-item lines="none" class="item-container">
+            <p class="inf-text">Pago atrasado</p>
             <p slot="end" class="periodo-text">{{payment.periodo}}/{{payments.length}}</p>
           </ion-item>
         </ion-col>

@@ -20,6 +20,7 @@ export class PaymentListPage implements OnInit {
     })
     this.storage.get('payments').then((val) => {
       this.payments = JSON.parse(val);
+      console.log(this.payments)
     })
   }
 

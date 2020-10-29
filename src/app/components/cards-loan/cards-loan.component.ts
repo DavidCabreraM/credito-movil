@@ -35,7 +35,7 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
         if(val===null){
           console.log("No existe")
           this.storage.set('indexCard', 0);
-          this.storage.set('accountNumber', this.prestamos[0].prestamo_account_no);
+          this.storage.set('accountNumber', this.prestamos[0].prestamo_id);
         }
       })
     }

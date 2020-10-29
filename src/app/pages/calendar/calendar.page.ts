@@ -93,8 +93,7 @@ export class CalendarPage implements OnInit, AfterViewInit {
   }
 
   selectPayment(payment){
-    if(payment.pagado){
-      console.log("Mostrar el action-sheet")
+    if(payment.pagado || payment.periodo==0){
       this.presentModal(payment);
     }else{
       this.selectEvent = payment;

@@ -4,7 +4,7 @@
       <ion-buttons slot="start">
         <ion-back-button style="position: absolute; color:white" defaultHref="Login"></ion-back-button>
       </ion-buttons>
-      <ion-label class="center-label">
+      <ion-label style="display: grid;justify-content: center;">
         <ion-title style="color:white" text-capitalize>Calendario de Pagos</ion-title>
       </ion-label>
       <ion-icon slot="end" routerLink="/payment-list" name="reorder-two-outline" style="    color: white;
@@ -29,10 +29,13 @@
       <div *ngIf="obj.payment.periodo == nextP.periodo" class="center-days" style="background-color: #00A8FF;min-height: 60px;padding: 8px;">
         {{view.dates[row*7+col].label}}
       </div>
-      <div *ngIf="!obj.payment.pagado && obj.payment.periodo != nextP.periodo" class="center-days" style="background-color: #B1C800;min-height: 60px;padding: 8px;">
+      <div *ngIf="!obj.payment.pagado && obj.payment.periodo > nextP.periodo" class="center-days" style="background-color: #B1C800;color: white;min-height: 60px;padding: 8px;">
         {{view.dates[row*7+col].label}}
       </div>
-      <div *ngIf="obj.payment.pagado && obj.payment.periodo != nextP.periodo" class="center-days" style="border: solid 2px #00A8AE;color: black;min-height: 60px;padding: 8px;">
+      <div *ngIf="(obj.payment.pagado && obj.payment.periodo != nextP.periodo) || obj.payment.periodo==0" class="center-days" style="border: solid 2px #00A8AE;color: black;min-height: 60px;padding: 8px;">
+        {{view.dates[row*7+col].label}}
+      </div>
+      <div *ngIf="!obj.payment.pagado && obj.payment.periodo < calendarData.currentDate && obj.payment.periodo!=0" class="center-days" style="background-color: #EB3E41;color: white;min-height: 60px;padding: 8px;">
         {{view.dates[row*7+col].label}}
       </div>
     </div>

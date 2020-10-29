@@ -3,7 +3,15 @@
 }
 
 .padding-modal{
-    padding: 5% 0% 0% 0%;
+    background: white;
+    //padding: 15% 0% 0% 0%;
+    display: grid;
+    align-items: center;
+    height: 340px;
+    bottom: 0px;
+    width: 100%;
+    border-radius: 5% 5% 0 0;
+    position: fixed;
 }
 
 .card-day{
@@ -15,6 +23,10 @@
 
 .green-day{
     color:#B1C800;
+}
+
+.red-day{
+    color: #EB3E41;
 }
 
 .title-text{
@@ -35,11 +47,14 @@
     position: relative;
     left: calc( (100% - 60px) / 2 );
     border-radius: 50%;
-    margin-top: 2%;
+    z-index: 2;
 }
 
 .icon-card{
     height: 40px;
     width: 40px;
     padding: 0;
+}
+.main-view{
+  --background: transparent;
 }
