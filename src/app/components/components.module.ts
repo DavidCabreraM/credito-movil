@@ -12,6 +12,8 @@ import { PaymentComponent } from './modals/payment/payment.component';
 import { NgxBarcodeModule } from 'ngx-barcode';
 import { EstablishmentsComponent } from './establishments/establishments.component';
 import { RouterModule } from '@angular/router';
+import { ChangePasswordComponent } from './modals/change-password/change-password.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { RouterModule } from '@angular/router';
     CardsButtonsComponent,
     CardsLoanComponent,
     PaymentComponent,
-    EstablishmentsComponent
+    EstablishmentsComponent,
+    ChangePasswordComponent
   ],
   exports:[
     HeaderComponent,
@@ -38,7 +41,9 @@ import { RouterModule } from '@angular/router';
     IonicModule,
     TranslateModule,
     NgxBarcodeModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ComponentsModule { }

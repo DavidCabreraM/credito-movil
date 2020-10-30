@@ -35,7 +35,7 @@
       <div *ngIf="(obj.payment.pagado && obj.payment.periodo != nextP.periodo) || obj.payment.periodo==0" class="center-days" style="border: solid 2px #00A8AE;color: black;min-height: 60px;padding: 8px;">
         {{view.dates[row*7+col].label}}
       </div>
-      <div *ngIf="!obj.payment.pagado && obj.payment.periodo < calendarData.currentDate && obj.payment.periodo!=0" class="center-days" style="background-color: #EB3E41;color: white;min-height: 60px;padding: 8px;">
+      <div *ngIf="!obj.payment.pagado && obj.payment.fecha < calendarData.currentDate && obj.payment.periodo!=0" class="center-days" style="background-color: #EB3E41;color: white;min-height: 60px;padding: 8px;">
         {{view.dates[row*7+col].label}}
       </div>
     </div>

@@ -25,6 +25,23 @@
             </ion-label>
           </ion-item>
         </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item class="ion-item" button (click)="changePasswordModal()" lines="none">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <ion-label>
+              Cambiar contraseña
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item class="ion-item" button (click)="update()" lines="none">
+            <ion-icon name="refresh-outline"></ion-icon>
+            <ion-label>
+              Actualizar datos 
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
       </div>
     </ion-content>
     <ion-footer class="ion-no-border ion-padding">

@@ -23,7 +23,7 @@ export class CalendarPage implements OnInit, AfterViewInit {
     }
 
   @ViewChild(CalendarComponent) myCalendar:CalendarComponent;
-  public img = {one: '/assets/img/cards/Tarjeta1.svg', two: '/assets/img/cards/Tarjeta2.svg'};
+  public img = {one: '/assets/img/cards/Tarjeta5.svg', two: '/assets/img/cards/Tarjeta3.svg', three: '/assets/img/cards/Tarjeta4.svg', };
   promiseAccount:any;
   dateSelect: any;
   eventSource = [];
