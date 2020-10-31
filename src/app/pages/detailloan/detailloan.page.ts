@@ -36,10 +36,10 @@ export class DetailloanPage implements OnInit {
 
   ngOnInit() {
     this.parameter = this.route.snapshot.paramMap.get('id');
-
+    console.log(this.parameter);
     this.storage.get('dashboard').then((val) => {
       let resul = JSON.parse(val);
-
+      console.log(resul);
       this.data = resul[this.parameter];
       this.onCargarData();
   });

@@ -1,0 +1,59 @@
+ion-toolbar{
+    --background: #043C80;
+}
+
+.padding{
+    --padding-top: 3rem !important;
+    --padding-start:1rem!important;
+    --padding-end:1rem!important;
+}
+
+img{
+    display:block;
+    margin:auto;
+}
+ngx-barcode{
+    display:block;
+    margin:auto;
+}
+
+.color-button{
+    --color: #FFFF;
+    text-transform: capitalize;
+    --background: #B1c800!important;
+    --border-radius: 2rem!important;
+}
+
+.regresar{
+    color:#FFFF;
+    margin-top: 6px;
+    height: 30px;
+    width: 30px;
+
+}
+
+.col-2{
+    margin-top:.7rem;
+    //margin-left: 5px;
+}
+ion-text{
+    margin-left: 3rem;
+}
+
+.text-segment{
+    text-align: center;
+    margin-left: 8rem;
+}
+
+.ion-select{
+    margin-top: 5rem;
+}
+
+ion-card{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

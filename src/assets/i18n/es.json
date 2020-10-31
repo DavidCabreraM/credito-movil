@@ -56,6 +56,7 @@
     "PCALENDAR" : "Calendario de pagos",
     "BQRO" : "Operaciones con código de barra y QR",
     "LOANDATA" : "Datos de préstamo",
+    "APPLYLOAN": "Solicitar un préstamo",
     "CREDIT" : "Crédito",
     "REFERENCES": "Referencias de Pagos",
     "LOANDATA":"Datos de Préstamo",
