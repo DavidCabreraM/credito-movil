@@ -55,4 +55,31 @@ export class UserServiceService {
   public verificationCode(code,number): Observable<any>{
     return this.http.post(this.url+code+"/verificar/"+number,{});
   }
+
+  public requestChange(data): Observable<any>{
+    let params = {
+      "account_no":data
+    }
+    return this.http.post(this.url+"recuperaracceso",params);
+  }
+
+  public resetPassword(form): Observable<any>{
+    console.log(form)
+    let params = {
+      "account_no": form.nClient,
+      "curp": form.curp,
+      "codigo": form.code,
+      "nuevo_password":form.password
+    }
+    return this.http.post(this.url+"confirmaracceso",params);
+  }
+
+  public changePassword(form): Observable<any>{
+    console.log(form)
+    let params = {
+      "viejo_password":form.password,
+      "nuevo_password":form.newpassword
+    }
+    return this.http.post(this.url+"cambiarpassword",params);
+  }
 }

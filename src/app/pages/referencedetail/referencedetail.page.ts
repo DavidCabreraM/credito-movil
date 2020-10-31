@@ -22,8 +22,6 @@ export class ReferencedetailPage implements OnInit {
     if(this.segment === 'reembolsos'){
       this.segment = 'REEMBOLSO';
     }
-    console.log(this.segment);
-    console.log(this.reference);
     
   }
 

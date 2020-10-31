@@ -22,6 +22,7 @@ export class AccountPage implements OnInit {
 
     this.storage.get('dashboard').then((val) => {
       this.prestamos = JSON.parse(val);
+      console.log(this.prestamos)
     });
     this.storage.get('indexCard').then((val) => {
       this.idDetatail = val;

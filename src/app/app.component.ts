@@ -1,12 +1,14 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 
-import { Platform, LoadingController } from '@ionic/angular';
+import { Platform, LoadingController, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { VarglobalesService } from './services/varglobales/varglobales.service';
+import { LoansService } from '@services/loans/loans.service';
+import { ChangePasswordComponent } from '@components/modals/change-password/change-password.component';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +30,9 @@ export class AppComponent{
     private translate: TranslateService,
     private router: Router,
     private avatarUrl: VarglobalesService,
-    public loadingController:LoadingController
+    public loadingController:LoadingController,
+    private loansService : LoansService,
+    private modalController: ModalController
   ) {
     translate.setDefaultLang('es');
     translate.use('es');
@@ -99,7 +103,24 @@ export class AppComponent{
         url: '/references',
         icon: 'qr-code-outline',
         disabled: true
-      }
+      },
     ];
   }
+
+  update(){
+    this.loansService.updateDetails().toPromise().then(promise =>{
+      console.log(promise)
+    }).catch(err =>{
+      console.log(err)
+    })
+  }
+
+  async changePasswordModal() {
+    const modal = await this.modalController.create({
+      component: ChangePasswordComponent,
+      cssClass: "center-modal"
+    });
+    return await modal.present();
+  }
+
 }

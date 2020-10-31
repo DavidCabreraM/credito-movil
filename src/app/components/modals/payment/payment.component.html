@@ -1,6 +1,6 @@
-<ion-content>
-  <div *ngIf="payment.pagado && payment.periodo != nextP.periodo">
-    <div>
+<ion-content padding class="main-view">
+  <div *ngIf="(payment.pagado && payment.periodo != nextP.periodo) || payment.periodo==0 ">
+    <div style="background: transparent;">
       <ion-icon class="iconPosition" name="checkmark-outline"></ion-icon> 
     </div>
     <ion-grid class="padding-modal">
@@ -14,29 +14,22 @@
         <ion-col size="9">    
           <ion-item>
             <ion-label>
-              <p class="title-text">Pago para no generar interes</p>
-              <p class="subtitle-text">{{nu | currency}}</p>
-            </ion-label> 
-          </ion-item>
-  
-          <ion-item>
-            <ion-label>
-              <p class="title-text">Pago realizado</p>
-              <p class="subtitle-text">{{nu | currency}}</p>
+              <p class="title-text">Saldo pendiente</p>
+              <p class="subtitle-text">{{payment.saldo_pendiente | currency}}</p>
             </ion-label>
           </ion-item>
   
           <ion-item>
             <ion-label>
-              <p class="title-text">Fecha de pago realizado</p>
-              <p class="subtitle-text">22/10/2020</p> 
+              <p class="title-text">Fecha limite de pago</p>
+              <p class="subtitle-text">{{payment.fecha | date:'EEEE dd/MM/yyyy'}}</p> 
             </ion-label>
           </ion-item>
   
           <ion-item>
             <ion-label>
-              <p class="title-text">Referencia de pago</p>
-              <p class="subtitle-text">0000000000000</p>
+              <p class="title-text">Numero de cuenta</p>
+              <p class="subtitle-text">{{payment.account_no}}</p>
             </ion-label>
           </ion-item>
         </ion-col>
@@ -81,13 +74,49 @@
     </ion-grid>
   </div>
 
-  <div *ngIf="!payment.pagado && payment.periodo != nextP.periodo">
+  <div *ngIf="!payment.pagado && payment.periodo > nextP.periodo">
     <ion-grid class="padding-modal">
       <ion-row>
         <ion-col class="first-col" size="3">
           <span class="subtitle-text">{{payment.fecha | date:'EEE' }}</span><br>
           <span class="card-day green-day">{{payment.fecha | date:'dd'}}</span><br>
           <span class="title-text">Prox. Pago</span><br><br>
+          <span>{{payment.periodo}}/{{periodoTotal-1}}</span><br>
+          <span>Pendiente</span><br>
+        </ion-col>
+        <ion-col size="9">    
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Pago para no generar interes</p>
+              <p class="subtitle-text">{{payment.importe | currency}}</p>
+            </ion-label> 
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Fecha limite de pago</p>
+              <p class="subtitle-text">{{payment.fecha | date:'EEEE dd/MM/yyyy'}}</p> 
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>
+              <p class="title-text">Numero de cuenta</p>
+              <p class="subtitle-text">{{payment.account_no}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="!payment.pagado && payment.periodo < nextP.periodo && payment.periodo!=0">
+    <ion-grid class="padding-modal">
+      <ion-row>
+        <ion-col class="first-col" size="3">
+          <span class="subtitle-text">{{payment.fecha | date:'EEE' }}</span><br>
+          <span class="card-day red-day">{{payment.fecha | date:'dd'}}</span><br>
+          <span class="title-text">Pago atrasado</span><br><br>
           <span>{{payment.periodo}}/{{periodoTotal-1}}</span><br>
           <span>Pendiente</span><br>
         </ion-col>

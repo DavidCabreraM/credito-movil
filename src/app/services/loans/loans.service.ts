@@ -35,6 +35,10 @@ export class LoansService {
     return this.http.get(this.url+"prestamo/"+id+"/detalle");
   }
 
+  public updateDetails(): Observable<any> {
+    return this.http.get(this.url+"usuarios/syncloandata");
+  }
+
   public dashboard(): Observable<any>{
     return this.http.get(this.url + 'dashboard/')
     .pipe(

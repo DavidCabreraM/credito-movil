@@ -54,8 +54,14 @@ const routes: Routes = [
   {
     path: 'applyfor-loan',
     loadChildren: () => import('./pages/applyfor-loan/applyfor-loan.module').then( m => m.ApplyforLoanPageModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   }
 
+
+];
 
 ];
 
