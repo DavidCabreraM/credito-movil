@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { UserServiceService } from '@services/user/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -13,7 +15,9 @@ export class ResetPasswordPage implements OnInit {
   constructor(
     private form: FormBuilder,
     private translate: TranslateService,
-    private userServiceService : UserServiceService
+    private userServiceService : UserServiceService,
+    private alertController: AlertController,
+    private router: Router,
   ) { }
 
   formChangePassword: FormGroup;
@@ -68,8 +72,21 @@ export class ResetPasswordPage implements OnInit {
   resetPassword(){
     this.userServiceService.resetPassword(this.formChangePassword.value).toPromise().then(promise =>{
       console.log(promise)
+      this.presentAlert("Contraseña cambiada","Ahora puede acceder.");
+      this.router.navigate(['/login']);
     }).catch(err =>{
-      console.log(err)
+      this.presentAlert("Error!","Datos incorrectos");
     })
+  }
+
+      //Alertas
+  async presentAlert(header,msj) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: msj,
+      buttons: ['OK']
+    });
+    
+    await alert.present();
   }
 }
