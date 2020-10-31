@@ -102,6 +102,7 @@ export class HomePage implements OnInit {
     this.serviceLoand.dashboard().subscribe(data =>{
         this.storage.set(this.key, JSON.stringify(data.prestamos)).then(()=>{
           this.prestamos = data.prestamos;
+          console.log(this.prestamos);
           this.arrayMovements=data.movs;
         });
     });

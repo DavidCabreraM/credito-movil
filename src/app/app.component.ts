@@ -90,7 +90,7 @@ export class AppComponent{
       },
       {
         title : 'Solicitar un Prestamo',
-        url   : '/home',
+        url   : '/applyfor-loan',
         icon  : 'thumbs-up-outline',
         disabled: true
       },

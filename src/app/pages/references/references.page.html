@@ -47,7 +47,7 @@
     </div>
   <div *ngIf="references">
  <div>
-   <ion-card button (click)="presentPopover(item.cadena_resultado_referencia)" *ngFor="let item of references;let i=index">
+   <ion-card button (click)="onReferenceDetail(item)" *ngFor="let item of references;let i=index">
     <ion-item lines="none">
         <img style="width: 43px;" src="/assets/img/Bancos/{{item.nombre}}.png">
       <label>

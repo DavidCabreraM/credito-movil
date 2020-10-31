@@ -37,7 +37,7 @@
     <ion-label class="labelNav">{{'BQRO' | translate}}</ion-label>
     <ion-icon class="IconNav" slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
-  <ion-item mode="md" class="btn-round item-nav" routerLink="/loandata">
+  <ion-item mode="md" class="btn-round item-nav" (click)="onDetailLoan()">
     <ion-icon class="IconNav" style="margin-right: 10px;" slot="start" name="document-text"></ion-icon>
     <ion-label class="labelNav">{{'LOANDATA' | translate}}</ion-label>
     <ion-icon class="IconNav" slot="end" name="chevron-forward"></ion-icon>

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSegment, IonSlides } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -13,11 +13,12 @@ export class AccountPage implements OnInit {
   //@ViewChild(IonSegment) segment: IonSegment;
   accountNumber='000000056';
   idDetatail: string;
+  id: string;
   prestamos:any;
   @ViewChild(IonSlides) slides: IonSlides;
-  constructor(private route: ActivatedRoute,private storage: Storage) {
+  constructor(private route: ActivatedRoute,private storage: Storage,private router: Router) {
     //Creo que todo lo que llevaba el id ya no va
-    this.idDetatail=route.snapshot.paramMap.get("id");
+    this.idDetatail=route.snapshot.paramMap.get("id"); 
 
     this.storage.get('dashboard').then((val) => {
       this.prestamos = JSON.parse(val);
@@ -28,7 +29,15 @@ export class AccountPage implements OnInit {
   }
 
   ngOnInit() {
+   
     this.segment = "creditos";
+  }
+
+  onDetailLoan(){
+    this.storage.get('indexCard').then((val) => {
+      this.id = val;
+      this.router.navigate(['/detailloan/' + this.id]);
+    });
   }
 
   segmentChanged(event){
