@@ -130,10 +130,14 @@ ion-list{
     --background: #FFFF!important;
 }
 
+ion-select {
+    color: #0052AF;
+    min-width: 80%;
+  }
+
 .pencil{
     color:#FFFF;
 }
-
 .col-cancel{
     margin-top: .5rem;
     background-color: #939396;

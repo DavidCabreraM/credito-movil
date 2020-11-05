@@ -56,5 +56,14 @@ export class LoansService {
   public selfi(noaccount: string){
     return this.http.get(this.url + 'usuarios/' + noaccount + '/selfi', {responseType: 'blob'});
   }
+
+  public parameter(): Observable<any>{
+    return this.http.get(this.url + 'parametros');
+  }
+
+  public prestamo(body): Observable<any>{
+    console.log(JSON.stringify(body));
+    return this.http.post(this.url + 'prestamo', JSON.stringify(body));
+  }
  
 }

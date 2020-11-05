@@ -20,7 +20,7 @@ export class RegisterPage implements OnInit {
   image: String;
   loading: any;
   showBar = false;
-  isFace = false;
+  isFace = true;
   hide = true;
   step1 = true;
   step2 = false;

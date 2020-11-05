@@ -1,0 +1,42 @@
+.padding{
+    --padding-end: 48px;
+    --padding-start: 48px;
+}
+
+.button{
+    --background: #B1C800;
+      margin-top: 10rem;
+      border-bottom-left-radius: 16px!important;
+      border-bottom-right-radius: 1rem;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+}
+
+.msjrecibido{
+    color:  #0052AF!important;
+    
+}
+
+ion-avatar{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width: 13rem;
+    height: 12.1rem;
+    float: center;
+    text-align: center;
+}
+
+.msj{
+    color:#7D7D7D;
+}
+
+strong{
+    font-size: 1.3rem;
+}
+
+ion-item{
+    float: center;
+    text-align: center;
+}
