@@ -6,6 +6,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
+import { LoansService } from '@services/loans/loans.service';
 
 declare var faceapi;
 
@@ -40,13 +41,15 @@ export class RegisterPage implements OnInit {
     private router: Router,
     private loadingController:LoadingController,
     private translate: TranslateService,
-    private storage: Storage
+    private storage: Storage,
+    private loansService : LoansService
   ) {
     translate.get('SELFIE').subscribe(
       value => {
         this.mensajeSelfi = value;
       }
     )
+    this.formRegister();
   }
 
   ngOnInit() {
@@ -176,12 +179,7 @@ export class RegisterPage implements OnInit {
 
   verificationCode(code){
     this.userService.verificationCode(code.code,this.form_register2.get("phone").value).toPromise().then(response => {      
-      this.translate.get(['CREATEUSER','CORRECTDATA']).subscribe(
-        value => {
-          this.presentAlert(value.CORRECTDATA+"!",value.CREATEUSER);
-        }
-      ) 
-      this.router.navigate(['/login']);
+      this.update();
     }).catch( err => {
       this.translate.get(["MORESTEP",'SEND',"RESEND","CHECKMESSAGES","INFOREGISTER","CANCEL","CODEAUTHENTICATION"]).subscribe(
         value => {
@@ -248,6 +246,21 @@ export class RegisterPage implements OnInit {
     return new faceapi.SsdMobilenetv1Options({ minConfidence: this.minConfidence })
   }
 
+  update(){
+    this.loansService.updateDetails().toPromise().then(promise =>{
+      console.log("Actualizo")
+    }).catch(err =>{
+      console.log(err)
+    }).finally(() =>{
+      console.log("Paso")
+      this.translate.get(['CREATEUSER','CORRECTDATA']).subscribe(
+        value => {
+          this.presentAlert(value.CORRECTDATA+"!",value.CREATEUSER);
+        }
+      )
+      this.router.navigate(['/login']);
+    })
+  }
 
   //Alertas
   async presentAlert(header,msj) {

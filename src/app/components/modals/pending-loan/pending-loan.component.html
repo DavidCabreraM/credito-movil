@@ -1,0 +1,46 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header class="div-monto">
+      <ion-card-title class="center-label title">{{'LOANREQUESTED' | translate}}</ion-card-title>
+      <ion-item lines="none" style="--background: transparent;">
+        <ion-label>
+          <p class="title-text center-label">{{'AMOUNT' | translate}}</p>
+          <p class="monto-text center-label">{{payment.monto_original | currency}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-grid class="padding-modal">
+        <ion-row>
+          <ion-col size="9">    
+            <ion-item>
+              <ion-label>
+                <p class="title-text">{{'DEADLINES' | translate}}</p>
+                <p class="subtitle-text">{{payment.plazo}}</p>
+              </ion-label>
+            </ion-item>
+    
+            <ion-item>
+              <ion-label>
+                <p class="title-text">{{'PAYMENTS' | translate}}</p>
+                <p class="subtitle-text">{{payment.tipo_plazo}}</p> 
+              </ion-label>
+            </ion-item>
+    
+            <ion-item>
+              <ion-label>
+                <p class="title-text">{{'DESTINATION' | translate}}</p>
+                <p class="subtitle-text">Negocio</p>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-label>
+        <p class="title-text center-label">{{'REQUESTDATE' | translate}}</p>
+        <p class="subtitle-text center-label">{{dateCurrent | date: 'EEEE, dd/MM/yyyy'}}</p>
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

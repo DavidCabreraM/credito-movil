@@ -97,13 +97,19 @@
 
 <div *ngIf="prestamos">
   
+  <ion-fab *ngIf="prestamoPendiente" vertical="top" horizontal="end" slot="fixed" (click) = "pendingLoanModal()">
+    <ion-fab-button size="small" style="--background: #00A8FF!important;">
+      <ion-icon name="cash-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-header class="ion-no-border">
     <ion-toolbar class="toolbar-padding" id="ion-toolbar">
       <ion-avatar id="ion-avatar" button (click)="menuSalir()">
         <ion-img [src]="urlAvatar"></ion-img>  
       </ion-avatar>
     </ion-toolbar>
-</ion-header>
+  </ion-header>
 
 <ion-content [scrollX]="false" [fullscreen]="true">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">

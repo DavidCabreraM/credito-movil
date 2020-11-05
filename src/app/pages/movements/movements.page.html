@@ -4,7 +4,7 @@
     <ion-refresher-content>
     </ion-refresher-content>
   </ion-refresher>
-  <ion-slides style="margin-bottom:5%;" class="pagination" pager="true"  #slides (ionSlideDidChange)="loanChanged()">
+  <ion-slides class="pagination" pager="true"  #slides (ionSlideDidChange)="loanChanged()">
     <ion-slide *ngFor="let prestamo of prestamos; let i=index">
       <ion-item class="card-info ion-no-padding" [ngStyle]="i%2==0 ? {'background-image':'url(' + img.one +')'}: {'background-image': 'url(' + img.two +')'}" lines="none">
         <ion-grid class="number-count">
@@ -32,7 +32,7 @@
             </ion-col>
           </ion-row>
     
-          <ion-row class="date-label">
+          <ion-row class="font-ligh">
             <ion-col class="center-label">
               <span>FECHA LÍMITE PAGO {{prestamo.vencido_desde | date: 'EEEE, dd/MM/yyyy'}}</span>
             </ion-col>

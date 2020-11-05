@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { VarglobalesService } from './services/varglobales/varglobales.service';
 import { LoansService } from '@services/loans/loans.service';
 import { ChangePasswordComponent } from '@components/modals/change-password/change-password.component';
+import { ChangeLanguageComponent } from '@components/modals/change-language/change-language.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,17 @@ export class AppComponent{
   user: any;
   m_client:string;
   public urlAvatar = '';
+  optionLanguage="es"
+  languagesList = [
+    {
+      text:"Español",
+      value:"es"
+    },
+    {
+      text:"English",
+      value:"en"
+    },
+  ]
   loading: HTMLIonLoadingElement;
   constructor(
     private storage: Storage,
@@ -35,7 +47,7 @@ export class AppComponent{
     private modalController: ModalController
   ) {
     translate.setDefaultLang('es');
-    translate.use('es');
+    translate.use('en');
     this.initializeApp();
     this.sideMenu();
   }
@@ -115,6 +127,10 @@ export class AppComponent{
     })
   }
 
+  selectLanguage(langSelect){
+    this.translate.use(langSelect);
+  }
+
   async changePasswordModal() {
     const modal = await this.modalController.create({
       component: ChangePasswordComponent,
@@ -122,5 +138,11 @@ export class AppComponent{
     });
     return await modal.present();
   }
-
+  async changelanguageModal() {
+    const modal = await this.modalController.create({
+      component: ChangeLanguageComponent,
+      cssClass: "center-modal"
+    });
+    return await modal.present();
+  }
 }

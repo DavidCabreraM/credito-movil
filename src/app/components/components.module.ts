@@ -14,6 +14,8 @@ import { EstablishmentsComponent } from './establishments/establishments.compone
 import { RouterModule } from '@angular/router';
 import { ChangePasswordComponent } from './modals/change-password/change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { PendingLoanComponent } from './modals/pending-loan/pending-loan.component';
+import { ChangeLanguageComponent } from './modals/change-language/change-language.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CardsLoanComponent,
     PaymentComponent,
     EstablishmentsComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PendingLoanComponent,
+    ChangeLanguageComponent
   ],
   exports:[
     HeaderComponent,

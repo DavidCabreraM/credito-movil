@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { LoansService } from '@services/loans/loans.service';
 import { VarglobalesService } from '../../services/varglobales/varglobales.service';
+import { ModalController } from '@ionic/angular';
+import { PendingLoanComponent } from '@components/modals/pending-loan/pending-loan.component';
 
 interface Componente {
   icon: string;
@@ -23,6 +25,7 @@ export class HomePage implements OnInit {
 
   dashboard: Observable<any>;
   public prestamos: any;
+  prestamoPendiente = false;
   @Output() public dashboardData = new EventEmitter<any>();
   arrayMovements: any;
   eventRefesh: any;
@@ -46,7 +49,8 @@ export class HomePage implements OnInit {
     private serviceLoand: LoansService,
     private translate: TranslateService,
     private alertController: AlertController,
-    private varGlobal: VarglobalesService
+    private varGlobal: VarglobalesService,
+    private modalController: ModalController
     ) {
       this.storage.remove('dashboard');
       this.storage.remove('avatar');
@@ -103,6 +107,7 @@ export class HomePage implements OnInit {
         this.storage.set(this.key, JSON.stringify(data.prestamos)).then(()=>{
           this.prestamos = data.prestamos;
           console.log(this.prestamos);
+          this.prestamoPendiente = this.prestamos.find( prestamo => prestamo.estatus === '100' );
           this.arrayMovements=data.movs;
         });
     });
@@ -143,4 +148,14 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
+  async pendingLoanModal() {
+    const modal = await this.modalController.create({
+      component: PendingLoanComponent,
+      componentProps: {
+        'payment': this.prestamoPendiente
+      },
+      cssClass: "center-modal"
+    });
+    return await modal.present();
+  }
 }

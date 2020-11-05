@@ -29,11 +29,12 @@ export class LoginPage implements OnInit {
       //localStorage.removeItem("user");
       //this.storage.remove("user");
       this.storage.clear();
+      this.formLogin();
+      this.form_login.reset();
     }
 
-  ngOnInit() {
-    this.formLogin();
-  }
+  ngOnInit() {}
+
   formLogin(){
     this.form_login = this.form.group({
       nClient: ['', [
@@ -64,6 +65,7 @@ export class LoginPage implements OnInit {
         }
       )
     }).finally(() => {
+      this.form_login.reset();
       this.loading.dismiss();
     });
 
