@@ -89,6 +89,12 @@ export class CalendarPage implements OnInit, AfterViewInit {
         }
       }
     }
+    if(this.nextP==undefined){
+      let nextProxy = {
+        "periodo": 10000
+      }
+      this.storage.set('nextP', JSON.stringify(nextProxy));
+    }
     this.myCalendar.loadEvents();
   }
 

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Register } from '@models/users/register';
 import { Login } from '@models/users/login';
+import { ResetPassword } from '@models/users/reset-password';
+import { ChangePassword } from '@models/users/change-password';
 
 @Injectable({
   providedIn: 'root'
@@ -64,22 +66,20 @@ export class UserServiceService {
   }
 
   public resetPassword(form): Observable<any>{
-    console.log(form)
-    let params = {
-      "account_no": form.nClient,
-      "curp": form.curp,
-      "codigo": form.code,
-      "nuevo_password":form.password
-    }
-    return this.http.post(this.url+"confirmaracceso",params);
+    let resetPassword= new ResetPassword();
+    resetPassword.setAccountNo = form.nClient;
+    resetPassword.setCode = form.code;
+    resetPassword.setCurp = form.curp;
+    resetPassword.setNewPassword = form.password;
+
+    return this.http.post(this.url+"confirmaracceso",resetPassword);
   }
 
   public changePassword(form): Observable<any>{
-    console.log(form)
-    let params = {
-      "viejo_password":form.password,
-      "nuevo_password":form.newpassword
-    }
-    return this.http.post(this.url+"cambiarpassword",params);
+    let changePassword= new ChangePassword();
+    changePassword.setNewpassword = form.newpassword;
+    changePassword.setOldPassword = form.password;
+    
+    return this.http.post(this.url+"cambiarpassword",changePassword);
   }
 }

@@ -5,7 +5,7 @@
         <ion-back-button style="position: absolute; color:white" defaultHref="Login"></ion-back-button>
       </ion-buttons>
       <ion-label style="display: grid;justify-content: center;">
-        <ion-title style="color:white" text-capitalize>Calendario de Pagos</ion-title>
+        <ion-title style="color:white" text-capitalize>{{'PCALENDAR' | translate}}</ion-title>
       </ion-label>
       <ion-icon slot="end" routerLink="/payment-list" name="reorder-two-outline" style="    color: white;
       height: 40px;
@@ -26,16 +26,16 @@
       {{view.dates[row*7+col].label}}
     </div>
     <div *ngFor="let obj of view.dates[row*7+col].events">
-      <div *ngIf="obj.payment.periodo == nextP.periodo" class="center-days" style="background-color: #00A8FF;min-height: 60px;padding: 8px;">
+      <div *ngIf="obj.payment.periodo == nextP.periodo" class="center-days days-calendar blue-calendar">
         {{view.dates[row*7+col].label}}
       </div>
-      <div *ngIf="!obj.payment.pagado && obj.payment.periodo > nextP.periodo" class="center-days" style="background-color: #B1C800;color: white;min-height: 60px;padding: 8px;">
+      <div *ngIf="!obj.payment.pagado && obj.payment.periodo > nextP.periodo" class="center-days days-calendar green-calendar">
         {{view.dates[row*7+col].label}}
       </div>
-      <div *ngIf="(obj.payment.pagado && obj.payment.periodo != nextP.periodo) || obj.payment.periodo==0" class="center-days" style="border: solid 2px #00A8AE;color: black;min-height: 60px;padding: 8px;">
+      <div *ngIf="(obj.payment.pagado && obj.payment.periodo != nextP.periodo) || obj.payment.periodo==0" class="center-days days-calendar blue-boder-calendar">
         {{view.dates[row*7+col].label}}
       </div>
-      <div *ngIf="!obj.payment.pagado && obj.payment.fecha < calendarData.currentDate && obj.payment.periodo!=0" class="center-days" style="background-color: #EB3E41;color: white;min-height: 60px;padding: 8px;">
+      <div *ngIf="!obj.payment.pagado && obj.payment.fecha < calendarData.currentDate && obj.payment.periodo!=0" class="center-days days-calendar red-calendar">
         {{view.dates[row*7+col].label}}
       </div>
     </div>
@@ -53,53 +53,98 @@
     (onTimeSelected)="onTimeSelected($event)"
     step="30">   
   </calendar>
-
-  <ion-card *ngIf="selectEvent" class="card-calendar" [ngStyle]="selectEvent.periodo==nextP.periodo ? {'background': 'url(' + img.one +')'}: {'background': 'url(' + img.two +')'}">
-    <ion-card-content>
-      <ion-label>
-        <ion-grid class="number-count">
-          <ion-row>
-            <ion-col class="title-card reduce-padding" size="9">
-              PAGO PARA NO GENERAR INTERES
-            </ion-col>
-            <ion-col class="small-text-card reduce-padding center-label" size="3">
-              <span>PENDIENTE</span>
-            </ion-col>
-          </ion-row>
-        
-          <ion-row>
-            <ion-col class="price-card reduce-padding" size="9">
-              <span>{{selectEvent.importe | currency}}</span>
-            </ion-col>
-            <ion-col class="small-text-card reduce-padding center-label"  size="3">
-              <span>{{selectEvent.periodo}}/{{payments.length - 1}}</span>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col style="margin-top: 3%;" class="title-card reduce-padding">
-              FECHA LIMITE PAGO
-            </ion-col>
-          </ion-row>
-          <ion-row>         
-            <ion-col class="subtitle-card reduce-padding" size="6">
-              <span>{{selectEvent.fecha | date: 'EEEE, dd/MM/yyyy'}}</span>
-            </ion-col>
-          </ion-row>
+  <div *ngIf="selectEvent">
+    <ion-card *ngIf="selectEvent.periodo<=nextP.periodo" class="card-calendar" [ngStyle]="selectEvent.periodo==nextP.periodo ? {'background': 'url(' + img.one +')'}: {'background': 'url(' + img.three +')'}">
+      <ion-card-content>
+        <ion-label>
+          <ion-grid class="number-count">
+            <ion-row>
+              <ion-col class="title-card reduce-padding" size="9">
+                {{'AMOUNT' | translate}}
+              </ion-col>
+              <ion-col class="small-text-card reduce-padding center-label" size="3">
+                <span>{{'PENDING' | translate}}</span>
+              </ion-col>
+            </ion-row>
           
-          <ion-row>
-            <ion-col class="subtitle-card reduce-padding account-number" size="6">
-              <span>{{selectEvent.account_no}}</span>
-            </ion-col>
-            <ion-col class="reduce-padding" size="6">
-              <ion-item style="--background: transparent" class="ion-no-padding" lines="none">
-                <ion-icon routerLink="/references" slot="end" class="icon-card" name="qr-code-outline"></ion-icon>
-              </ion-item>
-            </ion-col>
-          </ion-row>  
-        </ion-grid>
-      </ion-label>
-    </ion-card-content>
-    
-  </ion-card>
+            <ion-row>
+              <ion-col class="price-card reduce-padding" size="9">
+                <span>{{selectEvent.importe | currency}}</span>
+              </ion-col>
+              <ion-col class="small-text-card reduce-padding center-label"  size="3">
+                <span>{{selectEvent.periodo}}/{{payments.length - 1}}</span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col style="margin-top: 3%;" class="title-card reduce-padding">
+                {{'PAYDAYLIMIT' | translate}}
+              </ion-col>
+            </ion-row>
+            <ion-row>         
+              <ion-col class="subtitle-card reduce-padding" size="6">
+                <span>{{selectEvent.fecha | date: 'EEEE, dd/MM/yyyy'}}</span>
+              </ion-col>
+            </ion-row>
+            
+            <ion-row>
+              <ion-col class="subtitle-card reduce-padding account-number" size="6">
+                <span>{{selectEvent.account_no}}</span>
+              </ion-col>
+              <ion-col class="reduce-padding" size="6">
+                <ion-item style="--background: transparent" class="ion-no-padding" lines="none">
+                  <ion-icon routerLink="/references" slot="end" class="icon-card" name="qr-code-outline"></ion-icon>
+                </ion-item>
+              </ion-col>
+            </ion-row>  
+          </ion-grid>
+        </ion-label>
+      </ion-card-content>
+      
+    </ion-card>
+
+    <ion-card *ngIf="selectEvent.periodo>nextP.periodo" class="card-calendar" [ngStyle]="{'background': 'url(' + img.two +')'}">
+      <ion-card-content>
+        <ion-label>
+          <ion-grid class="number-count">
+            <ion-row>
+              <ion-col class="title-card reduce-padding" size="9">
+                {{'AMOUNT' | translate}}
+              </ion-col>
+              <ion-col class="small-text-card reduce-padding center-label" size="3">
+                <span>{{'PENDING' | translate}}</span>
+              </ion-col>
+            </ion-row>
+          
+            <ion-row>
+              <ion-col class="price-card reduce-padding" size="9">
+                <span>{{selectEvent.importe | currency}}</span>
+              </ion-col>
+              <ion-col class="small-text-card reduce-padding center-label"  size="3">
+                <span>{{selectEvent.periodo}}/{{payments.length - 1}}</span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col style="margin-top: 3%;" class="title-card reduce-padding">
+                {{'PAYDAYLIMIT' | translate}}
+              </ion-col>
+            </ion-row>
+            <ion-row>         
+              <ion-col class="subtitle-card reduce-padding" size="6">
+                <span>{{selectEvent.fecha | date: 'EEEE, dd/MM/yyyy'}}</span>
+              </ion-col>
+            </ion-row>
+            
+            <ion-row>
+              <ion-col class="subtitle-card reduce-padding account-number" size="6">
+                <span>{{selectEvent.account_no}}</span>
+              </ion-col>
+            </ion-row>  
+          </ion-grid>
+        </ion-label>
+      </ion-card-content>
+      
+    </ion-card>
+  </div>
 </ion-content>

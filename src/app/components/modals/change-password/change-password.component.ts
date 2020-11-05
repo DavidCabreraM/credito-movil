@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { UserServiceService } from '@services/user/user-service.service';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-change-password',
@@ -16,6 +17,8 @@ export class ChangePasswordComponent implements OnInit {
     private userServiceService : UserServiceService,
     private alertController: AlertController,
     private router: Router,
+    private modalCtrl: ModalController,
+    private translate: TranslateService
   ) { }
 
   formChangePassword: FormGroup;
@@ -52,10 +55,19 @@ export class ChangePasswordComponent implements OnInit {
   changePassword(){
     this.userServiceService.changePassword(this.formChangePassword.value).toPromise().then(promise =>{
       console.log("Good: ",promise)
-      this.presentAlert("Contraseña cambiada","Vuelva a iniciar sesión");
+      this.modalCtrl.dismiss();
+      this.translate.get(['PASSCHANGED','LOGINAGAIN']).subscribe(
+        value => {
+          this.presentAlert(value.PASSCHANGED+"!",value.LOGINAGAIN);
+        }
+      )
       this.router.navigate(['/login']);
     }).catch(err =>{
-      this.presentAlert("Error!","Datos incorrectos");
+      this.translate.get('BADCODE').subscribe(
+        value => {
+          this.presentAlert('Error!',value);
+        }
+      )
       console.log("Error: ",err)
     })
   }

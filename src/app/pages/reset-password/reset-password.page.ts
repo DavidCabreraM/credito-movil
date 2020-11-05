@@ -29,7 +29,6 @@ export class ResetPasswordPage implements OnInit {
   formRegister(){
     this.formChangePassword = this.form.group({
       nClient: ['', [
-        Validators.required,
         Validators.pattern("^[0-9]{9}$"),
         Validators.min(1)
       ]],
@@ -72,10 +71,19 @@ export class ResetPasswordPage implements OnInit {
   resetPassword(){
     this.userServiceService.resetPassword(this.formChangePassword.value).toPromise().then(promise =>{
       console.log(promise)
-      this.presentAlert("Contraseña cambiada","Ahora puede acceder.");
+      this.translate.get(['PASSCHANGED','LOGINAGAIN']).subscribe(
+        value => {
+          this.presentAlert(value.PASSCHANGED+"!",value.LOGINAGAIN);
+        }
+      )
       this.router.navigate(['/login']);
     }).catch(err =>{
-      this.presentAlert("Error!","Datos incorrectos");
+      this.translate.get('BADCODE').subscribe(
+        value => {
+          this.presentAlert('Error!',value);
+        }
+      )
+      
     })
   }
 

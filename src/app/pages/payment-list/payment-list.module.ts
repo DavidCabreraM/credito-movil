@@ -8,6 +8,7 @@ import { PaymentListPageRoutingModule } from './payment-list-routing.module';
 
 import { PaymentListPage } from './payment-list.page';
 import { ComponentsModule } from '@components/components.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from '@components/components.module';
     FormsModule,
     IonicModule,
     PaymentListPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    TranslateModule
   ],
   declarations: [PaymentListPage]
 })
