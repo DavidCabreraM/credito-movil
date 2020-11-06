@@ -31,6 +31,9 @@ export class LoginPage implements OnInit {
       this.storage.clear();
       this.formLogin();
       this.form_login.reset();
+      this.storage.remove('dashboard');
+      this.storage.remove('avatar');
+      this.storage.remove('user');
     }
 
   ngOnInit() {}

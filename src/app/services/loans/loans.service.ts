@@ -64,6 +64,5 @@ export class LoansService {
   public prestamo(body): Observable<any>{
     console.log(JSON.stringify(body));
     return this.http.post(this.url + 'prestamo', JSON.stringify(body));
-  }
- 
+  } 
 }

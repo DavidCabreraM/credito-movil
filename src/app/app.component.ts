@@ -1,6 +1,6 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 
-import { Platform, LoadingController, ModalController } from '@ionic/angular';
+import { Platform, LoadingController, ModalController, AlertController, IonRouterOutlet } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,6 +10,8 @@ import { VarglobalesService } from './services/varglobales/varglobales.service';
 import { LoansService } from '@services/loans/loans.service';
 import { ChangePasswordComponent } from '@components/modals/change-password/change-password.component';
 import { ChangeLanguageComponent } from '@components/modals/change-language/change-language.component';
+import { PlatformLocation } from '@angular/common';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,8 @@ import { ChangeLanguageComponent } from '@components/modals/change-language/chan
   styleUrls: ['app.component.scss']
 })
 export class AppComponent{
+  @ViewChild(IonRouterOutlet, {static: false}) routerOutlet: IonRouterOutlet;
+
   public client_name: any[];
   navigate : any;
   user: any;
@@ -44,18 +48,70 @@ export class AppComponent{
     private avatarUrl: VarglobalesService,
     public loadingController:LoadingController,
     private loansService : LoansService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private location: PlatformLocation,
+    private alertController: AlertController
   ) {
     translate.setDefaultLang('es');
     translate.use('en');
     this.initializeApp();
     this.sideMenu();
+    this.location.onPopState(async ()=>{
+      console.log('ON POP');
+      console.log(this.router.url);
+      const modal = await this.modalController.getTop();
+      if(modal){
+        modal.dismiss();
+      }
+    });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.platform.backButton.subscribeWithPriority(0, async () => {
+        if(this.router.url === '/home'){
+          console.log(this.router.url);
+          const alert = await this.alertController.create({
+              message: "Esta seguro de Salir?",
+              buttons: [
+                {
+                  text: "Cancelar",
+                  role: "cancel"
+                },
+                {
+                  text: "Cerrar App",
+                  handler: () => {
+                    navigator["app"].exitApp();
+                  }
+                }
+              ]
+          });
+          await alert.present();
+        }
+         /* if(this.routerOutlet && this.routerOutlet.canGoBack()){
+            this.routerOutlet.pop();
+          } else if (this.router.url === "/home") {
+            const alert = await this.alertController.create({
+              header: "Close App",
+              message: "Esta seguro de Salir de la app?",
+              buttons: [
+                {
+                  text: "Cancel",
+                  role: "cancel"
+                },
+                {
+                  text: "Close App",
+                  handler: () => {
+                    navigator["app"].exitApp();
+                  }
+                }
+              ]
+            });
+            await alert.present();
+          }*/
+      });
     });
   }
   onHome(){

@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { CalendarService } from '@services/calendar/calendar.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detailloan',
@@ -29,6 +30,7 @@ export class DetailloanPage implements OnInit {
   public abono_capital: number;
   public recibo_total: number;
   public recibo_pagado: any;
+  public fecha_pago:string;
   payments:any;
   eventSource = [];
   nextP: any;
@@ -37,7 +39,8 @@ export class DetailloanPage implements OnInit {
   constructor(private storage: Storage,
     private translate: TranslateService,
     private route: ActivatedRoute,
-    private calendarService: CalendarService) {
+    private calendarService: CalendarService,
+    private loadingCtrl: LoadingController) {
     this.segment = 'Crédito';
     this.titulo = 'LOANDETAIL';
    }
@@ -106,11 +109,13 @@ export class DetailloanPage implements OnInit {
           console.log("Es el menor: ", this.payments[i])
           this.nextP = this.payments[i]
           this.selectEvent = this.nextP;
+          this.fecha_pago = this.selectEvent.fecha;
         }
         if(this.nextP >= f1){
           console.log("Es el menor: ", this.payments[i])
           this.nextP = this.payments[i]
           this.selectEvent = this.nextP;
+          this.fecha_pago = this.selectEvent.fecha;
         }
       }
     }
