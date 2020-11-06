@@ -53,15 +53,17 @@ export class CalendarPage implements OnInit, AfterViewInit {
   }
 
   back(){
-    let swiper = document.querySelector('.swiper-container')['swiper'];
-    swiper.slidePrev();
+    this.myCalendar.slidePrev();
+    /*let swiper = document.querySelector('.swiper-container')['swiper'];
+    swiper.slidePrev();*/
   }
 
   next(){
-    console.log("Next")
-    let swiper = document.querySelector('.swiper-container')['swiper'];
+    console.log("Next");
+    this.myCalendar.slideNext();
+    /*let swiper = document.querySelector('.swiper-container')['swiper'];
     console.log(swiper);
-    swiper.slideNext();
+    swiper.slideNext();*/
   }
 
   nextPayment(){
