@@ -10,7 +10,6 @@ import { VarglobalesService } from './services/varglobales/varglobales.service';
 import { LoansService } from '@services/loans/loans.service';
 import { ChangePasswordComponent } from '@components/modals/change-password/change-password.component';
 import { ChangeLanguageComponent } from '@components/modals/change-language/change-language.component';
-import { TranslateLocalService } from '@services/translate/translate-local.service';
 import { PlatformLocation } from '@angular/common';
 import { async } from '@angular/core/testing';
 
@@ -185,7 +184,6 @@ export class AppComponent{
   }
 
   selectLanguage(langSelect){
-    this.translateLocal.getLanguage();
     this.translate.use(langSelect);
   }
 
