@@ -10,12 +10,9 @@ import { VarglobalesService } from './services/varglobales/varglobales.service';
 import { LoansService } from '@services/loans/loans.service';
 import { ChangePasswordComponent } from '@components/modals/change-password/change-password.component';
 import { ChangeLanguageComponent } from '@components/modals/change-language/change-language.component';
-<<<<<<< HEAD
+import { TranslateLocalService } from '@services/translate/translate-local.service';
 import { PlatformLocation } from '@angular/common';
 import { async } from '@angular/core/testing';
-=======
-import { TranslateLocalService } from '@services/translate/translate-local.service';
->>>>>>> 6db880a79576a427e233b90d710b63d187f37b93
 
 @Component({
   selector: 'app-root',
