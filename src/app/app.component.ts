@@ -10,6 +10,7 @@ import { VarglobalesService } from './services/varglobales/varglobales.service';
 import { LoansService } from '@services/loans/loans.service';
 import { ChangePasswordComponent } from '@components/modals/change-password/change-password.component';
 import { ChangeLanguageComponent } from '@components/modals/change-language/change-language.component';
+import { TranslateLocalService } from '@services/translate/translate-local.service';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +45,8 @@ export class AppComponent{
     private avatarUrl: VarglobalesService,
     public loadingController:LoadingController,
     private loansService : LoansService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private translateLocal : TranslateLocalService
   ) {
     translate.setDefaultLang('es');
     translate.use('en');
@@ -128,6 +130,7 @@ export class AppComponent{
   }
 
   selectLanguage(langSelect){
+    this.translateLocal.getLanguage();
     this.translate.use(langSelect);
   }
 

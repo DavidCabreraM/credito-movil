@@ -9,6 +9,8 @@ export class PaymentCardsComponent implements OnInit {
   @Input() data;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.data)
+  }
 
 }
