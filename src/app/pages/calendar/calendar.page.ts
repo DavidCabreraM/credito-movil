@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PaymentComponent } from '@components/modals/payment/payment.component';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 import { CalendarService } from '@services/calendar/calendar.service';
 import { CalendarComponent } from "ionic2-calendar";
 
@@ -16,7 +17,8 @@ export class CalendarPage implements OnInit, AfterViewInit {
     private calendarService: CalendarService,
     private modalController: ModalController,
     private storage: Storage,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private translate: TranslateService
     ) {
       //this.account=route.snapshot.paramMap.get("account");
       this.promiseAccount = this.storage.get('accountNumber');
@@ -56,7 +58,9 @@ export class CalendarPage implements OnInit, AfterViewInit {
   }
 
   next(){
+    console.log("Next")
     let swiper = document.querySelector('.swiper-container')['swiper'];
+    console.log(swiper);
     swiper.slideNext();
   }
 
@@ -90,10 +94,10 @@ export class CalendarPage implements OnInit, AfterViewInit {
       }
     }
     if(this.nextP==undefined){
-      let nextProxy = {
+      this.nextP = {
         "periodo": 10000
       }
-      this.storage.set('nextP', JSON.stringify(nextProxy));
+      this.storage.set('nextP', JSON.stringify(this.nextP));
     }
     this.myCalendar.loadEvents();
   }

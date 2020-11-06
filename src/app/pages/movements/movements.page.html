@@ -16,10 +16,10 @@
         
           <ion-row class="font-ligh">
             <ion-col class="center-label" size="6">
-              <span>SALDO TOTAL</span>
+              <span>{{'TOTALB' | translate}}</span>
             </ion-col>
             <ion-col class="center-label" size="6">
-              <span>PRÓXIMO PAGO</span>
+              <span>{{'NEXTPAY' | translate}}</span>
             </ion-col>
           </ion-row>
     
@@ -34,7 +34,7 @@
     
           <ion-row class="font-ligh">
             <ion-col class="center-label">
-              <span>FECHA LÍMITE PAGO {{prestamo.vencido_desde | date: 'EEEE, dd/MM/yyyy'}}</span>
+              <span>{{'PAYDAYLIMIT' | translate}} {{prestamo.vencido_desde | date: 'EEEE, dd/MM/yyyy'}}</span>
             </ion-col>
           </ion-row>
         </ion-grid>

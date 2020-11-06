@@ -89,5 +89,10 @@
     "REQUESTDATE" : "Fecha de la solicitud",
     "PERIODS":"Períodos",
     "TODAY":"Hoy",
-    "PAYMENTMADE": "Pago realizado"
+    "PAYMENTMADE": "Pago realizado",
+    "TOTALB": "Saldo total",
+    "LOANREP":"Pago referenciado",
+    "SAVDEP":"SAVDEP",
+    "LOANSUB" : "Crédito en proceso",
+    "LOANAPR" : "Crédito aprobado"
 }

@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./movements.page.scss'],
 })
 export class MovementsPage implements OnInit, AfterViewInit {
-  public img = {one: '/assets/img/cards/Tarjeta1.svg', two: '/assets/img/cards/Tarjeta2.svg'};
+  public img = {one: '/assets/img/cards/Tarjeta6.svg', two: '/assets/img/cards/Tarjeta7.svg'};
   @ViewChild(IonSlides) slides: IonSlides;
   arrayMovements: any;
   eventRefesh: any;

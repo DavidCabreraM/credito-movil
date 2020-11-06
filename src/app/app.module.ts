@@ -22,6 +22,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-US';
 registerLocaleData(localeEs);
 import { NgxBarcodeModule } from 'ngx-barcode';
+import { TranslateLocalService } from '@services/translate/translate-local.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -56,7 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
     Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: HeadersService, multi: true},
-    { provide: LOCALE_ID, useValue: 'es-US' },
+    { provide: LOCALE_ID, deps: [TranslateLocalService], useFactory: (translateLocalService) =>  translateLocalService.getLanguage()},
   ],
   bootstrap: [AppComponent]
 })
