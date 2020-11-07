@@ -28,7 +28,7 @@ ion-input{
     border-bottom: 1px solid #FFFF;
 }
 
-ion-item{
+.item{
     --background:  #0052AF!important;
     margin-left: 3rem;
     margin-right: 3rem;
@@ -103,11 +103,8 @@ ion-list{
     background-color: #B1C800;
 }
 .cash{
-    color: #FFFF;
     margin-left: 1rem;
     margin-top: 2.8px;
-    height: 30px;
-    width: 30px;
 }
 .icon-x{
     color:#FFFF;
@@ -125,7 +122,16 @@ ion-list{
 }
 
 .ion-select{
-    margin-top: 10rem;
+   // margin-top: 10rem;
+    --background-color: #FFFF!important;
+    --background: #FFFF!important;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.segment-limit{
     --background-color: #FFFF!important;
     --background: #FFFF!important;
 }

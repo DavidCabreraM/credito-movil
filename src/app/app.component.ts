@@ -153,25 +153,25 @@ export class AppComponent{
         title : 'Inicio',
         url   : '/home',
         icon  : 'home-outline',
-        disabled: false
+        img: false
       },
       {
         title : 'Mis Cuentas',
         url   : '/account/0',
         icon  : 'card-outline',
-        disabled: false
+        img: false
       },
       {
         title : 'Solicitar un Prestamo',
         url   : '/applyfor-loan',
-        icon  : 'thumbs-up-outline',
-        disabled: true
+        icon  : 'lucro.svg',
+        img: true
       },
       {
         title: 'Codigo de barras y QR',
         url: '/references',
         icon: 'qr-code-outline',
-        disabled: true
+        img: false
       },
     ];
   }

@@ -62,20 +62,20 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label>
-        <p>Tipo Plazo</p>
-        <h2>{{tipo_plazo | translate}}</h2>     
-      </ion-label>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label>
         <p>Plazo</p>
         <h2>{{plazo}}</h2>     
       </ion-label>
     </ion-item>
     <ion-item lines="none">
       <ion-label>
+        <p>Tipo Plazo</p>
+        <h2>{{tipo_plazo | translate}}</h2>     
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>
         <p>Recibos Pendientes</p>
-        <h2>{{recibo_total}}</h2>     
+        <h2>{{recibo_total_pendiente}}</h2>     
       </ion-label>
     </ion-item>
     <ion-item lines="none">
@@ -83,7 +83,13 @@
         <p>Fecha Proximo Pago</p>
         <h2>{{fecha_pago | date: 'dd/MM/yyyy'}}</h2>     
       </ion-label>
-    </ion-item>      
+    </ion-item>  
+    <ion-item lines="none">
+      <ion-label>
+        <p>Monto Proximo Pago</p>
+        <h2>{{monto_proximo | currency}}</h2>     
+      </ion-label>
+    </ion-item>     
   </ion-list>
   <ion-list class="ion-padding">
     <ion-list-header>
@@ -92,7 +98,7 @@
     <ion-item lines="none">
       <ion-label>
         <p>Fecha de Vencimiento</p>
-        <h2>{{vencido_desde | date: 'dd/MM/yyyy'}}</h2>     
+        <h2>{{fecha_vencimiento | date: 'dd/MM/yyyy'}}</h2>     
       </ion-label>
     </ion-item>
   </ion-list>
