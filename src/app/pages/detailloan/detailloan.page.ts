@@ -26,11 +26,12 @@ export class DetailloanPage implements OnInit {
   public saldo_total:number;
   public saldo_vencido:string;
   public tipo_plazo:string;
-  public vencido_desde:string;
-  public abono_capital: number;
-  public recibo_total: number;
-  public recibo_pagado: any;
+  public fecha_vencimiento:string;
+  public abono_capital: number = 0;
+  public recibo_total_pendiente: number;
+  public recibo_pendiente: any;
   public fecha_pago:string;
+  public monto_proximo: string;
   payments:any;
   eventSource = [];
   nextP: any;
@@ -59,9 +60,14 @@ export class DetailloanPage implements OnInit {
     this.calendarService.calendar(this.data.prestamo_id).toPromise().then( promise => {
       console.log(promise);
       this.payments = promise;
-      this.recibo_pagado = this.payments.filter(recibo=> recibo.pagado == false);
-      this.recibo_total = this.recibo_pagado.length - 1;
-      console.log(this.recibo_pagado);
+      for(let item of this.payments){
+          if(item.pagado === true){
+            this.abono_capital += item.capital;
+          }
+      }
+      this.recibo_pendiente = this.payments.filter(recibo=> recibo.pagado == false);
+      this.recibo_total_pendiente = this.recibo_pendiente.length - 1;
+      console.log(this.recibo_pendiente);
       this.nextPayment();
       //this.prestamoPendiente = this.prestamos.find( prestamo => prestamo.estatus === '100' );
     });
@@ -72,15 +78,15 @@ export class DetailloanPage implements OnInit {
     this.nombre_producto = this.data.nombre_producto;
     this.plazo = this.data.plazo;
     this.tipo_plazo = this.data.tipo_plazo;
-    this.vencido_desde = this.data.vencido_desde;
+    this.fecha_vencimiento = this.data.fecha_vencimiento;
     this.saldo_vencido = this.data.saldo_vencido;
     this.saldo_total = this.data.saldo_total;
     console.log(this.data.estatus);
-    if(this.data.estatus == 300)
+    /*if(this.data.estatus == 300)
          this.abono_capital = this.data.monto_original - this.data.saldo_total;
     else {
       this.abono_capital = 0;
-    }
+    }*/
     /*if(this.data.monto_original === this.data.saldo_total){
       this.abono_capital = this.data.monto_original;
       this.saldo_total = this.data.monto_original - this.data.saldo_total;
@@ -110,12 +116,14 @@ export class DetailloanPage implements OnInit {
           this.nextP = this.payments[i]
           this.selectEvent = this.nextP;
           this.fecha_pago = this.selectEvent.fecha;
+          this.monto_proximo = this.selectEvent.importe;
         }
         if(this.nextP >= f1){
           console.log("Es el menor: ", this.payments[i])
           this.nextP = this.payments[i]
           this.selectEvent = this.nextP;
           this.fecha_pago = this.selectEvent.fecha;
+          this.monto_proximo = this.selectEvent.importe;
         }
       }
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoansService } from '../../services/loans/loans.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -14,6 +14,8 @@ export class ApplyforLoanPage implements OnInit {
   public amount: string;
   public amount_min: string;
   public amount_max: string;
+  public plazo_min:string;
+  public plazo_max: string;
   formPrestamo: FormGroup;
 
   public identificador: string;
@@ -31,18 +33,21 @@ export class ApplyforLoanPage implements OnInit {
   constructor(private serviceLoan: LoansService, 
               private alertController: AlertController, 
               private router: Router,
-              private form: FormBuilder) {
+              private form: FormBuilder,
+              private loadingController: LoadingController) {
     this.titulo = 'APPLYLOAN';
     
    }
 
   ngOnInit() {
     this.formPrestamo = this.form.group({
+      limitePlazo: ['', Validators.required],
       plazo: ['', Validators.required],
       destino: ['', Validators.required],
       pagos: ['', Validators.required],
       amount:['', Validators.required]
     });
+    this.presentLoading();
     this.serviceLoan.parameter().subscribe(data => {
       console.log(data);
       this.identificador = data.prestamos.identificadorProducto;
@@ -52,13 +57,25 @@ export class ApplyforLoanPage implements OnInit {
       this.amount = data.prestamos.limitesMonto.minimo + '.00';
       this.amount_min = data.prestamos.limitesMonto.minimo;
       this.amount_max = data.prestamos.limitesMonto.maximo;
+      this.plazo_min = data.prestamos.limitesPlazo.minimo;
+      this.plazo_max = data.prestamos.limitesPlazo.maximo;
       console.log(this.amount_min);
     });
   } 
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Porfavor Espere...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
-      mode: 'ios',
       header: '¿Estás seguro que deseas salir?',
       message: 'No guardaremos los datos que hayas ingresado.',
       buttons: [
