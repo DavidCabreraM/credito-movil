@@ -6,21 +6,17 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TranslateLocalService {
   supportedLanguage = ['en','es-US']
-  defaultLanguage = 'en'
-  selectLanguage = 'en'
+  defaultLanguage = 'es-US'
   constructor(private translate: TranslateService) { }
 
   getLanguage(){
 
-    const userLanguage = this.translate.currentLang;
-    console.log("Detecto1: ",this.translate.getBrowserLang())
-    if(userLanguage=="en"){
-      this.selectLanguage=this.supportedLanguage[0]
-    }
+    let userLanguage = this.translate.getBrowserLang();
+    console.log("Detecto1: ",userLanguage)
     if(userLanguage=="es"){
-      this.selectLanguage=this.supportedLanguage[1]
+      userLanguage="es-US"
     }
-    console.log("Detecto: ",this.selectLanguage)
-    return this.selectLanguage
+    console.log(this.supportedLanguage.includes(userLanguage)? userLanguage : this.defaultLanguage)
+    return this.supportedLanguage.includes(userLanguage)? userLanguage : this.defaultLanguage
   }
 }

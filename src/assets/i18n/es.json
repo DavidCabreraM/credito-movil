@@ -94,5 +94,8 @@
     "LOANREP":"Pago referenciado",
     "SAVDEP":"SAVDEP",
     "LOANSUB" : "Crédito en proceso",
-    "LOANAPR" : "Crédito aprobado"
+    "LOANAPR" : "Crédito aprobado",
+    "UPDATEDATA" : "Actualizar datos",
+    "SIGNOFF" : "Cerrar sesión",
+    "HOME" : "Inicio"
 }

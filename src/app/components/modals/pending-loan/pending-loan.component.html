@@ -30,9 +30,9 @@
               </ion-item>
       
               <ion-item>
-                <ion-label>
+                <ion-label style="white-space: break-spaces !important;">
                   <p class="title-text">{{'DESTINATION' | translate}}</p>
-                  <p class="subtitle-text">Negocio</p>
+                  <p class="subtitle-text">{{payment.proposito_description}}</p>
                 </ion-label>
               </ion-item>
             </ion-col>
@@ -40,7 +40,7 @@
         </ion-grid>
         <ion-label>
           <p class="title-text center-label">{{'REQUESTDATE' | translate}}</p>
-          <p class="subtitle-text center-label">{{dateCurrent | date: 'EEEE, dd/MM/yyyy'}}</p>
+          <p class="subtitle-text center-label">{{payment.fecha_solicitud | date: 'EEEE, dd/MM/yyyy'}}</p>
         </ion-label>
       </ion-card-content>
     </ion-card>

@@ -258,6 +258,8 @@ export class RegisterPage implements OnInit {
           this.presentAlert(value.CORRECTDATA+"!",value.CREATEUSER);
         }
       )
+      this.form_register1.reset();
+      this.form_register2.reset();
       this.router.navigate(['/login']);
     })
   }

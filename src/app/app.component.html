@@ -29,7 +29,7 @@
           <ion-item class="ion-item" button (click)="changePasswordModal()" lines="none">
             <ion-icon name="lock-closed-outline"></ion-icon>
             <ion-label>
-              Cambiar contraseña
+              {{'CHANGEPASS'| translate}}
             </ion-label>
           </ion-item>
         </ion-menu-toggle>
@@ -38,11 +38,11 @@
           <ion-item class="ion-item" button (click)="update()" lines="none">
             <ion-icon name="refresh-outline"></ion-icon>
             <ion-label>
-              Actualizar datos 
+              {{'UPDATEDATA'| translate}}
             </ion-label>
           </ion-item>
         </ion-menu-toggle>
-        <ion-menu-toggle>
+        <!-- ion-menu-toggle>
           <ion-item class="ion-item" lines="none">
             <ion-icon name="language-outline"></ion-icon>
             <ion-label>{{'CHANGELANGUAGE'| translate}}</ion-label>
@@ -50,7 +50,7 @@
               <ion-select-option *ngFor="let language of languagesList" [value]="language.value">{{language.text}}</ion-select-option>
             </ion-select>
           </ion-item>
-        </ion-menu-toggle>
+        </ion-menu-toggle -->
       </div>
     </ion-content>
     <ion-footer class="ion-no-border ion-padding">
@@ -58,7 +58,7 @@
         <ion-item (click)="onCerrarSession()" lines="none">
           <ion-icon name="enter-outline"></ion-icon>
           <ion-label>
-            Cerrar sesion
+            {{'SIGNOFF'| translate}}
           </ion-label>
         </ion-item>
       </ion-menu-toggle>

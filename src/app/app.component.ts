@@ -53,7 +53,8 @@ export class AppComponent{
     private alertController: AlertController
   ) {
     translate.setDefaultLang('es');
-    translate.use('en');
+    let language = translate.getBrowserLang()
+    translate.use(language);
     this.initializeApp();
     this.sideMenu();
     this.location.onPopState(async ()=>{

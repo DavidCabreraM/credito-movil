@@ -81,8 +81,9 @@
                 {{'PAYDAYLIMIT' | translate}}
               </ion-col>
             </ion-row>
+
             <ion-row>         
-              <ion-col class="subtitle-card reduce-padding" size="6">
+              <ion-col class="subtitle-card reduce-padding" size="12">
                 <span>{{selectEvent.fecha | date: 'EEEE, dd/MM/yyyy'}}</span>
               </ion-col>
             </ion-row>
@@ -99,8 +100,7 @@
             </ion-row>  
           </ion-grid>
         </ion-label>
-      </ion-card-content>
-      
+      </ion-card-content>  
     </ion-card>
 
     <ion-card *ngIf="selectEvent.periodo>nextP.periodo" class="card-calendar" [ngStyle]="{'background': 'url(' + img.two +')'}">
@@ -130,8 +130,9 @@
                 {{'PAYDAYLIMIT' | translate}}
               </ion-col>
             </ion-row>
+
             <ion-row>         
-              <ion-col class="subtitle-card reduce-padding" size="6">
+              <ion-col class="subtitle-card reduce-padding" size="12">
                 <span>{{selectEvent.fecha | date: 'EEEE, dd/MM/yyyy'}}</span>
               </ion-col>
             </ion-row>
@@ -143,8 +144,7 @@
             </ion-row>  
           </ion-grid>
         </ion-label>
-      </ion-card-content>
-      
+      </ion-card-content>    
     </ion-card>
   </div>
 </ion-content>
