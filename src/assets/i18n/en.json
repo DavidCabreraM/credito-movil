@@ -92,10 +92,21 @@
     "PAYMENTMADE": "Payment made",
     "TOTALB": "Total balance",
     "LOANREP":"Referenced payment",
-    "SAVDEP":"SAVDEP",
+    "LOANREPSMS":"Your payment has been applied, thank you",
+    "LOANDIS":"Credit delivered",
+    "LOANDISSMS":"Congratulations your credit has been delivered! it is important that you keep a clean record",
     "LOANSUB" : "Credit in process",
+    "LOANSUBSMS" : "Your request has been sent, we will contact you shortly",
     "LOANAPR" : "Credit approved",
+    "LOANAPRSMS" : "Congratulations, your application has been approved",
     "UPDATEDATA" : "Update data",
     "SIGNOFF" : "Sign off",
-    "HOME" : "Home"
+    "HOME" : "Home",
+    "FOURTEEN" : "FOURTEEN",
+    "BUYLOCAL" : "BUY LOCAL OR VEHICLE",
+    "ACQUIREMERCHANDISE" : "ACQUIRE OR BUY MERCHANDISE",
+    "BUYMACHINERY" : "BUY MACHINERY, EQUIPMENT OR TOOLS",
+    "PAYDEBT" : "PAY BUSINESS DEBT",
+    "ANOTHEREND" : "ANOTHER RELATED END",
+    "OUTSIDEBUSINESS" : "PURPOSES OUTSIDE OF BUSINESS"
 }
