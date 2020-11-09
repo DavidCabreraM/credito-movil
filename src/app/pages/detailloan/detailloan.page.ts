@@ -47,6 +47,7 @@ export class DetailloanPage implements OnInit {
    }
 
   ngOnInit() {
+    this.presentLoading();
     this.parameter = this.route.snapshot.paramMap.get('id');
 
     this.storage.get('dashboard').then((val) => {
@@ -97,6 +98,7 @@ export class DetailloanPage implements OnInit {
   }
 
   nextPayment(){
+    
     let hoy = new Date();
     hoy.setHours(0,0,0,0);
     
@@ -127,6 +129,17 @@ export class DetailloanPage implements OnInit {
         }
       }
     }
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Porfavor Espere...',
+      duration: 2500
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 
   onTipoPlazo(){

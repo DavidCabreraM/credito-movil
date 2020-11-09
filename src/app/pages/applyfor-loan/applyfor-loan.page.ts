@@ -3,6 +3,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoansService } from '../../services/loans/loans.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-applyfor-loan',
@@ -30,11 +31,14 @@ export class ApplyforLoanPage implements OnInit {
 
   public clear: string;
 
+  public solicitud: boolean;
+
   constructor(private serviceLoan: LoansService, 
               private alertController: AlertController, 
               private router: Router,
               private form: FormBuilder,
-              private loadingController: LoadingController) {
+              private loadingController: LoadingController,
+              private storage: Storage) {
     this.titulo = 'APPLYLOAN';
     
    }
@@ -47,7 +51,9 @@ export class ApplyforLoanPage implements OnInit {
       pagos: ['', Validators.required],
       amount:['', Validators.required]
     });
-    this.presentLoading();
+    
+    this.solicitudPendiente();
+     
     this.serviceLoan.parameter().subscribe(data => {
       console.log(data);
       this.identificador = data.prestamos.identificadorProducto;
@@ -59,19 +65,55 @@ export class ApplyforLoanPage implements OnInit {
       this.amount_max = data.prestamos.limitesMonto.maximo;
       this.plazo_min = data.prestamos.limitesPlazo.minimo;
       this.plazo_max = data.prestamos.limitesPlazo.maximo;
-      console.log(this.amount_min);
-    });
+        console.log(this.amount_min);
+      });
+    
   } 
 
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Porfavor Espere...',
-      duration: 2000
+      duration: 2500
     });
     await loading.present();
 
     const { role, data } = await loading.onDidDismiss();
     console.log('Loading dismissed!');
+  }
+
+  solicitudPendiente(){
+    this.solicitud = false;
+    this.storage.get('dashboard').then((val) => {
+      let result = JSON.parse(val);
+      for(let item of result){
+        console.log(item.estatus);
+          if(item.estatus === '300'){
+            this.solicitud = true;
+            this.presentAlert();
+          }
+      }
+      //let data = resul[this.parameter];
+
+   });
+
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'alert',
+      backdropDismiss: false,
+      header: 'Ya tiene una solicitud pendiente!!',
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.router.navigate(['/home']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   async presentAlertConfirm() {
