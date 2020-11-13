@@ -71,20 +71,39 @@ export class AppComponent{
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      let salirMsj;
+      let cancel;
+      let close;
+      this.translate.get('SALIR').subscribe(
+        value=>{
+            salirMsj = value + '?';
+        }
+      );
+      this.translate.get('CANCEL').subscribe(
+        value => {
+            cancel = value;
+        }
+      );
+      this.translate.get('CLOSE').subscribe(
+        value=>{
+            close = value;
+        }
+      );
       this.platform.backButton.subscribeWithPriority(0, async () => {
         if(this.router.url === '/home'){
           console.log(this.router.url);
           const alert = await this.alertController.create({
-              message: "Esta seguro de Salir?",
+              message: salirMsj,
               buttons: [
                 {
-                  text: "Cancelar",
+                  text: cancel,
                   role: "cancel"
                 },
                 {
-                  text: "Cerrar App",
+                  text: close,
                   handler: () => {
-                    navigator["app"].exitApp();
+                    this.onCerrarSession();
+                    //navigator["app"].exitApp();
                   }
                 }
               ]

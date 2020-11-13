@@ -161,5 +161,7 @@
     "NOTIFICATION": "notify you of the status of your application",
     "APPLICATION": "We will send notifications to your",
     "APLI": "application",
-    "ACEPTAR": "To accept"
+    "ACEPTAR": "To accept",
+    "SALIR": "Are you sure to leave",
+    "CLOSE": "Close session"
 }
