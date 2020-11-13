@@ -4,11 +4,11 @@
         <ion-label>
           <h2 class="ion-text-right"><strong>{{item.prestamo_account_no}}</strong></h2>
           <ion-label>
-            <h3 class="ion-text-left">SALDO TOTAL</h3>
+            <h3 class="ion-text-left">{{'TOTALBALANCE' | translate}}</h3>
             <p class="ion-text-left">{{item.saldo_total | currency}}</p>
-            <h3 class="ion-text-left">SALDO PARA NO GENERAR INTERESES</h3>
+            <h3 class="ion-text-left">{{'BALANCETONOTGENERATEINTEREST' | translate}}</h3>
             <p class="ion-text-left">{{item.saldo_vencido | currency}}</p>
-            <h3 *ngIf="item.status==300" class="ion-text-left">FECHA LÍMITE PAGO &nbsp;&nbsp;&nbsp;<ion-label class="date-limit">{{item.vencido_desde | date: 'EEEE'}}, {{item.vencido_desde | date: 'dd/MM/yyyy'}}</ion-label></h3>
+            <h3 *ngIf="item.status==300" class="ion-text-left">{{'PAYDAY LIMIT' | translate}} &nbsp;&nbsp;&nbsp;<ion-label class="date-limit">{{item.vencido_desde | date: 'EEEE'}}, {{item.vencido_desde | date: 'dd/MM/yyyy'}}</ion-label></h3>
           </ion-label>   
         </ion-label>
       </ion-card>

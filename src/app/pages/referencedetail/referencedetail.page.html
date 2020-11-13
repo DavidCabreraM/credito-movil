@@ -9,7 +9,7 @@
         <ion-col></ion-col>
         <ion-col>
           <ion-label class="center-label">
-            <ion-title style="color:white">{{titulo | translate}} </ion-title>
+            <ion-title style="color:white">{{'PAYMENTREFERENCES' | translate}} </ion-title>
           </ion-label>
         </ion-col>
         <ion-col></ion-col>
@@ -26,7 +26,7 @@
     <ion-item lines="none">
       <ngx-barcode class="center" bc-format="CODE128" [bc-font-size]="18" [bc-height]="50 " [bc-value]="account" [bc-display-value]="true"></ngx-barcode>
     </ion-item>
-    <ion-text class="text-segment" style="color:black"><strong>{{segment}}</strong></ion-text>
+    <ion-text class="text-segment" style="color:black"><strong>{{'REIMBURSEMENT' | translate}}</strong></ion-text>
     <ion-item class="ion-text-center"  lines="none">
       <img src="/assets/img/Bancos/tiendas.png">
     </ion-item>
@@ -38,7 +38,7 @@
         <ion-icon class="regresar" name="caret-back-outline"></ion-icon>
       </ion-col>
       <ion-col class="col-2" size="9">
-        <ion-text style="color:#FFFF; font-size:1rem">Regresar</ion-text>
+        <ion-text style="color:#FFFF; font-size:1rem">{{'TORETURN'| translate}}</ion-text>
       </ion-col>
     </ion-row>
   </ion-card>

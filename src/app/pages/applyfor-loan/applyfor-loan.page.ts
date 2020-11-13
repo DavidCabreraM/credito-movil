@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoansService } from '../../services/loans/loans.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-applyfor-loan',
@@ -38,7 +39,8 @@ export class ApplyforLoanPage implements OnInit {
               private router: Router,
               private form: FormBuilder,
               private loadingController: LoadingController,
-              private storage: Storage) {
+              private storage: Storage,
+              private translate: TranslateService) {
     this.titulo = 'APPLYLOAN';
     
    }
@@ -89,7 +91,11 @@ export class ApplyforLoanPage implements OnInit {
         console.log(item.estatus);
           if(item.estatus === '300'){
             this.solicitud = true;
-            this.presentAlert();
+            this.translate.get('PENDINGREQUEST').subscribe(
+              value => {
+                this.presentAlert(value +"!!");
+              }
+            );
           }
       }
       //let data = resul[this.parameter];
@@ -98,16 +104,16 @@ export class ApplyforLoanPage implements OnInit {
 
   }
 
-  async presentAlert() {
+  async presentAlert(msj) {
     const alert = await this.alertController.create({
       cssClass: 'alert',
       backdropDismiss: false,
-      header: 'Ya tiene una solicitud pendiente!!',
+      message: msj,
       buttons: [
         {
           text: 'Ok',
           handler: () => {
-            this.router.navigate(['/home']);
+            //this.router.navigate(['/home']);
           }
         }
       ]
@@ -116,13 +122,31 @@ export class ApplyforLoanPage implements OnInit {
     await alert.present();
   }
 
-  async presentAlertConfirm() {
+  alertConfirm(){
+    this.translate.get('NOTSAVE').subscribe(
+      value => {
+        this.presentAlertConfirm(value + "!" , '');
+      }
+    );
+  }
+
+  async presentAlertConfirm(msj, head) {
+    let option_cancel  = 'Cancelar';
+
+    if(msj === 'NotSave'){
+      msj = 'No guardaremos los datos que hayas ingresado';
+      head = '¿Estás seguro que deseas salir?';
+    } else {
+      msj = 'We will not save the data you have entered';
+      head = 'Are you sure you want to quit?';
+      option_cancel = 'Cancel';
+    }
     const alert = await this.alertController.create({
-      header: '¿Estás seguro que deseas salir?',
-      message: 'No guardaremos los datos que hayas ingresado.',
+      header: head,
+      message: msj,
       buttons: [
         {
-          text: 'Cancelar',
+          text: option_cancel,
           role: 'cancel',
           cssClass: 'colorAlert',
         }, {

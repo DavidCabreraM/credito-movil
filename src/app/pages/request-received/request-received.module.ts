@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { RequestReceivedPageRoutingModule } from './request-received-routing.module';
 
 import { RequestReceivedPage } from './request-received.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RequestReceivedPageRoutingModule
+    RequestReceivedPageRoutingModule,
+    TranslateModule
   ],
   declarations: [RequestReceivedPage]
 })

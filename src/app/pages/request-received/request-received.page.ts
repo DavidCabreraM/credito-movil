@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-request-received',
@@ -8,12 +9,12 @@ import { Router } from '@angular/router';
 })
 export class RequestReceivedPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private trasnlate: TranslateService) { }
 
   ngOnInit() {
   }
   onHome(){
-    this.router.navigate(['/Home']);
+    this.router.navigate(['/home']);
   }
 
 }

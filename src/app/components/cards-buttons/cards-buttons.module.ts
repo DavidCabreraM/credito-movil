@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { CardsButtonsComponent } from './cards-buttons.component';
 import { Router, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -10,7 +11,8 @@ import { Router, RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     CardsButtonsComponent,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   imports: [
     CommonModule,

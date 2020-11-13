@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class CardsLoanComponent implements OnInit, AfterViewInit {
   @Input()  prestamos: any;
+  public totalbalance:string;
 
   @ViewChild(IonSlides) slides: IonSlides;
   public dashboard: any;
@@ -23,8 +24,27 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
     spaceBetween: .3,
     centeredSlides: true
   };
+
+  optionLanguage="es"
+  languagesList = [
+    {
+      text:"Español",
+      value:"es"
+    },
+    {
+      text:"English",
+      value:"en"
+    },
+  ]
+
   
-  constructor(private storage: Storage,  private router: Router, private translate: TranslateService) { }
+  constructor(private storage: Storage,  private router: Router, private translate: TranslateService) {
+    this.totalbalance = 'TOTALBALANCE';
+      translate.setDefaultLang('es');
+      let language = translate.getBrowserLang()
+      translate.use(language);
+    
+   }
 
   ngOnInit() {
     if(this.prestamos === null){
@@ -38,8 +58,7 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
           this.storage.set('accountNumber', this.prestamos[0].prestamo_id);
         }
       })
-    }
-    
+    } 
     
     //location.reload();
     /*this.storage.get('dashboard').then((val) => {
@@ -50,6 +69,10 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
     });*/
    }
 
+   selectLanguage(langSelect){
+    this.translate.use(langSelect);
+  }
+  
    onPrestamosNull(){
     this.prestamos = [
       {

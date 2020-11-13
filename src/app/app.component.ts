@@ -36,7 +36,7 @@ export class AppComponent{
       text:"English",
       value:"en"
     },
-  ]
+  ];
   loading: HTMLIonLoadingElement;
   constructor(
     private storage: Storage,
@@ -120,7 +120,12 @@ export class AppComponent{
   }
   onCerrarSession(){
     this.storage.clear();
-    this.presentLoading();
+    this.translate.get('SEEYOUSOON').subscribe(
+      value => {
+        this.presentLoading(value +"...");
+      }
+    );
+    //this.presentLoading();
     setTimeout(() => {
       this.loading.dismiss();
       this.router.navigate(['/login']);
@@ -128,10 +133,10 @@ export class AppComponent{
     
   }
 
-  async presentLoading() {
+  async presentLoading(msj) {
     this.loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
-      message: 'Hasta Pronto...',
+      message: msj,
     });
     await this.loading.present();
   }
@@ -150,28 +155,32 @@ export class AppComponent{
     this.navigate =
     [
       {
-        title : 'Inicio',
+        title : 'START',
         url   : '/home',
         icon  : 'home-outline',
-        img: false
+        img: false,
+        traduction: 'START'
       },
       {
-        title : 'Mis Cuentas',
+        title : 'MYACCOUNTS',
         url   : '/account/0',
         icon  : 'card-outline',
-        img: false
+        img: false,
+        traduction: 'MYACCOUNTS'
       },
       {
-        title : 'Solicitar un Prestamo',
+        title : 'ASKFORALOAN',
         url   : '/applyfor-loan',
         icon  : 'lucro.svg',
-        img: true
+        img: true,
+        traduction: 'ASKFORALOAN'
       },
       {
-        title: 'Codigo de barras y QR',
+        title: 'BARCODEANDQR',
         url: '/references',
         icon: 'qr-code-outline',
-        img: false
+        img: false,
+        traduction: 'BARCODEANDQR'
       },
     ];
   }
