@@ -6,34 +6,34 @@
   <div id="image"></div>
   
   <ion-card class="background-login margin-card-login" style="box-shadow: 0 0 0 0;">
-    <form [formGroup]="form_login" style="margin-bottom: 30%;">
+    <form [formGroup]="form_login" style="margin-bottom: 20%;">
       <ion-list class="background-login" style="margin-bottom: 10%;">
         <ion-item class="input-item" style="padding-bottom: 0px;">
-          <ion-icon class="icono-centrado color-icon" slot="start" name="person-outline"></ion-icon>
+          <ion-icon class="icono-centrado size-icon color-icon" slot="start" name="person-outline"></ion-icon>
           <ion-label position="floating">{{'USER' | translate}}</ion-label>
-          <ion-input formControlName="nClient" type="text" inputmode="numeric" maxlength="9" required></ion-input>
+          <ion-input class="size-input" formControlName="nClient" type="text" inputmode="numeric" maxlength="9" required></ion-input>
         </ion-item>
         <app-validation-errors fieldName="nClient" [form]="form_login.get('nClient')"></app-validation-errors>
   
         <ion-item class="input-item">
-          <ion-icon class="icono-centrado color-icon" slot="start" name="key-outline"></ion-icon>
+          <ion-icon class="icono-centrado size-icon color-icon" slot="start" name="key-outline"></ion-icon>
           <ion-label position="floating">{{'PASSWORD' | translate}}</ion-label>
-          <ion-input formControlName="password" [type]="hide ? 'password' : 'text'" inputmode="text"></ion-input>
-          <ion-icon class="icono-centrado" (click)="hide = !hide" [name]="hide ? 'eye' : 'eye-off'" slot="end" ></ion-icon>
+          <ion-input class="size-input" formControlName="password" [type]="hide ? 'password' : 'text'" inputmode="text"></ion-input>
+          <ion-icon class="icono-centrado size-icon" (click)="hide = !hide" [name]="hide ? 'eye' : 'eye-off'" slot="end" ></ion-icon>
         </ion-item>
         <app-validation-errors fieldName="password" [form]="form_login.get('password')"></app-validation-errors>
   
       </ion-list>
   
-      <ion-button class="btn-round btn-success" [disabled]="!form_login.valid" (click)="login()" expand="block">{{'LOGIN' | translate}}</ion-button>
-      <ion-button class="btn-white btn-round"  style="color:#043C80 !important;" expand="block" disabled>
+      <ion-button class="btn-round btn-success size-btn" [disabled]="!form_login.valid" (click)="login()" expand="block">{{'LOGIN' | translate}}</ion-button>
+      <ion-button class="btn-white btn-round size-btn"  style="color:#043C80 !important;" expand="block" disabled>
         <ion-icon slot="end" name="logo-google"></ion-icon>
         {{'LOGINGOOGLE' | translate}}
       </ion-button>
     </form>
 
     <ion-label class="center-label" >{{'ACCESSAPP' | translate}}</ion-label>
-    <ion-button class="btn-round btn-info" routerLink="/register" expand="block">{{'SIGNIN' | translate}}</ion-button>
+    <ion-button class="btn-round btn-info size-btn" routerLink="/register" expand="block">{{'SIGNIN' | translate}}</ion-button>
     <br>
     <ion-label class="center-label" routerLink="/reset-password" >{{'FPASSWORD' | translate}}</ion-label>
     <br>

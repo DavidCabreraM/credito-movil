@@ -7,6 +7,8 @@
 
 .btn-next-prev{
     color:#00A8AE;
+    height: 28px;
+    width: 28px;
 }
 .account-number{
     display: grid;
@@ -56,6 +58,11 @@
 .days-calendar{
     min-height: 60px;
     padding: 8px;
+    font-size: 18px;
+}
+.days-sin-event{
+    min-height: 45px;
+    font-size: 18px;
 }
 .blue-calendar{
     background-color: #00A8FF;
@@ -78,4 +85,40 @@
 ion-header.background{
     --ion-toolbar-background: #043C80;
     border-bottom-width: 0;
+}
+
+@media (min-width:1023px) and (max-width:1024px){
+    .icon-card{
+        height: 100px;
+        width: 100px;
+    }
+    .card-calendar{
+        width: 50.9rem;
+        height: 25.1rem;
+    }
+    .title-card{
+        font-size: 30px;
+    }
+    .price-card{
+        font-size: 35px;
+    }
+
+    .subtitle-card{
+        font-size: 30px !important;
+    }
+    .small-text-card{
+        font-size: 23px;
+    }
+    .days-sin-event{
+        min-height: 80px;
+        font-size: 30px;
+    }
+    .days-calendar{
+        min-height: 95px;
+        font-size: 30px;
+    }
+    .btn-next-prev{
+        height: 50px;
+        width: 50px;
+    }
 }

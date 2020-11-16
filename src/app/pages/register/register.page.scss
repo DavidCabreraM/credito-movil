@@ -22,3 +22,33 @@
 .mayus{
     text-transform: uppercase;
 }
+
+.size-icon{
+    width: 30px;
+    height: 30px; 
+}
+
+@media (min-width:1023px) and (max-width:1024px){
+
+    .size-icon{
+        width: 40px;
+        height: 40px;
+    }
+
+    .positionAvata{
+        height: 220px;
+        width: 220px;
+    }
+
+    #img-selfie{
+        width: 142px;
+        height: 146px;
+    }
+
+    .btn-selfie{
+        width: 80px;
+        height: 80px;
+        left: 150px;
+        top: 120px;
+    }
+}

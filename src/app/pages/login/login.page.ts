@@ -101,7 +101,12 @@ export class LoginPage implements OnInit {
     const alert = await this.alertController.create({
       header: header,
       message: msj,
-      buttons: ['OK']
+      cssClass: 'size-btn',
+      buttons: [
+      {
+        text: 'OK',
+        cssClass: 'size-btn padding-btn'
+      }]
     });
 
     await alert.present();
@@ -110,7 +115,7 @@ export class LoginPage implements OnInit {
   async presentLoading(message) {
     this.loading = await this.loadingController.create({
       message,
-      cssClass: 'custom-class custom-loading'
+      cssClass: 'custom-class custom-loading size-btn'
     });
     return this.loading.present();
   }
