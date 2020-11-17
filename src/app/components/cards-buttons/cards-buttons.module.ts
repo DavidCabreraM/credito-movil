@@ -16,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    TranslateModule
   ],
   exports:[
     CardsButtonsComponent

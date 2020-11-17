@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { VarglobalesService } from '../../services/varglobales/varglobales.service';
 
 @Component({
   selector: 'app-cards-loan',
@@ -12,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class CardsLoanComponent implements OnInit, AfterViewInit {
   @Input()  prestamos: any;
+  proximosPagos: any = [];
   public totalbalance:string;
 
   @ViewChild(IonSlides) slides: IonSlides;
@@ -25,31 +27,22 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
     centeredSlides: true
   };
 
-  optionLanguage="es"
-  languagesList = [
-    {
-      text:"Español",
-      value:"es"
-    },
-    {
-      text:"English",
-      value:"en"
-    },
-  ]
+
+ // public proximosPagos = [];
 
   
-  constructor(private storage: Storage,  private router: Router, private translate: TranslateService) {
-    this.totalbalance = 'TOTALBALANCE';
-      translate.setDefaultLang('es');
-      let language = translate.getBrowserLang()
-      translate.use(language);
-    
+  constructor(private storage: Storage,  private router: Router, private translate: TranslateService, private varGlobal: VarglobalesService) {
+    this.totalbalance = 'TOTALBALANCE'; 
+     this.onProximosPagos();
    }
 
   ngOnInit() {
+    console.log('onInit');
+    this.onProximosPagos();
     if(this.prestamos === null){
       this.onPrestamosNull();
     }else{
+      this.onProximosPagos();
       this.storage.get('accountNumber').then( (val) =>{
         console.log(val)
         if(val===null){
@@ -57,7 +50,7 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
           this.storage.set('indexCard', 0);
           this.storage.set('accountNumber', this.prestamos[0].prestamo_id);
         }
-      })
+      });
     } 
     
     //location.reload();
@@ -68,10 +61,6 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
     console.log(this.prestamos.length);
     });*/
    }
-
-   selectLanguage(langSelect){
-    this.translate.use(langSelect);
-  }
   
    onPrestamosNull(){
     this.prestamos = [
@@ -84,7 +73,37 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
     ];
    }
 
+   onProximosPagos(){
+
+    this.storage.get('proximos').then((val) => {
+      setTimeout(()=>{
+        console.log(val);
+        console.log('entroe pagos');
+        this.proximosPagos = val ;
+        if(this.proximosPagos.length === 0){
+          console.log('entro if');
+          this.proximosPagos = this.varGlobal.getProximos();
+        }
+        console.log(this.proximosPagos);
+      },300);
+    });
+ 
+   }
+
+   onMontoProximo(i: number){
+     console.log(this.proximosPagos.length);
+     console.log(this.varGlobal.getProximos());
+     if(this.proximosPagos.length === 0){
+       console.log('entro data');
+       this.proximosPagos = this.varGlobal.getProximos();
+       console.log(this.proximosPagos[i]);
+     }
+     return this.proximosPagos[i].montoProximoPago;
+   }
+
    ngOnChanges(changes: SimpleChanges): void {
+     console.log('onChabge');
+     this.onProximosPagos();
       this.prestamos = changes.prestamos.currentValue;
      if(this.prestamos != undefined){
       if(this.prestamos.length === 0){
@@ -101,8 +120,9 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
+    this.onProximosPagos();
     this.storage.get('indexCard').then((val) => {
-      setTimeout (() => {this.slides.slideTo(parseInt(val),250);}, 200);
+      setTimeout (() => {this.slides.slideTo(parseInt(val),350);}, 300);
     });  
   }
 

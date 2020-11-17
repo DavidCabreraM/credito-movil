@@ -7,6 +7,7 @@ export class VarglobalesService {
 
   private avatar = '';
   private client = '';
+  private proximos: any;
 
   constructor() { }
 
@@ -24,6 +25,14 @@ export class VarglobalesService {
 
   getClient(){
     return this.client;
+  }
+
+  setProximos(proximos){
+    this.proximos = proximos;
+  }
+
+  getProximos(){
+    return this.proximos;
   }
 
 }

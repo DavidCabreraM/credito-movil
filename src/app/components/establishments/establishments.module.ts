@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { BrowserModule } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -10,7 +11,8 @@ import { BrowserModule } from '@angular/platform-browser';
   imports: [
     CommonModule,
     IonicModule,
-    BrowserModule
+    BrowserModule,
+    TranslateModule
   ]
 })
 export class EstablishmentsModule { }

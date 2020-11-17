@@ -8,13 +8,14 @@ import { LoansService } from '@services/loans/loans.service';
 import { VarglobalesService } from '../../services/varglobales/varglobales.service';
 import { ModalController } from '@ionic/angular';
 import { PendingLoanComponent } from '@components/modals/pending-loan/pending-loan.component';
-
+import { CalendarService } from '../../services/calendar/calendar.service';
+/*
 interface Componente {
   icon: string;
   name: string;
   redirectTo: string;
   img: string;
-}
+}*/
 
 @Component({
   selector: 'app-home',
@@ -31,6 +32,7 @@ export class HomePage implements OnInit {
   eventRefesh: any;
   public urlAvatar = '';
   data: any;
+ 
 
   sliderConfig = {
     slidesPerView: 5,
@@ -43,14 +45,22 @@ export class HomePage implements OnInit {
   public user:any;
   public no_cuenta:string;
   key: string = 'dashboard';
+  payments:any;
+  eventSource = [];
+  public proximosPagos:any;
+  nextP: any;
+  selectEvent:any;
+  public fecha_pago:string;
+  public monto_proximo: string;
 
-  constructor(private storage: Storage, 
-    private menuCtrl: MenuController,
+  constructor(private storage: Storage,
+    private menuCtrl: MenuController, 
     private serviceLoand: LoansService,
     private translate: TranslateService,
     private alertController: AlertController,
     private varGlobal: VarglobalesService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private calendarService: CalendarService
     ) {
       this.storage.remove('dashboard');
       this.storage.remove('avatar');
@@ -105,12 +115,83 @@ export class HomePage implements OnInit {
   onInitCards(){
     this.serviceLoand.dashboard().subscribe(data =>{
         this.storage.set(this.key, JSON.stringify(data.prestamos)).then(()=>{
+          this.onNextDate(data.prestamos);
+          console.log(this.eventSource);
+          this.varGlobal.setProximos(this.eventSource);
+          this.storage.set('proximos', this.eventSource).then(()=>{
+            console.log("Dato guardado");
+            //Viajo a otra pagina
+          });
           this.prestamos = data.prestamos;
           console.log(this.prestamos);
           this.prestamoPendiente = this.prestamos.find( prestamo => prestamo.estatus === '100' );
           this.arrayMovements=data.movs;
         });
     });
+  }
+
+  onNextDate(data:any) {
+    console.log('entro date');
+    console.log(data);
+    for( let i= 0 ; i < data.length; i++) {
+        console.log('for');
+        console.log(data[i].prestamo_id);
+        this.calendarService.calendar(data[i].prestamo_id).toPromise().then( promise => {
+          this.payments = promise;
+          console.log('datarpomise');
+          console.log(this.payments);
+           this.nextPayment();
+          //this.prestamoPendiente = this.prestamos.find( prestamo => prestamo.estatus === '100' );
+        });
+
+    }
+
+    console.log(this.eventSource);
+    this.storage.get('proximos').then((val)=>{
+      console.log(val);
+    });
+    //this.storage.set('proximosPagos', 'Hoal');
+  }
+
+  async nextPayment(){
+    
+    let hoy = new Date();
+    hoy.setHours(0,0,0,0);
+    
+    for(let i=0 ; i < this.payments.length;i++){      
+      let f1 = new Date(this.payments[i].fecha)
+      f1.setHours(0,0,0,0);
+      f1.setDate(f1.getDate()+1);
+
+      if(f1 >= hoy){
+        if(!this.nextP){
+          this.nextP = this.payments[i];
+          this.selectEvent = this.nextP;
+          this.fecha_pago = this.selectEvent.fecha;
+          this.monto_proximo = this.selectEvent.importe;
+          this.eventSource.push({
+            fechaProximoPago: this.fecha_pago
+          });
+          this.storage.set('proximos', this.eventSource).then(()=>{
+            console.log("Dato guardado");
+            //Viajo a otra pagina
+          });
+        }
+        if(this.nextP >= f1){
+          this.nextP = this.payments[i]
+          this.selectEvent = this.nextP;
+          this.fecha_pago = this.selectEvent.fecha;
+          this.monto_proximo = this.selectEvent.importe;
+          this.eventSource.push({
+            fechaProximoPago: this.fecha_pago
+          });
+          this.storage.set('proximos', this.eventSource).then(()=>{
+            console.log("Dato guardado");
+            //Viajo a otra pagina
+          });
+        }
+      }
+    }
   }
 
   doRefresh(event){

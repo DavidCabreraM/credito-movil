@@ -163,5 +163,6 @@
     "APLI": "application",
     "ACEPTAR": "To accept",
     "SALIR": "Are you sure to leave",
-    "CLOSE": "Close session"
+    "CLOSE": "Close session",
+    "STORAGE": "Participating Stores"
 }
