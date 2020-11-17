@@ -3,6 +3,8 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoansService } from '../../services/loans/loans.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-applyfor-loan',
@@ -30,11 +32,15 @@ export class ApplyforLoanPage implements OnInit {
 
   public clear: string;
 
+  public solicitud: boolean;
+
   constructor(private serviceLoan: LoansService, 
               private alertController: AlertController, 
               private router: Router,
               private form: FormBuilder,
-              private loadingController: LoadingController) {
+              private loadingController: LoadingController,
+              private storage: Storage,
+              private translate: TranslateService) {
     this.titulo = 'APPLYLOAN';
     
    }
@@ -47,7 +53,9 @@ export class ApplyforLoanPage implements OnInit {
       pagos: ['', Validators.required],
       amount:['', Validators.required]
     });
-    this.presentLoading();
+    
+    this.solicitudPendiente();
+     
     this.serviceLoan.parameter().subscribe(data => {
       console.log(data);
       this.identificador = data.prestamos.identificadorProducto;
@@ -59,14 +67,15 @@ export class ApplyforLoanPage implements OnInit {
       this.amount_max = data.prestamos.limitesMonto.maximo;
       this.plazo_min = data.prestamos.limitesPlazo.minimo;
       this.plazo_max = data.prestamos.limitesPlazo.maximo;
-      console.log(this.amount_min);
-    });
+        console.log(this.amount_min);
+      });
+    
   } 
 
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Porfavor Espere...',
-      duration: 2000
+      duration: 2500
     });
     await loading.present();
 
@@ -74,13 +83,70 @@ export class ApplyforLoanPage implements OnInit {
     console.log('Loading dismissed!');
   }
 
-  async presentAlertConfirm() {
+  solicitudPendiente(){
+    this.solicitud = false;
+    this.storage.get('dashboard').then((val) => {
+      let result = JSON.parse(val);
+      for(let item of result){
+        console.log(item.estatus);
+          if(item.estatus === '300'){
+            this.solicitud = true;
+            this.translate.get('PENDINGREQUEST').subscribe(
+              value => {
+                this.presentAlert(value +"!!");
+              }
+            );
+          }
+      }
+      //let data = resul[this.parameter];
+
+   });
+
+  }
+
+  async presentAlert(msj) {
     const alert = await this.alertController.create({
-      header: '¿Estás seguro que deseas salir?',
-      message: 'No guardaremos los datos que hayas ingresado.',
+      cssClass: 'alert',
+      backdropDismiss: false,
+      message: msj,
       buttons: [
         {
-          text: 'Cancelar',
+          text: 'Ok',
+          handler: () => {
+            //this.router.navigate(['/home']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  alertConfirm(){
+    this.translate.get('NOTSAVE').subscribe(
+      value => {
+        this.presentAlertConfirm(value + "!" , '');
+      }
+    );
+  }
+
+  async presentAlertConfirm(msj, head) {
+    let option_cancel  = 'Cancelar';
+
+    if(msj === 'NotSave'){
+      msj = 'No guardaremos los datos que hayas ingresado';
+      head = '¿Estás seguro que deseas salir?';
+    } else {
+      msj = 'We will not save the data you have entered';
+      head = 'Are you sure you want to quit?';
+      option_cancel = 'Cancel';
+    }
+    const alert = await this.alertController.create({
+      header: head,
+      message: msj,
+      buttons: [
+        {
+          text: option_cancel,
           role: 'cancel',
           cssClass: 'colorAlert',
         }, {

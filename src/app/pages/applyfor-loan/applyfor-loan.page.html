@@ -9,7 +9,7 @@
         <ion-col></ion-col>
         <ion-col>
           <ion-label class="center-label">
-            <ion-title style="color:white">{{titulo | translate}} </ion-title>
+            <ion-title style="color:white">{{'ASKFORALOAN' | translate}} </ion-title>
           </ion-label>
         </ion-col>
         <ion-col></ion-col>
@@ -23,12 +23,12 @@
     <form [formGroup]="formPrestamo">
     <div class="div-son-1">
       <ion-item class="item" lines="none">
-        <ion-input formControlName="amount" [value]="amount|currency" >
+        <ion-input readonly formControlName="amount" [value]="amount|currency" >
         </ion-input>
         <ion-img  style="max-width: 18px" src="/assets/img/icon/lapiz.svg"></ion-img>
       </ion-item>
         <div class="text-label">
-          <ion-label>Monto solicitado</ion-label>
+          <ion-label>{{'AMOUNTREQUESTED' | translate}}</ion-label>
         </div>
         <ion-item class="ion-no-padding" lines="none" style="margin-top: 5px;">
         <ion-range mode="md"
@@ -45,28 +45,28 @@
     </div>
     <div class="div-son-2"> 
     <ion-item style="margin-top: 8.3rem;" class="ion-select">
-      <ion-label position="floating" class="i-success">Limite de Plazo:</ion-label>
+      <ion-label position="floating" class="i-success">{{'TERMLIMIT' | translate}}:</ion-label>
       <ion-select  formControlName="limitePlazo">
         <ion-select-option value="{{plazo_min}}">{{plazo_min}}</ion-select-option>
         <ion-select-option value="{{plazo_max}}">{{plazo_max}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item style="margin-top: 12px;" class="ion-select">
-      <ion-label position="floating" class="i-success">Plazo deseado:</ion-label>
+      <ion-label position="floating" class="i-success">{{'DESIREDTERM' | translate}}:</ion-label>
       <ion-select [(ngModel)]="clear" (ionChange)="onPlazo($event)" formControlName="plazo">
-        <ion-select-option *ngFor="let item of tiposPlazos; let i=index" value="{{i}}">{{item.valor | uppercase}}</ion-select-option>
+        <ion-select-option *ngFor="let item of tiposPlazos; let i=index" value="{{i}}">{{item.valor | uppercase | translate}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item style="margin-top: 12px;" class="ion-select">
-      <ion-label position="floating" class="i-success">Frecuencia de Pago:</ion-label>
+      <ion-label position="floating" class="i-success">{{'PAYMENTFREQUENCY' | translate}}:</ion-label>
     <ion-select (ionChange)="onPago($event)"  formControlName="pagos">
-      <ion-select-option *ngFor="let item of tipoFrecuencia; let i=index" value="{{i}}">{{item.valor | uppercase}}</ion-select-option>
+      <ion-select-option *ngFor="let item of tipoFrecuencia; let i=index" value="{{i}}">{{item.valor | uppercase| translate}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item style="margin-top: 12px;" class="ion-select">
-    <ion-label position="floating" class="i-success">Destino del Prestamo:</ion-label>
+    <ion-label position="floating" class="i-success">{{'DESTINATIONOFTHELOAN' | translate}}:</ion-label>
   <ion-select (ionChange)="onDestino($event)" formControlName="destino">
-    <ion-select-option  *ngFor="let item of destionPrestamo" value="{{item.id}}">{{item.valor | uppercase}}</ion-select-option>
+    <ion-select-option  *ngFor="let item of destionPrestamo" value="{{item.id}}">{{item.valor | uppercase | translate}}</ion-select-option>
   </ion-select>
 </ion-item>
   <!--<ion-item lines="none" style="margin-top: 15px;" class="ion-select">
@@ -87,18 +87,18 @@
             <ion-img class="cash" style="max-width: 27px;" src="/assets/img/icon/bolsa-money.svg"></ion-img>
           </ion-col>
           <ion-col class="col-2" size="9">
-            <ion-text class="enviar">Enviar Solicitud de Crédito</ion-text>
+            <ion-text class="enviar">{{'SENDCREDITREQUEST' | translate}}</ion-text>
           </ion-col>
         </ion-row>
       </ion-card>
 
-      <ion-card [disabled]="!formPrestamo.valid" (click)="presentAlertConfirm()" class="ion-card-2"  lines="none">
+      <ion-card [disabled]="!formPrestamo.valid" (click)="alertConfirm()" class="ion-card-2"  lines="none">
         <ion-row>
           <ion-col class="col-cancel-icon" size="3">
             <ion-img class="icon-x" style="max-width: 25px;" src="/assets/img/icon/cerrar.svg"></ion-img>
           </ion-col>
           <ion-col class="col-cancel" size="9">
-            <ion-text class="cancel">Cancelar</ion-text>
+            <ion-text class="cancel">{{'CANCEL' | translate}}</ion-text>
           </ion-col>
         </ion-row>
       </ion-card>

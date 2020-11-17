@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-referencedetail',
@@ -11,8 +12,22 @@ export class ReferencedetailPage implements OnInit {
   public account: string;
   public reference: string;
   public segment: string;
-  constructor( private route: ActivatedRoute) { 
+  optionLanguage="es"
+  languagesList = [
+    {
+      text:"Español",
+      value:"es"
+    },
+    {
+      text:"English",
+      value:"en"
+    },
+  ];
+  constructor( private route: ActivatedRoute, private translate: TranslateService) { 
     this.titulo = 'REFERENCES';
+    translate.setDefaultLang('es');
+    let language = translate.getBrowserLang();
+    translate.use(language);
    }
 
   ngOnInit() {
@@ -23,6 +38,10 @@ export class ReferencedetailPage implements OnInit {
       this.segment = 'REEMBOLSO';
     }
     
+  }
+
+  selectLanguage(langSelect){
+    this.translate.use(langSelect);
   }
 
 }

@@ -22,7 +22,7 @@
             <ion-img *ngIf="item.img" style="max-width: 30px;" src="/assets/img/icon/{{item.icon}}"></ion-img>
             <ion-icon *ngIf="!item.img" [name]="item.icon"></ion-icon>
             <ion-label>
-              {{item.title}} 
+              {{item.title | translate}}
             </ion-label>
           </ion-item>
         </ion-menu-toggle>

@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [
     CardsLoanComponent,
     TranslateModule
+
   ],
   exports:[
     CardsLoanComponent

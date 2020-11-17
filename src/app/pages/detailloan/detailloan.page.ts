@@ -47,16 +47,23 @@ export class DetailloanPage implements OnInit {
    }
 
   ngOnInit() {
+    this.translate.get('PLEASEWAIT').subscribe(
+      value => {
+        this.presentLoading(value +"...");
+      }
+    );
     this.parameter = this.route.snapshot.paramMap.get('id');
 
     this.storage.get('dashboard').then((val) => {
       let resul = JSON.parse(val);
       this.data = resul[this.parameter];
+      console.log(this.data);
       this.onCargarData();
    });
   }
 
   onCargarData(){
+    console.log(this.data);
     this.calendarService.calendar(this.data.prestamo_id).toPromise().then( promise => {
       console.log(promise);
       this.payments = promise;
@@ -77,7 +84,14 @@ export class DetailloanPage implements OnInit {
     this.monto_original = this.data.monto_original;
     this.nombre_producto = this.data.nombre_producto;
     this.plazo = this.data.plazo;
-    this.tipo_plazo = this.data.tipo_plazo;
+    console.log(this.data.tipo_plazo);
+    this.translate.get(this.data.tipo_plazo).subscribe(
+      value => {
+        this.tipo_plazo = value;
+        console.log(value);
+      }
+    );
+    //this.tipo_plazo = this.data.tipo_plazo;
     this.fecha_vencimiento = this.data.fecha_vencimiento;
     this.saldo_vencido = this.data.saldo_vencido;
     this.saldo_total = this.data.saldo_total;
@@ -97,6 +111,7 @@ export class DetailloanPage implements OnInit {
   }
 
   nextPayment(){
+    
     let hoy = new Date();
     hoy.setHours(0,0,0,0);
     
@@ -127,6 +142,17 @@ export class DetailloanPage implements OnInit {
         }
       }
     }
+  }
+
+  async presentLoading(msj) {
+    const loading = await this.loadingCtrl.create({
+      message: msj,
+      duration: 2500
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 
   onTipoPlazo(){
