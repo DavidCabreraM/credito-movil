@@ -269,7 +269,13 @@ export class RegisterPage implements OnInit {
     const alert = await this.alertController.create({
       header: header,
       message: msj,
-      buttons: ['OK']
+      cssClass: 'size-btn',
+      buttons: [
+      {
+        text: 'OK',
+        cssClass: 'size-btn padding-btn'
+      }]
+      
     });
 
     await alert.present();
@@ -285,13 +291,14 @@ export class RegisterPage implements OnInit {
         {
           name: 'code',
           type: 'text',
-          placeholder: wordTra.CODEAUTHENTICATION
+          placeholder: wordTra.CODEAUTHENTICATION,
+          cssClass: 'size-input'
         }
       ],
       buttons: [
         {
           text: wordTra.SEND,
-          cssClass: 'btn-alert btn-success-alert',
+          cssClass: 'btn-alert btn-success-alert size-btn padding-btn',
           handler: (data) => {
             this.verificationCode(data);
             alert.dismiss();
@@ -300,10 +307,10 @@ export class RegisterPage implements OnInit {
         {
           text: wordTra.CANCEL,
           role: 'cancel',
-          cssClass: 'btn-alert btn-success-cancelar'
+          cssClass: 'btn-alert btn-success-cancelar size-btn padding-btn'
         }, {
           text: wordTra.RESEND,
-          cssClass: 'btn-alert btn-success-resend',
+          cssClass: 'btn-alert btn-success-resend size-btn padding-btn',
           handler: () => {
             this.sendCode();
             alert.dismiss();           
@@ -323,7 +330,7 @@ export class RegisterPage implements OnInit {
   async presentLoading(message) {
     this.loading = await this.loadingController.create({
       message,
-      cssClass: 'custom-class custom-loading'
+      cssClass: 'custom-class custom-loading size-btn'
     });
     return this.loading.present();
   }

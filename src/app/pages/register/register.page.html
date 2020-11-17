@@ -3,55 +3,55 @@
   <ion-card class="background margin-card" style="height: auto;">
     <ion-card-content>
       <form *ngIf="step1" [formGroup]="form_register1">
-        <ion-list class="background" style="margin-bottom: 20%;">
+        <ion-list class="background" style="margin-bottom: 15%;">
           <ion-item class="input-item">
             <ion-label position="floating">{{'NAME' | translate}}(s)</ion-label>
-            <ion-input class="mayus" formControlName="name" type="text" inputmode="text" required></ion-input>
+            <ion-input class="mayus size-input" formControlName="name" type="text" inputmode="text" required></ion-input>
           </ion-item>
           <app-validation-errors fieldName="onlyletters" [form]="form_register1.get('name')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">{{'LASTNAME' | translate}}</ion-label>
-            <ion-input class="mayus" formControlName="apellidoP" type="text" inputmode="text" required autocapitalize></ion-input>  
+            <ion-input class="mayus size-input" formControlName="apellidoP" type="text" inputmode="text" required autocapitalize></ion-input>  
           </ion-item>
           <app-validation-errors fieldName="onlyletters" [form]="form_register1.get('apellidoP')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">{{'MIDDLENAME' | translate}}</ion-label>
-            <ion-input class="mayus" formControlName="apellidoM" type="text" inputmode="text" autocapitalize></ion-input>
+            <ion-input class="mayus size-input" formControlName="apellidoM" type="text" inputmode="text" autocapitalize></ion-input>
           </ion-item>
           <app-validation-errors fieldName="onlyletters" [form]="form_register1.get('apellidoM')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">{{'EMAIL' | translate}}</ion-label>
-            <ion-input formControlName="email" type="email" inputmode="email" required></ion-input>
+            <ion-input  class="size-input" formControlName="email" type="email" inputmode="email" required></ion-input>
           </ion-item>
           <app-validation-errors fieldName="email" [form]="form_register1.get('email')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">{{'NOACCOUNT' | translate}}</ion-label>
-            <ion-input formControlName="nClient" type="text" inputmode="numeric" maxlength="9" required></ion-input>
+            <ion-input class="size-input" formControlName="nClient" type="text" inputmode="numeric" maxlength="9" required></ion-input>
           </ion-item>
           <app-validation-errors fieldName="nClient" [form]="form_register1.get('nClient')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">{{'PASSWORD' | translate}}</ion-label>
-            <ion-input formControlName="password" [type]="hide ? 'password' : 'text'" inputmode="text"></ion-input>
-            <ion-icon class="icono-centrado" (click)="hide = !hide" [name]="hide ? 'eye' : 'eye-off'" slot="end" ></ion-icon>
+            <ion-input class="size-input" formControlName="password" [type]="hide ? 'password' : 'text'" inputmode="text"></ion-input>
+            <ion-icon class="icono-centrado size-icon" (click)="hide = !hide" [name]="hide ? 'eye' : 'eye-off'" slot="end" ></ion-icon>
           </ion-item>
           <app-validation-errors fieldName="password" [form]="form_register1.get('password')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">{{'COMFIRM' | translate}}</ion-label>
-            <ion-input id="confPassword" formControlName="password2" [type]="hide ? 'password' : 'text'" inputmode="text"></ion-input>
-            <ion-icon class="icono-centrado" (click)="hide = !hide" [name]="hide ? 'eye' : 'eye-off'" slot="end" ></ion-icon>
+            <ion-input class="size-input" id="confPassword" formControlName="password2" [type]="hide ? 'password' : 'text'" inputmode="text"></ion-input>
+            <ion-icon class="icono-centrado size-icon" (click)="hide = !hide" [name]="hide ? 'eye' : 'eye-off'" slot="end" ></ion-icon>
           </ion-item>
           <app-validation-errors [form]="form_register1.get('password2')"></app-validation-errors>
 
         </ion-list>
 
-        <ion-button class="btn-round btn-success" [disabled]="!form_register1.valid" (click)="step2 = true; step1 = false" expand="block">{{'NEXT' | translate}}</ion-button>
-        <ion-button class="btn-round btn-white"  routerLink="/login" expand="block">{{'CANCEL' | translate}}</ion-button>
+        <ion-button class="btn-round btn-success size-btn" [disabled]="!form_register1.valid" (click)="step2 = true; step1 = false" expand="block">{{'NEXT' | translate}}</ion-button>
+        <ion-button class="btn-round btn-white size-btn"  routerLink="/login" expand="block">{{'CANCEL' | translate}}</ion-button>
       </form>
 
       <form *ngIf="step2" [formGroup]="form_register2">
@@ -67,15 +67,15 @@
                   </ion-avatar>
                   <!-- Btn por defecto -->
                   <ion-fab-button *ngIf="showBtnSelfi==1" (click)="tomarFoto()" size="small" class="btn-selfie btn-info">
-                    <ion-icon name="camera"></ion-icon>
+                    <ion-icon class="size-icon" name="camera"></ion-icon>
                   </ion-fab-button>
                   <!-- Btn para valido -->
                   <ion-fab-button *ngIf="showBtnSelfi==2" (click)="tomarFoto()" size="small" class="btn-selfie btn-success">
-                    <ion-icon name="checkmark"></ion-icon>
+                    <ion-icon class="size-icon" name="checkmark"></ion-icon>
                   </ion-fab-button>
                   <!-- Btn para error -->
                   <ion-fab-button *ngIf="showBtnSelfi==3" (click)="tomarFoto()" size="small" class="btn-selfie btn-error">
-                    <ion-icon name="close"></ion-icon>
+                    <ion-icon class="size-icon" name="close"></ion-icon>
                   </ion-fab-button>
                 </ion-item>
               </ion-col>
@@ -94,32 +94,32 @@
           </ion-grid>
           <ion-item class="input-item">
             <ion-label position="floating">{{'PHONE' | translate}}</ion-label>
-            <ion-input formControlName="phone" type="text" inputmode="tel" maxlength="10" required></ion-input>
+            <ion-input class="size-input" formControlName="phone" type="text" inputmode="tel" maxlength="10" required></ion-input>
           </ion-item>
           <app-validation-errors fieldName="phone" [form]="form_register2.get('phone')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">CURP</ion-label>
-            <ion-input class="mayus" formControlName="curp" autocapitalize="characters" type="text" inputmode="text" maxlength="18" required autocapitalize></ion-input>
+            <ion-input class="mayus size-input" formControlName="curp" autocapitalize="characters" type="text" inputmode="text" maxlength="18" required autocapitalize></ion-input>
           </ion-item>
           <app-validation-errors fieldName="curp" [form]="form_register2.get('curp')"></app-validation-errors>
 
           <ion-item class="input-item">
             <ion-label position="floating">{{'DATEBIRTH' | translate}}</ion-label>
-            <ion-datetime formControlName="dateBirth" displayFormat="DD/MM/YYYY" required></ion-datetime>
-            <ion-icon class="icono-centrado" name="calendar" slot="end" ></ion-icon>
+            <ion-datetime class="size-input" formControlName="dateBirth" displayFormat="DD/MM/YYYY" required></ion-datetime>
+            <ion-icon class="icono-centrado size-icon" name="calendar" slot="end" ></ion-icon>
           </ion-item>
           <app-validation-errors [form]="form_register2.get('dateBirth')"></app-validation-errors>
 
         </ion-list>
-        <ion-list class="background" style="border:none !important; margin-top: 20%;">
+        <ion-list class="background" style="border:none !important; margin-top: 15%;">
           <ion-item style="color:white" lines="none">
             <ion-label>{{'ACCEPT' | translate}} <a href="#" style="text-decoration:none;color:white;font-weight: bold;">{{'TERM&CONDITIONS' | translate}}</a></ion-label>
             <ion-checkbox formControlName="checkTerm" style="--border-color: white;" (click)="aceptarTerminos = !aceptarTerminos" slot="end"></ion-checkbox>
           </ion-item>
         </ion-list>
-        <ion-button class="btn-round btn-success" [disabled]="!aceptarTerminos || !isFace || !form_register2.valid" (click)="createCount()" expand="block">{{'SIGNIN' | translate}}</ion-button>
-        <ion-button class="btn-round" (click)="step1 = true; step2 = false"  expand="block">{{'BACK' | translate}}</ion-button>
+        <ion-button class="btn-round btn-success size-btn" [disabled]="!aceptarTerminos || !isFace || !form_register2.valid" (click)="createCount()" expand="block">{{'SIGNIN' | translate}}</ion-button>
+        <ion-button class="btn-round size-btn" (click)="step1 = true; step2 = false"  expand="block">{{'BACK' | translate}}</ion-button>
       </form>
     </ion-card-content>
   </ion-card>

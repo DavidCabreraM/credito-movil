@@ -29,9 +29,13 @@ ion-list.background-login{
 }
 
 .color-icon{
-    color:#86A520
-}
+    color:#86A520;
 
+}
+.size-icon{
+    width: 30px;
+    height: 30px; 
+}
 .margin-card-login{
     margin-right: 17%;
     margin-left: 17%;
@@ -44,3 +48,22 @@ ion-list.background-login{
     background-size: 100% 100%;
     margin-bottom: 10%;
   }
+
+@media (min-width:1023px) and (max-width:1024px){
+    .positionAvata{
+        height: 180px;
+        width: 180px;
+        top: calc( ( 100% - 250px) / 3);
+        left: calc( (100% - 180px) / 2 );
+    }
+
+    #img-selfie{
+        width: 75px;
+        height: 130px;
+    }
+
+    .size-icon{
+        width: 40px;
+        height: 40px;
+    }
+}

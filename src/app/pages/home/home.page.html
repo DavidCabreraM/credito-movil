@@ -98,8 +98,8 @@
 <div *ngIf="prestamos">
   
   <ion-fab *ngIf="prestamoPendiente" vertical="top" horizontal="end" slot="fixed" (click) = "pendingLoanModal()">
-    <ion-fab-button size="small" style="--background: #00A8FF!important;">
-      <ion-icon name="cash-outline"></ion-icon>
+    <ion-fab-button class="btn-pending-loan" size="small">
+      <ion-icon style="width: 70%;height: 70%;" name="cash-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 

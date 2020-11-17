@@ -2,10 +2,10 @@
 
 <ion-content>
   <ion-item>
-    <h1>{{'PERIODS' | translate}}</h1>
+    <h1 class="day-text">{{'PERIODS' | translate}}</h1>
     <p class="mes-text" slot="end" style="display: flex;align-items: center;">
       {{'TODAY' | translate}}: {{dateCurrent | date:'dd MMM yyyy'}}
-      <ion-icon [routerLink]="['/calendar/',account]" style="height: 30px;width: 30px;" name="calendar-outline"></ion-icon>
+      <ion-icon [routerLink]="['/calendar/',account]" class="calendar-icon" name="calendar-outline"></ion-icon>
     </p>
   </ion-item>
   <div *ngIf="payments">

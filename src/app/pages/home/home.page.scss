@@ -51,6 +51,12 @@
   margin-bottom: 2rem;
 }
 
+.btn-pending-loan{
+  width: 30px;
+  --background: #00A8FF!important;
+  height: 30px;
+}
+
 .toolbar-padding{
   --padding-top: 2rem!important;
     padding-left: 1.5rem!important;
@@ -175,5 +181,9 @@
   }
   .div-secction-movimiento{
     margin-top: 57%;
+  }
+  .btn-pending-loan{
+    width: 80px;
+    height: 80px;
   }
 }

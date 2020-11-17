@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+.calendar-icon{
+    height: 30px;
+    width: 30px;
+}
 .mes-text{
     font-size: 19px;
 }
@@ -58,4 +62,25 @@
 .dark-card{
     background: black;
     padding: 0;
+}
+
+@media (min-width:1023px) and (max-width:1024px){
+    .periodo-text{
+        font-size: 22px;
+    }
+    .mes-text{
+        font-size: 33px;
+    }
+    
+    .day-text{
+        font-size: 37px;
+    }
+    
+    .inf-text{
+        font-size: 30px;
+    }
+    .calendar-icon{
+        height: 50px;
+        width: 50px;
+    }
 }
