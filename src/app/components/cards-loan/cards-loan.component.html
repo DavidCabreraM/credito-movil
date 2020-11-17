@@ -8,7 +8,7 @@
             <p class="ion-text-left">{{item.saldo_total | currency}}</p>
             <h3 class="ion-text-left">{{'BALANCETONOTGENERATEINTEREST' | translate}}</h3>
             <p class="ion-text-left">{{ item.cuota | currency}}</p>
-            <h3 *ngIf="proximosPagos.length>0" class="ion-text-left">{{'PAYDAYLIMIT' | translate}} &nbsp;&nbsp;<ion-label class="date-limit">{{proximosPagos[i].fechaProximoPago | date: 'EEEE'}}, {{proximosPagos[i].fechaProximoPago | date: 'dd/MM/yyyy'}}</ion-label></h3>
+            <h3 *ngIf="proximosPagos.length>0" style="text-transform: uppercase;" class="ion-text-left">{{'PAYDAYLIMIT' | translate}} &nbsp;&nbsp;<ion-label class="date-limit">{{proximosPagos[i].fechaProximoPago | date: 'EEEE'}}, {{proximosPagos[i].fechaProximoPago | date: 'dd/MM/yyyy'}}</ion-label></h3>
           </ion-label>   
         </ion-label>
       </ion-card>

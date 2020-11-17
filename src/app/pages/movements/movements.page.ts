@@ -16,6 +16,7 @@ export class MovementsPage implements OnInit, AfterViewInit {
   arrayMovements: any;
   eventRefesh: any;
   public prestamos: any[];
+  public proximosPagos: any;
   idDetatail: string;
 
   constructor(
@@ -30,7 +31,11 @@ export class MovementsPage implements OnInit, AfterViewInit {
       });
   }
 
-  ngOnInit() { 
+  ngOnInit() {
+    
+    this.storage.get('proximos').then((val) => {
+      this.proximosPagos = val;
+    });
     this.storage.get('dashboard').then((val) => {
       this.prestamos = JSON.parse(val);
       console.log(this.prestamos)

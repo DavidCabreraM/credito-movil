@@ -34,7 +34,7 @@
     
           <ion-row class="font-ligh">
             <ion-col class="center-label">
-              <span>{{'PAYDAYLIMIT' | translate}} {{prestamo.vencido_desde | date: 'EEEE, dd/MM/yyyy'}}</span>
+              <span>{{'PAYDAYLIMIT' | translate}} {{proximosPagos[i].fechaProximoPago | date: 'EEEE, dd/MM/yyyy'}}</span>
             </ion-col>
           </ion-row>
         </ion-grid>
