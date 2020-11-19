@@ -70,9 +70,9 @@ export class MovementsPage implements OnInit, AfterViewInit {
       //console.log("L: ",response.movs.length)
       this.arrayMovements = response.movs 
     }).catch( err => {
-      this.translate.get("TRYAGAIN").subscribe(
+      this.translate.get(["TRYAGAIN","OK"]).subscribe(
         value => {
-          this.presentAlert('Error!',value);
+          this.presentAlert('Error!',value.TRYAGAIN,value.OK);
         }
       )
     }).finally(() => {   
@@ -80,11 +80,14 @@ export class MovementsPage implements OnInit, AfterViewInit {
     })
   }
 
-  async presentAlert(header,msj) {
+  async presentAlert(header,msj,textBtn) {
     const alert = await this.alertController.create({
       header: header,
       message: msj,
-      buttons: ['OK']
+      buttons: [{
+        text: textBtn,
+        cssClass: 'size-btn padding-btn text-success'
+      }]
     });
 
     await alert.present();

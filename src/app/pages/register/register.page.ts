@@ -119,9 +119,9 @@ export class RegisterPage implements OnInit {
       });   
     }).catch( err => {
         this.loading.dismiss();
-        this.translate.get("BADDATA").subscribe(
+        this.translate.get(["BADDATA","OK"]).subscribe(
           value => {
-            this.presentAlert('Error!',value);
+            this.presentAlert('Error!',value.BADDATA,value.OK);
           }
         )
       }).finally(() =>{
@@ -145,9 +145,9 @@ export class RegisterPage implements OnInit {
       this.image = 'data:image/jpeg;base64,' + imageData      
       setTimeout(() => this.detect(), 200);
     }, (err) => {
-      this.translate.get('LOADINGPHOTO').subscribe(
+      this.translate.get(['LOADINGPHOTO',"OK"]).subscribe(
         value => {
-          this.presentAlert('Ups!',value);
+          this.presentAlert('Ups!',value.LOADINGPHOTO,value.OK);
         }
       )
     });
@@ -167,9 +167,9 @@ export class RegisterPage implements OnInit {
     this.userService.sendCode(this.form_register2.get("phone").value).toPromise().then(response => {
 
     }).catch( err => {
-      this.translate.get('TRYAGAIN').subscribe(
+      this.translate.get(['TRYAGAIN',"OK"]).subscribe(
         value => {
-          this.presentAlert('Error!',value);
+          this.presentAlert('Error!',value.TRYAGAIN,value.OK);
         }
       )
     }).finally(() => {
@@ -186,9 +186,9 @@ export class RegisterPage implements OnInit {
           this.presentAlertPhone(value);
         }
       )
-      this.translate.get('BADCODE').subscribe(
+      this.translate.get(['BADCODE',"OK"]).subscribe(
         value => {
-          this.presentAlert('Error!',value);
+          this.presentAlert('Error!',value.BADCODE,value.OK);
         }
       )
     }).finally(() => {
@@ -212,9 +212,9 @@ export class RegisterPage implements OnInit {
       )
       this.showBtnSelfi=2;
       this.isFace=true;
-      this.translate.get(['SELFIEOK','ISFACE']).subscribe(
+      this.translate.get(['SELFIEOK','ISFACE',"OK"]).subscribe(
         value => {
-          this.presentAlert(value.SELFIEOK+"!",value.ISFACE);
+          this.presentAlert(value.SELFIEOK+"!",value.ISFACE,value.OK);
         }
       )
     }else{
@@ -226,9 +226,9 @@ export class RegisterPage implements OnInit {
           this.mensajeSelfi = value;
         }
       )
-      this.translate.get('NOTFACE').subscribe(
+      this.translate.get(['NOTFACE',"OK"]).subscribe(
         value => {
-          this.presentAlert('Error!',value);
+          this.presentAlert('Error!',value.NOTFACE, value.OK);
         }
       )
     }
@@ -253,9 +253,9 @@ export class RegisterPage implements OnInit {
       console.log(err)
     }).finally(() =>{
       console.log("Paso")
-      this.translate.get(['CREATEUSER','CORRECTDATA']).subscribe(
+      this.translate.get(['CREATEUSER','CORRECTDATA',"OK"]).subscribe(
         value => {
-          this.presentAlert(value.CORRECTDATA+"!",value.CREATEUSER);
+          this.presentAlert(value.CORRECTDATA+"!",value.CREATEUSER,value.OK);
         }
       )
       this.form_register1.reset();
@@ -265,15 +265,15 @@ export class RegisterPage implements OnInit {
   }
 
   //Alertas
-  async presentAlert(header,msj) {
+  async presentAlert(header,msj,textBtn) {
     const alert = await this.alertController.create({
       header: header,
       message: msj,
       cssClass: 'size-btn',
       buttons: [
       {
-        text: 'OK',
-        cssClass: 'size-btn padding-btn'
+        text: textBtn,
+        cssClass: 'size-btn padding-btn text-success'
       }]
       
     });

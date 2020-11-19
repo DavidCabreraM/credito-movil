@@ -162,6 +162,7 @@
     "ACEPTAR": "Aceptar",
     "SALIR": "Está seguro de Salir",
     "CLOSE": "Cerrar Sesión",
-    "STORAGE": "Tiendas Participantes"
+    "STORAGE": "Tiendas Participantes",
+    "OK" : "Aceptar"
 
 }

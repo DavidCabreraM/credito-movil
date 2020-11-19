@@ -86,12 +86,16 @@ ion-list.background{
     --background: #B1C800;
     --color: white;
 }
-
+.text-success{
+    color: #B1C800 !important;
+}
 .btn-error{
     --background: #EB3E41;
     --color: white;
 }
-
+.text-error{
+    color:  #EB3E41 !important;
+}
 .btn-info{
     --background: #00A8AE;
     --color: white;

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentComponent } from '@components/modals/payment/payment.component';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { CalendarService } from '@services/calendar/calendar.service';
@@ -17,6 +17,7 @@ export class CalendarPage implements OnInit, AfterViewInit {
     private calendarService: CalendarService,
     private modalController: ModalController,
     private storage: Storage,
+    private alertController: AlertController,
     private route: ActivatedRoute,
     private translate: TranslateService
     ) {
@@ -48,6 +49,12 @@ export class CalendarPage implements OnInit, AfterViewInit {
         this.payments = promise;
         this.storage.set('payments', JSON.stringify(this.payments));
         this.nextPayment()
+      }).catch(err =>{
+        this.translate.get(["TRYAGAIN","OK"]).subscribe(
+          value => {
+            this.presentAlert('Error!',value.TRYAGAIN,value.OK);
+          }
+        )
       })
     });
   }
@@ -148,5 +155,18 @@ export class CalendarPage implements OnInit, AfterViewInit {
       cssClass: "size-modal"
     });
     return await modal.present();
+  }
+
+  async presentAlert(header,msj,textBtn) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: msj,
+      buttons: [{
+        text: textBtn,
+        cssClass: 'size-btn padding-btn text-success'
+      }]
+    });
+
+    await alert.present();
   }
 }
