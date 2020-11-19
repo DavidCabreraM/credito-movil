@@ -36,6 +36,7 @@ export class DetailloanPage implements OnInit {
   eventSource = [];
   nextP: any;
   selectEvent:any;
+  loading: HTMLIonLoadingElement;
   
   constructor(private storage: Storage,
     private translate: TranslateService,
@@ -52,6 +53,7 @@ export class DetailloanPage implements OnInit {
         this.presentLoading(value +"...");
       }
     );
+    setTimeout(()=>this.loading.dismiss(),3500);
     this.parameter = this.route.snapshot.paramMap.get('id');
 
     this.storage.get('dashboard').then((val) => {
@@ -145,14 +147,10 @@ export class DetailloanPage implements OnInit {
   }
 
   async presentLoading(msj) {
-    const loading = await this.loadingCtrl.create({
+      this.loading = await this.loadingCtrl.create({
       message: msj,
-      duration: 2500
     });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
+    await this.loading.present();
   }
 
   onTipoPlazo(){

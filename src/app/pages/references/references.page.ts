@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, AlertController, LoadingController } from '@ionic/angular';
 import { LoansService } from '../../services/loans/loans.service';
 import { EstablishmentsComponent } from '../../components/establishments/establishments.component';
 import { Storage } from '@ionic/storage';
@@ -28,10 +28,12 @@ export class ReferencesPage implements OnInit {
       value:"en"
     },
   ];
+
+  loading: HTMLIonLoadingElement;
   constructor(private serviceLoan: LoansService, 
     private popoverController: PopoverController,
     private router: Router,
-    private storage: Storage, private translate: TranslateService) { 
+    private storage: Storage, private translate: TranslateService, private loadingController: LoadingController) { 
 
     this.segment = 'reembolsos';
     this.titulo = 'REFERENCES';
@@ -42,10 +44,30 @@ export class ReferencesPage implements OnInit {
   }
 
   ngOnInit() {
-      this.serviceLoan.references().subscribe(data =>{
+      this.serviceLoan.references().subscribe(
+        data =>{
           this.references = data;
-      });
+        },
+         error => {
+          
+            this.translate.get('TRYAGAIN').subscribe(
+              value => {
+                this.presentLoading(value+'..!!'); 
+              });
+              setTimeout(() => {
+                this.loading.dismiss();
+                this.router.navigate(['/home']);
+              }, 2000);
+          }
+          
+      );
+  }
 
+  async presentLoading(message: string) {
+    this.loading = await this.loadingController.create({
+      message,
+    });
+    await this.loading.present();
   }
 
   onReferenceDetail(item: any){

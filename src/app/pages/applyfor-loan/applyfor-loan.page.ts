@@ -89,11 +89,16 @@ export class ApplyforLoanPage implements OnInit {
       let result = JSON.parse(val);
       for(let item of result){
         console.log(item.estatus);
-          if(item.estatus === '300'){
+        let msgAceptar = '';
+          if(item.estatus === '100'){
             this.solicitud = true;
+            this.translate.get('ACEPTAR').subscribe(
+              value=>{
+                  msgAceptar = value;
+              });
             this.translate.get('PENDINGREQUEST').subscribe(
               value => {
-                this.presentAlert(value +"!!");
+                this.presentAlert(value +"!!", msgAceptar);
               }
             );
           }
@@ -104,16 +109,16 @@ export class ApplyforLoanPage implements OnInit {
 
   }
 
-  async presentAlert(msj) {
+  async presentAlert(msg,msgAcept) {
     const alert = await this.alertController.create({
       cssClass: 'alert',
       backdropDismiss: false,
-      message: msj,
+      message: msg,
       buttons: [
         {
-          text: 'Ok',
+          text: msgAcept,
           handler: () => {
-            //this.router.navigate(['/home']);
+            this.router.navigate(['/home']);
           }
         }
       ]
@@ -125,14 +130,15 @@ export class ApplyforLoanPage implements OnInit {
   alertConfirm(){
     this.translate.get('NOTSAVE').subscribe(
       value => {
-        this.presentAlertConfirm(value + "!" , '');
+        this.presentAlertConfirm(value , '');
       }
     );
   }
 
   async presentAlertConfirm(msj, head) {
     let option_cancel  = 'Cancelar';
-
+    let ok = 'Aceptar';
+    console.log(msj);
     if(msj === 'NotSave'){
       msj = 'No guardaremos los datos que hayas ingresado';
       head = '¿Estás seguro que deseas salir?';
@@ -140,6 +146,7 @@ export class ApplyforLoanPage implements OnInit {
       msj = 'We will not save the data you have entered';
       head = 'Are you sure you want to quit?';
       option_cancel = 'Cancel';
+      ok = 'To accept';
     }
     const alert = await this.alertController.create({
       header: head,
@@ -150,7 +157,7 @@ export class ApplyforLoanPage implements OnInit {
           role: 'cancel',
           cssClass: 'colorAlert',
         }, {
-          text: 'Ok',
+          text: ok,
           handler: () => {
             this.tiposPlazos = [];
             this.tipoFrecuencia = [];

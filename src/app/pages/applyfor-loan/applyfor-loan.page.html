@@ -34,12 +34,12 @@
         <ion-range mode="md"
           [min]="amount_min" [max]="amount_max"
            pin="true"
-          snaps="true" step="1000"
+          snaps="true" step="2000"
           ticks="true" [value]="amount_min"
           color="success"
           (ionChange)="rangeChange($event)">
-            <ion-label style="color:#FFFF; font-size:.5rem" slot="start">{{amount_min}}</ion-label>
-            <ion-label style="color:#FFFF; font-size:.5rem" slot="end">{{amount_max}}</ion-label>
+            <ion-label style="color:#FFFF; font-size:.1rem" slot="start">{{amount_min|currency:0: "$"}}</ion-label>
+            <ion-label style="color:#FFFF; font-size:.1rem" slot="end">{{amount_max|currency:0:"$"}}</ion-label>
         </ion-range>  
         </ion-item>
     </div>
@@ -51,24 +51,27 @@
         <ion-select-option value="{{plazo_max}}">{{plazo_max}}</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item style="margin-top: 12px;" class="ion-select">
+    <ion-item style="margin-top: 12px;" class="ion-select margin-top">
       <ion-label position="floating" class="i-success">{{'DESIREDTERM' | translate}}:</ion-label>
-      <ion-select [(ngModel)]="clear" (ionChange)="onPlazo($event)" formControlName="plazo">
+      <ion-select okText="{{'ACEPTAR'|translate}}" cancelText="{{'CANCEL'|translate}}" [(ngModel)]="clear" (ionChange)="onPlazo($event)" formControlName="plazo">
         <ion-select-option *ngFor="let item of tiposPlazos; let i=index" value="{{i}}">{{item.valor | uppercase | translate}}</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item style="margin-top: 12px;" class="ion-select">
+    <ion-item style="margin-top: 12px;" class="ion-select margin-top">
       <ion-label position="floating" class="i-success">{{'PAYMENTFREQUENCY' | translate}}:</ion-label>
-    <ion-select (ionChange)="onPago($event)"  formControlName="pagos">
+    <ion-select okText="{{'ACEPTAR'|translate}}" cancelText="{{'CANCEL'|translate}}" (ionChange)="onPago($event)"  formControlName="pagos">
       <ion-select-option *ngFor="let item of tipoFrecuencia; let i=index" value="{{i}}">{{item.valor | uppercase| translate}}</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-item style="margin-top: 12px;" class="ion-select">
+
+  <ion-item style="margin-top: 12px;" class="ion-select margin-top">
     <ion-label position="floating" class="i-success">{{'DESTINATIONOFTHELOAN' | translate}}:</ion-label>
-  <ion-select (ionChange)="onDestino($event)" formControlName="destino">
+  <ion-select  cancelText="{{'CANCEL'|translate}}" interface="action-sheet" (ionChange)="onDestino($event)" formControlName="destino">
     <ion-select-option  *ngFor="let item of destionPrestamo" value="{{item.id}}">{{item.valor | uppercase | translate}}</ion-select-option>
   </ion-select>
 </ion-item>
+
+
   <!--<ion-item lines="none" style="margin-top: 15px;" class="ion-select">
     <ion-label>Duracion del Credito</ion-label>
   </ion-item>
@@ -102,7 +105,6 @@
           </ion-col>
         </ion-row>
       </ion-card>
-
     </div>
   </form>
   </div>

@@ -89,7 +89,7 @@ ion-list{
 .div-son-3{
     background:transparent;
     position: absolute; 
-    top: 39rem;
+    top: 38rem;
     z-index: 3;
     width: 100%;
 }
@@ -192,4 +192,47 @@ ion-card{
 .button-2{
     --background-color: #939396!important;
     background: #939396!important;
+}
+
+@media(min-width: 374px) and(max-width: 375px),
+(min-width: 413px) and(max-width: 414px){
+    .margin-top{
+      margin-top: 0px!important;
+    }
+  }
+
+@media(min-width: 767px) and(max-width: 768px){
+    .div-son-1{
+        height: 19rem;
+    }
+    
+    .div-son-2{
+        height: 30rem;
+        top: 11rem;
+    }
+    
+    .div-son-3{
+        background:transparent;
+        top: 45rem;
+    }
+}
+
+@media(min-width: 1023px) and(max-width: 1024px){
+    .div-son-1{
+        height: 20rem;
+    }
+    
+    .div-son-2{
+        height: 40rem;
+        top: 14rem;
+    }
+    
+    .div-son-3{
+        background:transparent;
+        top: 60rem;
+    }
+
+    .margin-top{
+        margin-top: 36px!important;
+      }
 }

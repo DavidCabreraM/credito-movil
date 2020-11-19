@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AlertController, MenuController } from '@ionic/angular';
+import { AlertController, MenuController, LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
 import { Storage } from '@ionic/storage';
@@ -9,6 +9,7 @@ import { VarglobalesService } from '../../services/varglobales/varglobales.servi
 import { ModalController } from '@ionic/angular';
 import { PendingLoanComponent } from '@components/modals/pending-loan/pending-loan.component';
 import { CalendarService } from '../../services/calendar/calendar.service';
+import { Router } from '@angular/router';
 /*
 interface Componente {
   icon: string;
@@ -52,6 +53,7 @@ export class HomePage implements OnInit {
   selectEvent:any;
   public fecha_pago:string;
   public monto_proximo: string;
+  loading: HTMLIonLoadingElement;
 
   constructor(private storage: Storage,
     private menuCtrl: MenuController, 
@@ -60,7 +62,9 @@ export class HomePage implements OnInit {
     private alertController: AlertController,
     private varGlobal: VarglobalesService,
     private modalController: ModalController,
-    private calendarService: CalendarService
+    private calendarService: CalendarService,
+    private loadingController: LoadingController,
+    private router: Router
     ) {
       this.storage.remove('dashboard');
       this.storage.remove('avatar');
@@ -127,7 +131,26 @@ export class HomePage implements OnInit {
           this.prestamoPendiente = this.prestamos.find( prestamo => prestamo.estatus === '100' );
           this.arrayMovements=data.movs;
         });
+    },
+    error => {
+          this.translate.get('TRYAGAIN').subscribe(
+            value => {
+              this.presentLoading(value + '..!!'); 
+            });
+            setTimeout(() => {
+              this.loading.dismiss();
+              this.router.navigate(['/login']);
+            }, 2000);
+        }
+      );
+      
+  }
+
+  async presentLoading(message: string) {
+    this.loading = await this.loadingController.create({
+      message,
     });
+    await this.loading.present();
   }
 
   onNextDate(data:any) {

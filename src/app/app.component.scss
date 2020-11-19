@@ -69,4 +69,22 @@ div{
       margin-left: -16px!important;
   }
 
+@media (min-width:1023px) and (max-width:1024px){
+    ion-menu{
+        --width:500px!important;
+    }
+
+    .ion-item{
+        margin-bottom: 3rem!important;
+       // border-bottom-color: transparent!important;
+    }
+}
+
+@media (min-width:359px) and (max-width:360px){
+    .ion-item{
+        margin-bottom: .4rem!important;
+       // border-bottom-color: transparent!important;
+    }
+}
+
 
