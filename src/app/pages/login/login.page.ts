@@ -62,11 +62,12 @@ export class LoginPage implements OnInit {
      // this.storage.set('dashboard', this.dashboard);
      this.router.navigate(['/home']);
     }).catch( err => {
-      this.translate.get('LOGINERROR').subscribe(
+      this.translate.get(['LOGINERROR','OK']).subscribe(
         value => {
-          this.presentAlert("Error!",value);
+          this.presentAlert("Error!",value.LOGINERROR,value.OK);
         }
       )
+      this.loading.dismiss();
     }).finally(() => {
       this.form_login.reset();
       this.loading.dismiss();
@@ -97,15 +98,15 @@ export class LoginPage implements OnInit {
     })*/
   }
 
-  async presentAlert(header,msj) {
+  async presentAlert(header,msj,textBtn) {
     const alert = await this.alertController.create({
       header: header,
       message: msj,
       cssClass: 'size-btn',
       buttons: [
       {
-        text: 'OK',
-        cssClass: 'size-btn padding-btn'
+        text: textBtn,
+        cssClass: 'size-btn padding-btn text-success'
       }]
     });
 
