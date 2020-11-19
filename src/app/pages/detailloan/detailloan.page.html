@@ -20,7 +20,7 @@
 
 <ion-content class="ion-padding">
 
-  <ion-list class="ion-padding">
+  <ion-list class="top">
     <ion-list-header>
       <strong>{{'GENERAL' | translate}}</strong>
     </ion-list-header>
@@ -63,15 +63,15 @@
     <ion-item lines="none">
       <ion-label>
         <p>{{'TERM' | translate}}</p>
-        <h2>{{plazo}}</h2>     
+        <h2>{{plazo}} {{tipo_plazo | translate}}</h2>     
       </ion-label>
     </ion-item>
-    <ion-item lines="none">
+   <!-- <ion-item lines="none">
       <ion-label>
         <p>{{'TYPEOFTERM' | translate}}</p>
         <h2>{{tipo_plazo | translate}}</h2>     
       </ion-label>
-    </ion-item>
+    </ion-item>-->
     <ion-item lines="none">
       <ion-label>
         <p>{{'PENDINGRECEIPTS' | translate}}</p>
@@ -91,7 +91,7 @@
       </ion-label>
     </ion-item>     
   </ion-list>
-  <ion-list class="ion-padding">
+  <ion-list class="condicion">
     <ion-list-header>
       <strong>{{'TERMS' | translate}}</strong>
     </ion-list-header>

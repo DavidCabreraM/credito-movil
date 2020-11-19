@@ -29,7 +29,7 @@
     margin-top: -17px!important;
 }
 .text-size{
-    font-size: .55rem;
+    font-size: .54rem;
     margin-top: -20px;
 }
 
@@ -43,7 +43,7 @@
     
 }
 
-@media (min-width:767px) and (max-width:1024px){
+@media (min-width:767px) and (max-width:800px){
     .ion-card-qr{
         margin-right: 20px!important;
         margin-left: 20px!important;
@@ -55,6 +55,43 @@
   
     .col-separation{
         width: 25rem!important;
+    }
+    
+}
+
+@media (min-width:1023px) and (max-width:1024px){
+    .ion-card-qr{
+        margin-right: 50px!important;
+        margin-left: 50px!important;
+     }
+     .ion-card-myaccounts{
+        margin-right: 50px!important;
+        margin-left: 50px!important;
+     }
+  
+    .col-separation{
+        width: 10rem!important;
+    }
+
+    .ion-card{
+        width: 10rem;
+        height: 10rem;
+      }
+    
+    .ion-icon-myaccounts{
+        width: 5.5rem;
+        height: 5.5rem;
+        margin-top: -5px;
+    }
+    .ion-icon-qr{
+        width: 5rem;
+        height: 5rem;
+        margin-top: -2px;
+    }
+
+    .text-size{
+        font-size: 1.2rem;
+        margin-top: -20px;
     }
     
 }

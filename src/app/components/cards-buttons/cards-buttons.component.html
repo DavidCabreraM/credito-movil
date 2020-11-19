@@ -11,7 +11,16 @@
         </ion-card-content>
       </ion-card>
     </ion-col>
-    <ion-col class="col-separation"></ion-col>
+    <ion-col>
+        <ion-card routerLink="/applyfor-loan" class="ion-card ion-card-qr" color="sectionbutton">
+          <ion-card-header class="ion-text-center ion-padding">
+            <ion-img style="max-width: 30px;margin-left: 10px;margin-bottom: 8px;" src="/assets/img/icon/lucro.svg"></ion-img>
+          </ion-card-header>
+          <ion-card-content class="ion-text-center text-size no-padding">
+            {{'APPLYLOAN' | translate}}
+          </ion-card-content>
+        </ion-card>
+    </ion-col>
     <ion-col>
       <ion-card routerLink="/references" class="ion-card ion-card-qr" color="sectionbutton">
         <ion-card-header class="ion-text-center ion-padding">

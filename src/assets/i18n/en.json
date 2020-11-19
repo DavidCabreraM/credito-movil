@@ -34,7 +34,7 @@
     "SELFIEERROR" : "Invalid photo: Only your face should appear.",
     "LOGINERROR" : "Your password or username are incorrect.",
     "LOADINGPHOTO" : "Photo could not be uploaded.",
-    "TRYAGAIN" : "please try again later.",
+    "TRYAGAIN" : "Please try again later.",
     "BADCODE" : "Incorrect code.",
     "CREATEUSER" : "User created successfully.",
     "CORRECTDATA" : "Correct data",
