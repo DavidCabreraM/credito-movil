@@ -205,10 +205,27 @@ export class AppComponent{
   }
 
   update(){
+    this.translate.get('WAIT').subscribe(
+      value => {
+        this.presentLoading(value+"...");
+      }
+    )
     this.loansService.updateDetails().toPromise().then(promise =>{
       console.log(promise)
+      this.translate.get(['UPDATEDDATA','RELOADSCREEN',"OK"]).subscribe(
+        value => {
+          this.presentAlert(value.UPDATEDDATA+"!",value.RELOADSCREEN,value.OK);
+        }
+      )
     }).catch(err =>{
       console.log(err)
+      this.translate.get(['TRYAGAIN',"OK"]).subscribe(
+        value => {
+          this.presentAlert("ERROR! ",value.TRYAGAIN,value.OK);
+        }
+      )
+    }).finally(() =>{
+      this.loading.dismiss();
     })
   }
 
@@ -229,5 +246,21 @@ export class AppComponent{
       cssClass: "center-modal"
     });
     return await modal.present();
+  }
+
+  async presentAlert(header,msj,textBtn) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: msj,
+      cssClass: 'size-btn',
+      buttons: [
+      {
+        text: textBtn,
+        cssClass: 'size-btn padding-btn text-success'
+      }]
+      
+    });
+
+    await alert.present();
   }
 }

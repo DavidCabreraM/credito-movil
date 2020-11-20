@@ -163,6 +163,7 @@
     "SALIR": "Está seguro de Salir",
     "CLOSE": "Cerrar Sesión",
     "STORAGE": "Tiendas Participantes",
-    "OK" : "Aceptar"
-
+    "OK" : "Aceptar",
+    "UPDATEDDATA": "Datos actualizados",
+    "RELOADSCREEN": "Recargue la pantalla para ver los cambios"
 }

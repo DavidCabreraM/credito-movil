@@ -163,5 +163,7 @@
     "SALIR": "Are you sure to leave",
     "CLOSE": "Close session",
     "STORAGE": "Participating Stores",
-    "OK" : "Ok"
+    "OK" : "Ok",
+    "UPDATEDDATA":"Updated data",
+    "RELOADSCREEN":"Reload the screen to see the changes"
 }
