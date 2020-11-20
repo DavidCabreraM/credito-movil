@@ -5,6 +5,7 @@ import { EstablishmentsComponent } from '../../components/establishments/establi
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-references',
@@ -47,8 +48,7 @@ export class ReferencesPage implements OnInit {
       this.serviceLoan.references().subscribe(
         data =>{
           this.references = data;
-        },
-         error => {
+        },  error => {
           
             this.translate.get('TRYAGAIN').subscribe(
               value => {

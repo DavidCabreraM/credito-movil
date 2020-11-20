@@ -44,23 +44,23 @@
         </ion-item>
     </div>
     <div class="div-son-2"> 
-    <ion-item style="margin-top: 8.3rem;" class="ion-select">
+   <!--<ion-item style="margin-top: 8.3rem;" class="ion-select">
       <ion-label position="floating" class="i-success">{{'TERMLIMIT' | translate}}:</ion-label>
       <ion-select  formControlName="limitePlazo">
         <ion-select-option value="{{plazo_min}}">{{plazo_min}}</ion-select-option>
         <ion-select-option value="{{plazo_max}}">{{plazo_max}}</ion-select-option>
       </ion-select>
-    </ion-item>
-    <ion-item style="margin-top: 12px;" class="ion-select margin-top">
+    </ion-item>-->
+    <ion-item style="margin-top: 10rem;" class="ion-select margin-top">
       <ion-label position="floating" class="i-success">{{'DESIREDTERM' | translate}}:</ion-label>
-      <ion-select okText="{{'ACEPTAR'|translate}}" cancelText="{{'CANCEL'|translate}}" [(ngModel)]="clear" (ionChange)="onPlazo($event)" formControlName="plazo">
-        <ion-select-option *ngFor="let item of tiposPlazos; let i=index" value="{{i}}">{{item.valor | uppercase | translate}}</ion-select-option>
+      <ion-select  okText="{{'ACEPTAR'|translate}}" cancelText="{{'CANCEL'|translate}}" [(ngModel)]="clear" (ionChange)="onPlazo($event)" formControlName="plazo">
+        <ion-select-option *ngFor="let item of plazoDeseado; let i=index" value="{{i}}">{{item.plazo}} {{item.valor | uppercase | translate}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item style="margin-top: 12px;" class="ion-select margin-top">
       <ion-label position="floating" class="i-success">{{'PAYMENTFREQUENCY' | translate}}:</ion-label>
     <ion-select okText="{{'ACEPTAR'|translate}}" cancelText="{{'CANCEL'|translate}}" (ionChange)="onPago($event)"  formControlName="pagos">
-      <ion-select-option *ngFor="let item of tipoFrecuencia; let i=index" value="{{i}}">{{item.valor | uppercase| translate}}</ion-select-option>
+      <ion-select-option [disabled]="!selectSemana? false:item.valor!='Semanal'?true:false" *ngFor="let item of tipoFrecuencia; let i=index" value="{{i}}">{{item.valor | uppercase| translate}}</ion-select-option>
     </ion-select>
   </ion-item>
 

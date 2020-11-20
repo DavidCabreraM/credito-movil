@@ -5,6 +5,7 @@ import { LoansService } from '../../services/loans/loans.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-applyfor-loan',
@@ -16,8 +17,9 @@ export class ApplyforLoanPage implements OnInit {
   public amount: string;
   public amount_min: string;
   public amount_max: string;
-  public plazo_min:string;
-  public plazo_max: string;
+  public plazo_min: number;
+  public plazo_max: number;
+  public selectSemana = false;
   formPrestamo: FormGroup;
 
   public identificador: string;
@@ -28,11 +30,14 @@ export class ApplyforLoanPage implements OnInit {
 
   public selectDestinoPrestamo: any[];
   public selectTipoFrecuencia: any[];
-  public selectTipoPlazo: any[];
+  public selectTipoPlazo;
+  public plazoDeseado = [];
 
   public clear: string;
 
   public solicitud: boolean;
+
+  loading: HTMLIonLoadingElement;
 
   constructor(private serviceLoan: LoansService, 
               private alertController: AlertController, 
@@ -47,7 +52,6 @@ export class ApplyforLoanPage implements OnInit {
 
   ngOnInit() {
     this.formPrestamo = this.form.group({
-      limitePlazo: ['', Validators.required],
       plazo: ['', Validators.required],
       destino: ['', Validators.required],
       pagos: ['', Validators.required],
@@ -55,32 +59,88 @@ export class ApplyforLoanPage implements OnInit {
     });
     
     this.solicitudPendiente();
-     
+    let msg;
+    this.translate.get('PLEASEWAIT').subscribe(value=>{
+      msg = value + '...';
+    });
+    this.presentLoading(msg);
     this.serviceLoan.parameter().subscribe(data => {
       console.log(data);
       this.identificador = data.prestamos.identificadorProducto;
       this.destionPrestamo = data.prestamos.destinoPrestamo;
       this.tipoFrecuencia = data.prestamos.tipoFrecuencia;
-      this.tiposPlazos = data.prestamos.tiposPlazo;
+      this.plazo_max = data.prestamos.limitesPlazo.maximo;
+      this.plazo_min = data.prestamos.limitesPlazo.minimo;
+      this.onTiposFrecuencia(data.prestamos.tiposPlazo);
       this.amount = data.prestamos.limitesMonto.minimo + '.00';
       this.amount_min = data.prestamos.limitesMonto.minimo;
       this.amount_max = data.prestamos.limitesMonto.maximo;
-      this.plazo_min = data.prestamos.limitesPlazo.minimo;
-      this.plazo_max = data.prestamos.limitesPlazo.maximo;
         console.log(this.amount_min);
       });
-    
+      setTimeout(()=>{
+            this.loading.dismiss();
+            if(this.amount.length === 0){
+              this.translate.get('TRYAGAIN').subscribe(val=>{
+                msg = val + '...';
+              });
+                this.presentLoading(msg);
+                setTimeout(()=>{
+                  this.loading.dismiss();
+                  this.router.navigate(['/home']);
+                },3000);
+            }
+      },3000);
   } 
 
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: 'Porfavor Espere...',
-      duration: 2500
-    });
-    await loading.present();
+  onTiposFrecuencia(data: any){
+    console.log(data);
+    for(let item of data){
+       let contador=0;
+       let total;
+       if(item.valor === 'Semanas') {
+            total = 3;
+        } else if(item.valor === 'Catorcenas'){
+          total = 2;
+        }else if(item.valor === 'Meses'){
+          total = 4;
+        }
+        for(let i = 1; i < this.plazo_max; i++){
+          console.log(item.valor);
+          let noPlazo;
+          if(item.valor === 'Semanas') {
+              noPlazo = this.plazo_min * i;
+          } else if(item.valor === 'Catorcenas'){
+            noPlazo = 13*i;
+          }else if(item.valor === 'Meses'){
+            noPlazo = 6*i;
+          }
+          this.plazoDeseado.push(
+            {
+              external_id: item.external_id,
+              id: item.id,
+              valor: item.valor,
+              plazo: noPlazo
+            });
+            console.log(contador);
+            console.log(item.valor);
+            console.log(this.plazoDeseado);
+          contador++;
+          if(contador === total){
+            break;
+          }
+        }
+    }
 
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
+    console.log(this.plazoDeseado);
+    //this.tiposPlazos = data;
+  }
+
+  async presentLoading(msg: string) {
+    
+    this.loading = await this.loadingController.create({
+      message: msg
+    });
+    await this.loading.present();
   }
 
   solicitudPendiente(){
@@ -109,6 +169,7 @@ export class ApplyforLoanPage implements OnInit {
 
   }
 
+
   async presentAlert(msg,msgAcept) {
     const alert = await this.alertController.create({
       cssClass: 'alert',
@@ -136,7 +197,7 @@ export class ApplyforLoanPage implements OnInit {
   }
 
   async presentAlertConfirm(msj, head) {
-    let option_cancel  = 'Cancelar';
+    let option_cancel  = 'Regresar';
     let ok = 'Aceptar';
     console.log(msj);
     if(msj === 'NotSave'){
@@ -145,7 +206,7 @@ export class ApplyforLoanPage implements OnInit {
     } else {
       msj = 'We will not save the data you have entered';
       head = 'Are you sure you want to quit?';
-      option_cancel = 'Cancel';
+      option_cancel = 'To return';
       ok = 'To accept';
     }
     const alert = await this.alertController.create({
@@ -177,12 +238,24 @@ export class ApplyforLoanPage implements OnInit {
   }
 
   onPlazo(even: any){
+    this.formPrestamo.controls['pagos'].setValue('');
+    this.selectTipoPlazo=[];
     console.log(even);
-    this.selectTipoPlazo = this.tiposPlazos[even.detail.value];
+    let select = this.plazoDeseado[even.detail.value];
+    this.selectTipoPlazo = even.detail.value;
     console.log(this.selectTipoPlazo);
+    if(select['valor'] === 'Semanas'){
+      this.selectSemana = true;
+    } else {
+      this.selectSemana = false;
+    }
+
+    console.log(this.selectSemana);
   }
 
+
   onPago(even: any){
+    console.log('pago');
     this.selectTipoFrecuencia = this.tipoFrecuencia[even.detail.value];
   }
 
@@ -191,11 +264,17 @@ export class ApplyforLoanPage implements OnInit {
   }
 
   onEnviar(){
-   
+    let selectTipoPlazo = this.plazoDeseado[this.selectTipoPlazo];
     this.serviceLoan.prestamo({
       'identificadorProducto': this.identificador,
         'monto': this.amount,
-        'tipoPlazo': this.selectTipoPlazo,
+        'tipoPlazo': 
+          {
+            id: selectTipoPlazo.id,
+            valor: selectTipoPlazo.valor,
+            external_id: selectTipoPlazo.external_id
+          }
+        ,
         'tipoFrecuencia': this.selectTipoFrecuencia,
         'destinoPrestamo':this.selectDestinoPrestamo
     }).toPromise().then(response => {

@@ -10,6 +10,7 @@ import { ModalController } from '@ionic/angular';
 import { PendingLoanComponent } from '@components/modals/pending-loan/pending-loan.component';
 import { CalendarService } from '../../services/calendar/calendar.service';
 import { Router } from '@angular/router';
+import { timeout } from 'rxjs/operators';
 /*
 interface Componente {
   icon: string;
