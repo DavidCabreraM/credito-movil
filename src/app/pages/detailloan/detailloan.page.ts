@@ -59,15 +59,12 @@ export class DetailloanPage implements OnInit {
     this.storage.get('dashboard').then((val) => {
       let resul = JSON.parse(val);
       this.data = resul[this.parameter];
-      console.log(this.data);
       this.onCargarData();
    });
   }
 
   onCargarData(){
-    console.log(this.data);
     this.calendarService.calendar(this.data.prestamo_id).toPromise().then( promise => {
-      console.log(promise);
       this.payments = promise;
       for(let item of this.payments){
           if(item.pagado === true){
@@ -76,7 +73,6 @@ export class DetailloanPage implements OnInit {
       }
       this.recibo_pendiente = this.payments.filter(recibo=> recibo.pagado == false);
       this.recibo_total_pendiente = this.recibo_pendiente.length - 1;
-      console.log(this.recibo_pendiente);
       this.nextPayment();
       //this.prestamoPendiente = this.prestamos.find( prestamo => prestamo.estatus === '100' );
     });
@@ -86,18 +82,15 @@ export class DetailloanPage implements OnInit {
     this.monto_original = this.data.monto_original;
     this.nombre_producto = this.data.nombre_producto;
     this.plazo = this.data.plazo;
-    console.log(this.data.tipo_plazo);
     this.translate.get(this.data.tipo_plazo).subscribe(
       value => {
         this.tipo_plazo = value;
-        console.log(value);
       }
     );
     //this.tipo_plazo = this.data.tipo_plazo;
     this.fecha_vencimiento = this.data.fecha_vencimiento;
     this.saldo_vencido = this.data.saldo_vencido;
     this.saldo_total = this.data.saldo_total;
-    console.log(this.data.estatus);
     /*if(this.data.estatus == 300)
          this.abono_capital = this.data.monto_original - this.data.saldo_total;
     else {
@@ -129,14 +122,12 @@ export class DetailloanPage implements OnInit {
       });
       if(f1 >= hoy){
         if(!this.nextP){
-          console.log("Es el menor: ", this.payments[i])
           this.nextP = this.payments[i]
           this.selectEvent = this.nextP;
           this.fecha_pago = this.selectEvent.fecha;
           this.monto_proximo = this.selectEvent.importe;
         }
         if(this.nextP >= f1){
-          console.log("Es el menor: ", this.payments[i])
           this.nextP = this.payments[i]
           this.selectEvent = this.nextP;
           this.fecha_pago = this.selectEvent.fecha;

@@ -16,3 +16,12 @@ ion-avatar{
     width: 60px!important;
     height: 60px!important;
 }
+
+@media(min-width: 374px) and(max-width:375px){
+    ion-avatar{
+        width: 50px!important;
+        height: 50px!important;
+    }
+}
+
+

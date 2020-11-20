@@ -18,6 +18,7 @@
     "ACCESSAPP" : "¿Aún no tienes acceso a nuestra App?",
     "NEXT" : "Siguiente",
     "CANCEL" : "Cancelar",
+    "CAN" : "CANCELAR",
     "BACK" : "Regresar",
     "NAME" : "Nombre",
     "EMAIL" : "Correo Electrónico",
@@ -113,7 +114,7 @@
     "START": "Inicio",
     "BARCODEANDQR":"Código de barras y QR",
     "ASKFORALOAN": "Solicitar un Préstamo",
-    "MYACCOUNTS": "Mis Cuentas",
+    "MYACCOUNTS": "Cuentas",
     "BALANCETONOTGENERATEINTEREST": "SALDO PARA NO GENERAR INTERESES",
     "PAYMENTREFERENCES": "Referencias de Pagos",
     "REIMBURSEMENT": "Reembolso",
@@ -165,5 +166,6 @@
     "STORAGE": "Tiendas Participantes",
     "OK" : "Aceptar",
     "UPDATEDDATA": "Datos actualizados",
-    "RELOADSCREEN": "Recargue la pantalla para ver los cambios"
+    "RELOADSCREEN": "Recargue la pantalla para ver los cambios",
+    "MY":"Mis"
 }

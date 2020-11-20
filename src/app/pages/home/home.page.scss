@@ -117,6 +117,11 @@
   width: 1.8%;
   height: 1.8%;
 }
+ion-avatar{
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
 
 @media(min-width: 359px) and(max-width: 360px){
   .div-secction-button{
@@ -125,6 +130,15 @@
   .div-secction-movimiento{
     margin-top: 79%;
   }
+   .button-1{
+    margin-left: -45px!important;
+   }
+   .button-2{
+    margin-left: -30px!important;
+   }
+   .button-3{
+    margin-left: -18px!important;
+   }
 }
 @media(min-width: 260px) and(max-width: 280px){
   ion-avatar{
@@ -146,6 +160,29 @@
   .div-secction-movimiento{
     margin-top: 80%;
   }
+  .secction-button-skeleton{
+    margin-top: -160px!important;
+  }
+  .skeleton-mov{
+    margin-top: -40px!important;
+  }
+  .button-2{
+    margin-left: -18px!important;
+   }
+}
+@media(min-width: 413px) and(max-width: 414px){
+  .div-secction-movimiento{
+     margin-top: 76%;
+   }
+  .secction-button-skeleton{
+    margin-top: -160px!important;
+  }
+  .skeleton-mov{
+    margin-top: -40px!important;
+  }
+  .button-2{
+    margin-left: -18px!important;
+   }
 }
 
 @media(min-width: 538px) and(max-width:540px){
@@ -168,6 +205,104 @@
   .div-secction-movimiento{
     margin-top: 59%;
   }
+  .div-secction-movimiento{
+    margin-top: 64%;
+  }
+}
+@media(min-width: 539px) and(max-width:540px){
+  .padding-skeleton{
+    margin-top: 10px!important;
+    width: 410px!important;
+    height: 150px!important;
+    
+  }
+
+  .ske-button{
+    width: 35px!important;
+    height: 30px!important;
+    margin-left: 1.5rem!important;
+    margin-right: 1.5rem!important;
+  } 
+  .ske-text{
+   width: 42%!important;
+   height: 10px!important;
+   margin-top: 0px!important;
+   margin-left: 1.5rem!important;
+   margin-right: 2.7rem!important;
+  }
+
+
+  .p-skeleton{
+    margin-top: .8rem;
+    margin-bottom: 1rem;
+  }
+  .button-1,.button-2,.button-3{
+    width: 5rem!important;
+    height: 5rem!important;
+  }
+  .button-1{
+    margin-left: 20px!important;
+   }
+   .button-2{
+    margin-left: 8px!important;
+   }
+   .button-3{
+    margin-left: -10px!important;
+   }
+}
+
+@media(min-width: 767px) and(max-width:768px){
+  .padding-skeleton{
+    width: 558px!important;
+    height: 248px!important;
+    
+  }
+  .slide-1{
+    width: 90px!important; 
+    height: 30px!important;
+  } 
+  .slide-2{
+    height: 15px!important;
+  }
+  .slide-3{
+    height: 30px!important;
+  }
+
+  .slide-0{
+    margin-top: 20px!important;
+  }
+
+  .p-skeleton{
+    margin-top: .9rem;
+    margin-bottom: 1.3rem;
+  }
+  .button-1,.button-2,.button-3{
+    width: 6rem!important;
+    height: 6rem!important;
+  }
+  .button-1{
+    margin-left: 40px!important;
+   }
+   .button-2{
+    margin-left: 10px!important;
+   }
+   .button-3{
+    margin-left: 0px!important;
+   }
+   .ske-button{
+     width: 45px!important;
+     height: 45px!important;
+     margin-left: 1.5rem!important;
+     margin-right: 1.5rem!important;
+   } 
+   .ske-text{
+    width: 40%!important;
+    height: 10px!important;
+    margin-top: 5px!important;
+    margin-left: 1.7rem!important;
+    margin-right: 1.5rem!important;
+   }
+
 }
 
 @media(min-width: 769px) and(max-width:1024px){
@@ -186,4 +321,61 @@
     width: 80px;
     height: 80px;
   }
+
+    .secction-button-skeleton{
+      margin-top: -100px!important;
+    
+  }
+
+  .padding-skeleton{
+    margin-top: 10px!important;
+    width: 830px!important;
+    height: 320px!important;
+    
+  }
+  .slide-1{
+    width: 200px!important; 
+    height: 40px!important;
+  } 
+  .slide-2{
+    height: 25px!important;
+  }
+  .slide-3{
+    height: 40px!important;
+  }
+
+  .slide-0{
+    margin-top: 35px!important;
+  }
+
+  .p-skeleton{
+    margin-top: 1rem;
+    margin-bottom: 1.7rem;
+  }
+  .button-1,.button-2,.button-3{
+    width: 9rem!important;
+    height: 9rem!important;
+  }
+  .button-1{
+    margin-left: 60px!important;
+   }
+   .button-2{
+    margin-left: 25px!important;
+   }
+   .button-3{
+    margin-left: 0px!important;
+   }
+   .ske-button{
+     width: 70px!important;
+     height: 70px!important;
+     margin-left: 2.5rem!important;
+     margin-right: 2rem!important;
+   } 
+   .ske-text{
+    width: 40%!important;
+    height: 10px!important;
+    margin-top: 5px!important;
+    margin-left: 3rem!important;
+    margin-right: 2.1rem!important;
+   }
 }

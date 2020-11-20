@@ -51,15 +51,7 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
           this.storage.set('accountNumber', this.prestamos[0].prestamo_id);
         }
       });
-    } 
-    
-    //location.reload();
-    /*this.storage.get('dashboard').then((val) => {
-      console.log(val);
-    this.prestamos = JSON.parse(val);
-    console.log(this.prestamos);
-    console.log(this.prestamos.length);
-    });*/
+    }
    }
   
    onPrestamosNull(){
@@ -77,32 +69,23 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
 
     this.storage.get('proximos').then((val) => {
       setTimeout(()=>{
-        console.log(val);
-        console.log('entroe pagos');
         this.proximosPagos = val ;
         if(this.proximosPagos.length === 0){
-          console.log('entro if');
           this.proximosPagos = this.varGlobal.getProximos();
         }
-        console.log(this.proximosPagos);
       },300);
     });
  
    }
 
    onMontoProximo(i: number){
-     console.log(this.proximosPagos.length);
-     console.log(this.varGlobal.getProximos());
      if(this.proximosPagos.length === 0){
-       console.log('entro data');
        this.proximosPagos = this.varGlobal.getProximos();
-       console.log(this.proximosPagos[i]);
      }
      return this.proximosPagos[i].montoProximoPago;
    }
 
    ngOnChanges(changes: SimpleChanges): void {
-     console.log('onChabge');
      this.onProximosPagos();
       this.prestamos = changes.prestamos.currentValue;
      if(this.prestamos != undefined){
@@ -129,7 +112,6 @@ export class CardsLoanComponent implements OnInit, AfterViewInit {
   loanChanged() {
     //debe obtener el id del arreglo
     let index = this.slides.getActiveIndex().then( promise =>{
-      console.log ("El índice actual es " + promise);
       this.storage.set('indexCard', promise);
       this.storage.set('accountNumber', this.prestamos[promise].prestamo_account_no);
     });

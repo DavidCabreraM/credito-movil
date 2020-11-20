@@ -21,29 +21,85 @@
     margin-top: -5px;
 }
 .ion-icon-qr{
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.8rem;
+    height: 1.8rem;
     margin-top: -2px;
 }
 .text-qr{
-    margin-top: -17px!important;
+    margin-top: -15px!important;
 }
 .text-size{
     font-size: .54rem;
     margin-top: -20px;
 }
+.text-size-account{
+    font-size: .54rem;
+    margin-top: -14px;
+}
 
 @media (min-width:359px) and (max-width:375px){
     .ion-card-qr{
-        margin-right: -5px!important;
+        margin-left: -10px!important;
+     }
+     .ion-card-loan{
+        margin-left: -10px!important;
      }
     .col-separation{
         width: 2rem!important;
     }
+    .text-size-account{
+        font-size: .54rem;
+        margin-top: -17px;
+    }
+    .ion-text-loan{
+        font-size: .54rem;
+        margin-top: -3px;
+    }
+      .text-qr{
+        margin-top: -15px!important;
+    }
+    .ion-card{
+        width: 4.8rem;
+        height: 4.8rem;
+    }
     
+}
+@media (min-width:374px) and (max-width:375px){
+    .ion-card{
+        width: 5rem!important;
+        height: 5rem!important;
+    }
+    .text-size{
+        font-size: .49rem;
+    }
+    .text-size-account{
+        font-size: .49rem;
+    }
+}
+@media (min-width:413px) and (max-width:414px){
+    .ion-card{
+        width: 5.20rem;
+        height: 5.20rem;
+    }
+    .text-size{
+        font-size: .51rem;
+    }
+    .text-size-account{
+        font-size: .51rem;
+    }
+    .ion-card-qr{
+        margin-left: -12px!important;
+     }
+     .ion-card-loan{
+        margin-left: -10px!important;
+     }
 }
 
 @media (min-width:767px) and (max-width:800px){
+    .ion-card{
+        width: 7.5rem;
+        height: 7.5rem;
+    }
     .ion-card-qr{
         margin-right: 20px!important;
         margin-left: 20px!important;
@@ -56,10 +112,38 @@
     .col-separation{
         width: 25rem!important;
     }
+    .ion-icon-myaccounts{
+        width: 3rem;
+        height: 3rem;
+        margin-top: 8px;
+    }
+    .ion-icon-qr{
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-top: 8px;
+    }
+
+    .ion-icon-loan{
+        max-width: 40px!important;
+        margin-top: 9px!important;
+        margin-left: 26px!important;
+    }
+
+    .text-size{
+        font-size: .8rem;
+    }
+    .text-size-account{
+        font-size: .8rem;
+        margin-top: -20px!important;
+    }
     
 }
 
 @media (min-width:1023px) and (max-width:1024px){
+    .text-size-account{
+        font-size: 1.2rem!important;
+        margin-top: -20px!important;
+    }
     .ion-card-qr{
         margin-right: 50px!important;
         margin-left: 50px!important;
@@ -67,6 +151,11 @@
      .ion-card-myaccounts{
         margin-right: 50px!important;
         margin-left: 50px!important;
+     }
+     .ion-icon-loan{
+        max-width: 70px!important;
+        margin-top: 9px!important;
+        margin-left: 26px!important;
      }
   
     .col-separation{

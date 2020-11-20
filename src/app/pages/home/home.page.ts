@@ -106,10 +106,8 @@ export class HomePage implements OnInit {
 
     reader.readAsDataURL(image);
     reader.onload = (event: any) => {
-      console.log(event);
       let image = event.target.result;
-     
-      console.log();
+  
       this.storage.set('selfi', JSON.stringify(image));
       this.varGlobal.setavatar(image);
       this.urlAvatar = image;
@@ -121,14 +119,12 @@ export class HomePage implements OnInit {
     this.serviceLoand.dashboard().subscribe(data =>{
         this.storage.set(this.key, JSON.stringify(data.prestamos)).then(()=>{
           this.onNextDate(data.prestamos);
-          console.log(this.eventSource);
           this.varGlobal.setProximos(this.eventSource);
           this.storage.set('proximos', this.eventSource).then(()=>{
             console.log("Dato guardado");
             //Viajo a otra pagina
           });
           this.prestamos = data.prestamos;
-          console.log(this.prestamos);
           this.prestamoPendiente = this.prestamos.find( prestamo => prestamo.estatus === '100' );
           this.arrayMovements=data.movs;
         });
@@ -155,24 +151,17 @@ export class HomePage implements OnInit {
   }
 
   onNextDate(data:any) {
-    console.log('entro date');
-    console.log(data);
     for( let i= 0 ; i < data.length; i++) {
-        console.log('for');
-        console.log(data[i].prestamo_id);
         this.calendarService.calendar(data[i].prestamo_id).toPromise().then( promise => {
           this.payments = promise;
-          console.log('datarpomise');
-          console.log(this.payments);
            this.nextPayment();
           //this.prestamoPendiente = this.prestamos.find( prestamo => prestamo.estatus === '100' );
         });
 
     }
 
-    console.log(this.eventSource);
     this.storage.get('proximos').then((val)=>{
-      console.log(val);
+      console.log('');
     });
     //this.storage.set('proximosPagos', 'Hoal');
   }

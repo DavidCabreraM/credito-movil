@@ -25,7 +25,7 @@ ion-avatar{
     margin-left: 2rem;
     margin-right: 2rem;
     width: 13rem;
-    height: 12.1rem;
+    height: 12.6rem;
     float: center;
     text-align: center;
 }
@@ -43,4 +43,110 @@ strong{
 ion-item{
     float: center;
     text-align: center;
+}
+
+@media(min-width: 374px) and(max-width:375px){
+    .button{
+          margin-top: 5rem!important;
+
+    }
+    ion-avatar{
+        margin-top: 5rem;
+        margin-bottom: 3rem;
+        width: 13rem!important;
+        height: 11rem!important;
+    }
+}
+@media(min-width: 359px) and(max-width:360px){
+    .button{
+          margin-top: 2rem!important;
+    }
+
+    ion-avatar{
+        margin-top: 5rem;
+        margin-bottom: 3rem;
+        width: 13rem!important;
+        height: 10.9rem!important;
+    }
+}
+
+@media(min-width: 413px) and(max-width:414px){
+    .button{
+          margin-top: 4.5rem!important;
+    }
+}
+
+@media(min-width: 1023px) and(max-width:1024px){
+    .button{
+        margin-top: 10rem!important;
+        height: 4rem!important;
+        font-size: 2rem!important;
+  }
+  strong{
+    font-size: 4rem;
+}
+
+  ion-avatar{
+      width: 32rem!important;
+      height: 31rem!important;
+      margin-bottom: 12rem!important;
+      margin-left: 10.5rem!important;
+      margin-right: 10rem!important;    
+  }
+
+  .solicitud{
+      float:center!important;
+      text-align: center!important;
+      padding-top: 4rem!important;
+      margin-left: 4rem!important;
+  }
+
+  .msj{
+      font-size: xx-large!important;
+  }
+}
+@media(min-width: 767px) and(max-width:768px){
+    .button{
+          margin-top: 10rem!important;
+    }
+
+    ion-avatar{
+        margin-bottom: 10rem!important;
+        margin-left: 11.5rem!important;
+        margin-right: 11.5rem!important;    
+    }
+
+    .solicitud{
+        float:center!important;
+        text-align: center!important;
+        margin-left: 11.5rem!important;
+    }
+
+    .msj{
+        font-size: large!important;
+    }
+}
+
+@media(min-width: 539px) and(max-width:540px){
+    .button{
+          margin-top: 5rem!important;
+    }
+
+    ion-avatar{
+        margin-bottom: 5rem!important;
+        width: 13rem!important;
+        height: 13rem!important;
+        margin-left: 5rem!important;
+        margin-right: 5rem!important;    
+    }
+
+    .solicitud{
+        float:center!important;
+        text-align: center!important;
+        margin-left: 5rem!important;
+    }
+
+    .msj{
+        font-size: small!important;
+    }
 }

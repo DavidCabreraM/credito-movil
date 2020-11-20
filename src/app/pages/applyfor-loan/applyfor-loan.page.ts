@@ -65,7 +65,6 @@ export class ApplyforLoanPage implements OnInit {
     });
     this.presentLoading(msg);
     this.serviceLoan.parameter().subscribe(data => {
-      console.log(data);
       this.identificador = data.prestamos.identificadorProducto;
       this.destionPrestamo = data.prestamos.destinoPrestamo;
       this.tipoFrecuencia = data.prestamos.tipoFrecuencia;
@@ -75,7 +74,6 @@ export class ApplyforLoanPage implements OnInit {
       this.amount = data.prestamos.limitesMonto.minimo + '.00';
       this.amount_min = data.prestamos.limitesMonto.minimo;
       this.amount_max = data.prestamos.limitesMonto.maximo;
-        console.log(this.amount_min);
       });
       setTimeout(()=>{
             this.loading.dismiss();
@@ -93,7 +91,6 @@ export class ApplyforLoanPage implements OnInit {
   } 
 
   onTiposFrecuencia(data: any){
-    console.log(data);
     for(let item of data){
        let contador=0;
        let total;
@@ -105,7 +102,6 @@ export class ApplyforLoanPage implements OnInit {
           total = 4;
         }
         for(let i = 1; i < this.plazo_max; i++){
-          console.log(item.valor);
           let noPlazo;
           if(item.valor === 'Semanas') {
               noPlazo = this.plazo_min * i;
@@ -121,17 +117,12 @@ export class ApplyforLoanPage implements OnInit {
               valor: item.valor,
               plazo: noPlazo
             });
-            console.log(contador);
-            console.log(item.valor);
-            console.log(this.plazoDeseado);
           contador++;
           if(contador === total){
             break;
           }
         }
     }
-
-    console.log(this.plazoDeseado);
     //this.tiposPlazos = data;
   }
 
@@ -148,7 +139,6 @@ export class ApplyforLoanPage implements OnInit {
     this.storage.get('dashboard').then((val) => {
       let result = JSON.parse(val);
       for(let item of result){
-        console.log(item.estatus);
         let msgAceptar = '';
           if(item.estatus === '100'){
             this.solicitud = true;
@@ -199,7 +189,6 @@ export class ApplyforLoanPage implements OnInit {
   async presentAlertConfirm(msj, head) {
     let option_cancel  = 'Regresar';
     let ok = 'Aceptar';
-    console.log(msj);
     if(msj === 'NotSave'){
       msj = 'No guardaremos los datos que hayas ingresado';
       head = '¿Estás seguro que deseas salir?';
@@ -233,29 +222,23 @@ export class ApplyforLoanPage implements OnInit {
   }
 
   rangeChange(even:any){
-    console.log(even);
       this.amount = even.detail.value;
   }
 
   onPlazo(even: any){
     this.formPrestamo.controls['pagos'].setValue('');
     this.selectTipoPlazo=[];
-    console.log(even);
     let select = this.plazoDeseado[even.detail.value];
     this.selectTipoPlazo = even.detail.value;
-    console.log(this.selectTipoPlazo);
     if(select['valor'] === 'Semanas'){
       this.selectSemana = true;
     } else {
       this.selectSemana = false;
     }
-
-    console.log(this.selectSemana);
   }
 
 
   onPago(even: any){
-    console.log('pago');
     this.selectTipoFrecuencia = this.tipoFrecuencia[even.detail.value];
   }
 
@@ -278,10 +261,17 @@ export class ApplyforLoanPage implements OnInit {
         'tipoFrecuencia': this.selectTipoFrecuencia,
         'destinoPrestamo':this.selectDestinoPrestamo
     }).toPromise().then(response => {
-        console.log(JSON.parse(response));
-        console.log('entro');
         this.router.navigate(['/request-received']);
     }).catch( err => {
+      let msg;
+      this.translate.get('TRYAGAIN').subscribe(val=>{
+        msg = val + '...';
+      });
+        this.presentLoading(msg);
+        setTimeout(()=>{
+          this.loading.dismiss();
+          this.router.navigate(['/home']);
+        },3000);
         console.log(err);
     }).finally(() =>{
     });

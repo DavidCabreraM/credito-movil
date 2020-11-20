@@ -18,6 +18,7 @@
     "ACCESSAPP" : "Still do not have access to our App?",
     "NEXT" : "Next",
     "CANCEL" : "Cancel",
+    "CAN" : "CANCEL",
     "BACK" : "Back",
     "NAME" : "Name",
     "EMAIL" : "Email",
@@ -113,7 +114,7 @@
     "START": "Start",
     "BARCODEANDQR":"Barcode and Qr",
     "ASKFORALOAN": "Ask for a loan",
-    "MYACCOUNTS": "My Accounts",
+    "MYACCOUNTS": "Accounts",
     "BALANCETONOTGENERATEINTEREST": "BALANCE TO NOT GENERATE INTEREST",
     "PAYMENTREFERENCES": "Payment References",
     "REIMBURSEMENT": "Reimbursement",
@@ -165,5 +166,6 @@
     "STORAGE": "Participating Stores",
     "OK" : "Ok",
     "UPDATEDDATA":"Updated data",
-    "RELOADSCREEN":"Reload the screen to see the changes"
+    "RELOADSCREEN":"Reload the screen to see the changes",
+    "MY":"My"
 }

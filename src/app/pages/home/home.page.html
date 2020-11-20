@@ -12,27 +12,27 @@
 
         <ion-slides  pager mode="md" #slides>
           <ion-slide *ngFor="let item of [1,1]" class="slide-skeleton">
-            <ion-card class="padding-skeleton" style="width: 270px;height: 120px;">
+            <ion-card class="padding-skeleton" style="width: 300px;height: 120px;">
               <ion-label>
                 <h2 class="text-right-skeleton">
-                  <ion-skeleton-text animated style="width: 80px; height: 10px" slot="end"></ion-skeleton-text>
+                  <ion-skeleton-text class="slide-1" animated style="width: 80px; height: 10px" slot="end"></ion-skeleton-text>
                 </h2>
                 <ion-label>
-                  <h3 class="ion-text-left" style="margin-top: 5px;">
-                    <ion-skeleton-text animated style="width: 35%;"></ion-skeleton-text>
+                  <h3 class="ion-text-left"  class="slide-0" style="margin-top: 5px;">
+                    <ion-skeleton-text class="slide-2"  animated style="width: 35%;"></ion-skeleton-text>
                   </h3>
                   <p class="ion-text-left p-skeleton">
-                    <ion-skeleton-text animated style="width: 45%;"></ion-skeleton-text>
+                    <ion-skeleton-text class="slide-3"  animated style="width: 45%;"></ion-skeleton-text>
                   </p>
                   <h3 class="ion-text-left h3-skeleton">
-                    <ion-skeleton-text animated style="width: 60%;">
+                    <ion-skeleton-text class="slide-2"  animated style="width: 60%;">
                     </ion-skeleton-text>
                   </h3>
                   <p class="ion-text-left p-skeleton">
-                    <ion-skeleton-text animated style="width: 45%;"></ion-skeleton-text>
+                    <ion-skeleton-text class="slide-3"  animated style="width: 45%;"></ion-skeleton-text>
                   </p>
                   <h3 class="ion-text-left">
-                    <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
+                    <ion-skeleton-text class="slide-2"  animated style="width: 80%;"></ion-skeleton-text>
                   </h3>
                 </ion-label>   
               </ion-label>
@@ -45,18 +45,26 @@
         <ion-grid style="background-color: #FFFF;">
           <ion-row>
             <ion-col style="background-color: #FFFF;">
-              <ion-card style="width: 80px;height: 80px;">
+              <ion-card class="button-1" style="width: 80px;height: 80px;margin-left: -18px;">
                 <ion-label class="padding-skeleton">
-                  <ion-skeleton-text animated style="width: 30px; height: 30px;margin-left: 1.5rem;margin-right: 1.5rem;"></ion-skeleton-text>
-                  <ion-skeleton-text  animated style="width: 30%;margin-left: 1.7rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                  <ion-skeleton-text  class="ske-button" animated style="width: 30px; height: 30px;margin-left: 1.5rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                  <ion-skeleton-text class="ske-text"  animated style="width: 30%;margin-left: 1.7rem;margin-right: 1.5rem;"></ion-skeleton-text>
                 </ion-label>
               </ion-card>
             </ion-col>
             <ion-col style="background-color: #FFFF;">
-              <ion-card style="width: 80px;height: 80px;">
+              <ion-card class="button-2" style="width: 80px;height: 80px;margin-left: -16px;">
                 <ion-label class="padding-skeleton">
-                  <ion-skeleton-text animated style="width: 30px; height: 30px;margin-left: 1.5rem;margin-right: 1.5rem;"></ion-skeleton-text>
-                  <ion-skeleton-text  animated style="width: 30%;margin-left: 1.7rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                  <ion-skeleton-text class="ske-button" animated style="width: 30px; height: 30px;margin-left: 1.5rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                  <ion-skeleton-text  class="ske-text" animated style="width: 30%;margin-left: 1.7rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                </ion-label>
+              </ion-card>
+            </ion-col>
+            <ion-col style="background-color: #FFFF;">
+              <ion-card class="button-3" style="width: 80px;height: 80px;margin-left: -18px;">
+                <ion-label class="padding-skeleton">
+                  <ion-skeleton-text  class="ske-button" animated style="width: 30px; height: 30px;margin-left: 1.5rem;margin-right: 1.5rem;"></ion-skeleton-text>
+                  <ion-skeleton-text   class="ske-text" animated style="width: 30%;margin-left: 1.7rem;margin-right: 1.5rem;"></ion-skeleton-text>
                 </ion-label>
               </ion-card>
             </ion-col>
@@ -64,7 +72,7 @@
         </ion-grid>
        </div>
 
-       <div style="background-color: #FFFF;">
+       <div class="skeleton-mov" style="background-color: #FFFF;">
         <ion-card *ngFor="let i of [1,2,3,4,5]">
           <ion-card-content class="ion-no-padding">
             <ion-item style="--background:#F7F7F7;" lines="none">
