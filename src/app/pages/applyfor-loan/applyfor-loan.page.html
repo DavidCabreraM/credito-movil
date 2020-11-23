@@ -66,7 +66,7 @@
 
   <ion-item style="margin-top: 12px;" class="destino ion-select margin-top">
     <ion-label position="floating" class="i-success">{{'DESTINATIONOFTHELOAN' | translate}}:</ion-label>
-  <ion-select  cancelText="{{'CAN'|translate}}" interface="action-sheet" (ionChange)="onDestino($event)" formControlName="destino">
+  <ion-select cancelText="{{'CAN'|translate}}" interface="action-sheet" (ionChange)="onDestino($event)" formControlName="destino">
     <ion-select-option  *ngFor="let item of destionPrestamo" value="{{item.id}}">{{item.valor | uppercase | translate}}</ion-select-option>
   </ion-select>
 </ion-item>
