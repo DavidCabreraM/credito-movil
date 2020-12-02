@@ -23,8 +23,6 @@ export class AppComponent{
 
   public client_name: any[];
   navigate : any;
-  user: any;
-  m_client:string;
   public urlAvatar = '';
   optionLanguage="es"
   languagesList = [

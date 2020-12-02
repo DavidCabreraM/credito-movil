@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
-import { from, Observable } from 'rxjs';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { from, Observable, throwError } from 'rxjs';
 import { Storage } from '@ionic/storage';
-import { switchMap } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +25,17 @@ export class HeadersService implements HttpInterceptor{
           const reqClone = req.clone({
             headers
           });
-          return next.handle(reqClone);
+          return next.handle(reqClone).pipe(catchError(this.manejarError));
         }
-        return next.handle(req);
+        return next.handle(req).pipe(catchError(this.manejarError));
       })
     )
+  }
+
+  manejarError(error: HttpErrorResponse){
+    console.log("Sucedio un error")
+    console.log("Aqui: ",error)
+
+    return throwError('Error personalizado')
   }
 }
