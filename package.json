@@ -70,9 +70,9 @@
     "ts-node": "~8.3.0",
     "tslib": "^2.0.0",
     "tslint": "~6.1.0",
-    "@ionic/app-scripts": "2.1.4",
     "typescript": "~3.9.5",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "@ionic/app-scripts": "3.2.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.0",
