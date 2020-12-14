@@ -42,7 +42,10 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3",
     "@ionic/app-scripts": "^3.2.4",
-    "typescript": "~3.9.5"
+    "typescript": "~3.9.5",
+    "@angular/cli": "~10.0.5",
+    "@angular/compiler-cli": "~10.0.0",
+    "@angular-devkit/build-angular": "~0.1000.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.0",
