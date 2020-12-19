@@ -43,7 +43,7 @@ export class AppComponent{
     private statusBar: StatusBar,
     private translate: TranslateService,
     private router: Router,
-    private avatarUrl: VarglobalesService,
+    public avatarUrl: VarglobalesService,
     public loadingController:LoadingController,
     private loansService : LoansService,
     private modalController: ModalController,

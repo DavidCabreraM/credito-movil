@@ -31,7 +31,7 @@ export class CardsButtonsComponent implements OnInit {
 
   ngOnInit() {}
 
-  onOptionsButtons(url: number){
+  onOptionsButtons(url){
     this.storage.set('indexCard','0').then(()=>{
       this.router.navigate([url]);
     });

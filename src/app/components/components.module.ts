@@ -23,8 +23,8 @@ import { ChangeLanguageComponent } from './modals/change-language/change-languag
     ValidationErrorsComponent,
     PaymentCardsComponent,
     SpinnerComponent,
-    CardsButtonsComponent,
-    CardsLoanComponent,
+    //CardsButtonsComponent,
+    //CardsLoanComponent,
     PaymentComponent,
     EstablishmentsComponent,
     ChangePasswordComponent,
@@ -36,8 +36,8 @@ import { ChangeLanguageComponent } from './modals/change-language/change-languag
     ValidationErrorsComponent,
     PaymentCardsComponent,
     SpinnerComponent,
-    CardsButtonsComponent,
-    CardsLoanComponent,
+    //CardsButtonsComponent,
+    //CardsLoanComponent,
     EstablishmentsComponent
   ],
   imports: [

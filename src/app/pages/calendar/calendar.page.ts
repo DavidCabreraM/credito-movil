@@ -129,10 +129,6 @@ export class CalendarPage implements OnInit, AfterViewInit {
     console.log("nose2")
   }
 
-  onEventSelected(){
-    console.log("Apreto")
-  }
-
   onViewTitleChanged(){
     console.log("title")
   }

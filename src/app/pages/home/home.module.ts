@@ -7,6 +7,8 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { ComponentsModule } from '../../components/components.module';
+import { CardsLoanModule } from '@components/cards-loan/cards-loan.module';
+import { CardsButtonsModule } from '@components/cards-buttons/cards-buttons.module';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    CardsLoanModule,
+    CardsButtonsModule
   ],
   declarations: [HomePage]
 })

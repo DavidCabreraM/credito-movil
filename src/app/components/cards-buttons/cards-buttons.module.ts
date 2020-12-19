@@ -10,9 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    CardsButtonsComponent,
-    RouterModule,
-    TranslateModule
+    CardsButtonsComponent
   ],
   imports: [
     CommonModule,

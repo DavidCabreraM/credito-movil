@@ -38,8 +38,10 @@
           ticks="true" [value]="amount_min"
           color="success"
           (ionChange)="rangeChange($event)">
-            <ion-label style="color:#FFFF; font-size:.1rem" slot="start">{{amount_min|currency:0: "$"}}</ion-label>
-            <ion-label style="color:#FFFF; font-size:.1rem" slot="end">{{amount_max|currency:0:"$"}}</ion-label>
+            <!-- ion-label style="color:#FFFF; font-size:.1rem" slot="start">{{amount_min|currency:0: "$"}}</ion-label>
+            <ion-label style="color:#FFFF; font-size:.1rem" slot="end">{{amount_max|currency:0:"$"}}</ion-label-->
+            <ion-label style="color:#FFFF; font-size:.1rem" slot="start">{{amount_min|currency}}</ion-label>
+            <ion-label style="color:#FFFF; font-size:.1rem" slot="end">{{amount_max|currency}}</ion-label>
         </ion-range>  
         </ion-item>
     </div>

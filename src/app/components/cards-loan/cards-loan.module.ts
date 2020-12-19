@@ -8,9 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    CardsLoanComponent,
-    TranslateModule
-
+    CardsLoanComponent
   ],
   exports:[
     CardsLoanComponent

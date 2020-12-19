@@ -8,6 +8,7 @@ import { AccountPageRoutingModule } from './account-routing.module';
 import { ComponentsModule } from '@components/components.module';
 import { AccountPage } from './account.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { CardsLoanModule } from '@components/cards-loan/cards-loan.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicModule,
     AccountPageRoutingModule,
     ComponentsModule,
-    TranslateModule
+    TranslateModule,
+    CardsLoanModule
   ],
   declarations: [AccountPage]
 })
