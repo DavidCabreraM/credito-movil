@@ -23,8 +23,8 @@ export class RegisterPage implements OnInit {
   showBar = false;
   isFace = false;
   hide = true;
-  step1 = true;
-  step2 = false;
+  step2 = true;
+  step1 = false;
   mensajeSelfi ="";
   aceptarTerminos = false;
   form_register1: FormGroup;
@@ -145,6 +145,7 @@ export class RegisterPage implements OnInit {
       this.image = 'data:image/jpeg;base64,' + imageData      
       setTimeout(() => this.detect(), 200);
     }, (err) => {
+      console.log(err)
       this.translate.get(['LOADINGPHOTO',"OK"]).subscribe(
         value => {
           this.presentAlert('Ups!',value.LOADINGPHOTO,value.OK);
